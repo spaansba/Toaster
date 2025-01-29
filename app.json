@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "ToasterApp",
-    "slug": "ToasterApp",
+    "name": "Toaster",
+    "slug": "Toaster",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/logo512.png",
+    "scheme": "Toaster",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -13,14 +13,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo128.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo128.png"
     },
     "plugins": [
       "expo-router",
@@ -28,9 +28,20 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "resizeMode": "cover",
+          "backgroundColor": "#ffffff",
+          "enableFullScreenImage_legacy": true
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/CourierPrime-Bold.ttf",
+            "./assets/fonts/CourierPrime-BoldItalic.ttf",
+            "./assets/fonts/CourierPrime-Italic.ttf",
+            "./assets/fonts/CourierPrime-Regular.ttf"
+          ]
         }
       ]
     ],
