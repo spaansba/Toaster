@@ -5,6 +5,7 @@ import { useRouter } from "expo-router"
 import React, { useState } from "react"
 import { Alert, Text } from "react-native"
 import * as Linking from "expo-linking"
+import { makeRedirectUri } from "expo-auth-session"
 
 function emailAuth() {
   const router = useRouter()
@@ -37,6 +38,12 @@ function emailAuth() {
     } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+        emailRedirectTo: makeRedirectUri({
+          scheme: "com.toaster",
+          path: "home",
+        }),
+      },
     })
 
     if (error) Alert.alert(error.message)

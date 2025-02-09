@@ -17,7 +17,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo128.png",
         "backgroundColor": "#EDE1D8"
-      }
+      },
+      "package": "com.spaans.toaster"
     },
     "web": {
       "bundler": "metro",

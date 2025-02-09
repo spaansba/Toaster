@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState, type PropsWithChildren 
 import * as Linking from "expo-linking"
 import { makeRedirectUri } from "expo-auth-session"
 import * as WebBrowser from "expo-web-browser"
+import * as QueryParams from "expo-auth-session/build/QueryParams"
+
 type AuthData = {
   session: Session | null
   isLoading: boolean
@@ -17,8 +19,20 @@ const AuthContext = createContext<AuthData>({
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [session, setSession] = useState<Session | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  // const url = Linking.useURL()
-  // console.log(url)
+  const url = Linking.useURL()
+
+  useEffect(() => {
+    if (url) {
+      const { params, errorCode } = QueryParams.getQueryParams(url)
+      if (params?.access_token) {
+        supabase.auth.setSession({
+          access_token: params.access_token,
+          refresh_token: params.refresh_token,
+        })
+      }
+    }
+  }, [url])
+
   useEffect(() => {
     const fetchSession = async () => {
       const { data, error } = await supabase.auth.getSession()
