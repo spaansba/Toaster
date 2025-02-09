@@ -1,9 +1,9 @@
 import { View, Text, Image, AppState, Platform } from "react-native"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import images from "@/constants/images"
-import { router, useRouter } from "expo-router"
+import { Redirect } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
-import { KeyboardAwareScrollView, KeyboardToolbar } from "react-native-keyboard-controller"
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import { supabase } from "@/lib/supabase"
 import EmailAuth from "@/components/auth/EmailAuth"
 import AppleAuth from "@/components/auth/AppleAuth"
@@ -17,14 +17,18 @@ AppState.addEventListener("change", (state) => {
   }
 })
 
-const SignIn = () => {
-  const { session } = useAuth()
+export default function SignIn() {
+  const { session, isLoading } = useAuth()
+  const [showEmailAuth, setShowEmailAuth] = useState(false)
 
-  if (session) {
-    router.replace("/home")
+  if (isLoading) {
+    return null // or a loading spinner
   }
 
-  const [showEmailAuth, setShowEmailAuth] = useState(false)
+  if (session) {
+    return <Redirect href="/home" />
+  }
+
   return (
     <KeyboardAwareScrollView
       style={{ flex: 1, backgroundColor: "#EDE1D8" }}
@@ -71,5 +75,3 @@ const SignIn = () => {
     </KeyboardAwareScrollView>
   )
 }
-
-export default SignIn

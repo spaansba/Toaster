@@ -1,33 +1,39 @@
 import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
+import { makeRedirectUri } from "expo-auth-session"
 import { useRouter } from "expo-router"
 import React, { useState } from "react"
 import { Alert, Text } from "react-native"
-import * as Linking from "expo-linking"
-import { makeRedirectUri } from "expo-auth-session"
 
-function emailAuth() {
+function EmailAuth() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const url = Linking.useURL()
+  // Add this to get your redirect URL
+  const redirectUrl = makeRedirectUri({
+    scheme: "com.toaster",
+    path: "/",
+  })
+
   async function signInWithEmail() {
     setLoading(true)
-    const {
-      error,
-      data: { session },
-    } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    })
+    try {
+      const { error, data } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      })
 
-    if (session) {
-      router.replace("/")
+      if (error) {
+        Alert.alert(error.message)
+      }
+    } catch (error) {
+      console.error(error)
+      Alert.alert("An error occurred during sign in")
+    } finally {
+      setLoading(false)
     }
-    if (error) Alert.alert(error.message)
-    setLoading(false)
   }
 
   async function signUpWithEmail() {
@@ -39,10 +45,7 @@ function emailAuth() {
       email: email,
       password: password,
       options: {
-        emailRedirectTo: makeRedirectUri({
-          scheme: "com.toaster",
-          path: "home",
-        }),
+        emailRedirectTo: redirectUrl,
       },
     })
 
@@ -93,4 +96,4 @@ function emailAuth() {
   )
 }
 
-export default emailAuth
+export default EmailAuth

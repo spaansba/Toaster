@@ -25,10 +25,15 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     if (url) {
       const { params, errorCode } = QueryParams.getQueryParams(url)
       if (params?.access_token) {
-        supabase.auth.setSession({
-          access_token: params.access_token,
-          refresh_token: params.refresh_token,
-        })
+        supabase.auth
+          .setSession({
+            access_token: params.access_token,
+            refresh_token: params.refresh_token,
+          })
+          .then(({ data, error }) => {
+            if (error) console.error("Error setting session:", error)
+            else setSession(data.session)
+          })
       }
     }
   }, [url])

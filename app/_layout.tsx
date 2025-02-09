@@ -24,10 +24,10 @@ export default function RootLayout() {
   }
 
   return (
-    <KeyboardProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <KeyboardProvider>
         <Stack screenOptions={{ headerShown: false }} />
-      </AuthProvider>
-    </KeyboardProvider>
+      </KeyboardProvider>
+    </AuthProvider>
   )
 }

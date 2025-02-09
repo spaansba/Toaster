@@ -13,47 +13,9 @@ export default function RootLayout() {
     return <ActivityIndicator />
   }
 
+  // Instead of direct navigation, return a Redirect component
   if (session) {
-    router.replace("/home")
-  } else {
-    router.replace("/sign-in")
+    return <Redirect href="/home" />
   }
-  // const [session, setSession] = useState<Session | null>(null)
-  // const [isLoading, setIsLoading] = useState(true)
-
-  // useEffect(() => {
-  //   // Check if user is logged in
-  //   supabase.auth.getSession().then(({ data: { session } }) => {
-  //     setSession(session)
-  //     setIsLoading(false)
-  //   })
-
-  //   // Listen for authentication changes
-  // const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-  //   setSession(session)
-  //   setIsLoading(false)
-  // })
-
-  //   return () => authListener.subscription?.unsubscribe()
-  // }, [])
-
-  // // Redirect based on auth state
-  // useEffect(() => {
-  //   if (isLoading) return // Wait until we check auth status
-
-  //   if (session) {
-  //     // User is logged in - show home page
-  //     router.replace("/home")
-  //   } else {
-  //     // No user - show sign in page
-  //     router.replace("/sign-in")
-  //   }
-  // }, [session, isLoading])
-
-  return (
-    <Stack>
-      <Stack.Screen name="(auth)" />
-      <Stack.Screen name="(tabs)" />
-    </Stack>
-  )
+  return <Redirect href="/sign-in" />
 }
