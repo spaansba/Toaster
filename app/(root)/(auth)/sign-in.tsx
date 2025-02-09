@@ -1,21 +1,13 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  Image,
-  AppState,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native"
+import { View, Text, Image, AppState, Platform } from "react-native"
 import React, { useState } from "react"
 import images from "@/constants/images"
-import { supabase } from "../../../lib/supabase"
-import { Button, Input } from "@rneui/themed"
-import { useRouter } from "expo-router"
+import { router, useRouter } from "expo-router"
+import ToasterButton from "@/components/ToasterButton"
+import { KeyboardAwareScrollView, KeyboardToolbar } from "react-native-keyboard-controller"
+import { supabase } from "@/lib/supabase"
+import EmailAuth from "@/components/auth/EmailAuth"
+import AppleAuth from "@/components/auth/AppleAuth"
+import { useAuth } from "@/providers/AuthProvider"
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
@@ -26,119 +18,57 @@ AppState.addEventListener("change", (state) => {
 })
 
 const SignIn = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  async function signInWithEmail() {
-    setLoading(true)
-    const {
-      error,
-      data: { session },
-    } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    })
+  const { session } = useAuth()
 
-    if (session) {
-      router.push("/")
-    }
-    if (error) Alert.alert(error.message)
-    setLoading(false)
+  if (session) {
+    router.replace("/home")
   }
 
-  async function signUpWithEmail() {
-    setLoading(true)
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    })
-
-    if (error) Alert.alert(error.message)
-    if (!session) Alert.alert("Please check your inbox for email verification!")
-    setLoading(false)
-  }
-
+  const [showEmailAuth, setShowEmailAuth] = useState(false)
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className="flex-1"
+    <KeyboardAwareScrollView
+      style={{ flex: 1, backgroundColor: "#EDE1D8" }}
+      contentContainerClassName="mt-2 h-full"
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
     >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1 bg-primary-300">
-          <SafeAreaView className="flex-1">
-            <ScrollView
-              className="flex-1"
-              contentContainerClassName="flex-grow"
-              keyboardShouldPersistTaps="handled"
-              showsVerticalScrollIndicator={false}
-            >
-              <Image
-                source={images.walkingToaster}
-                className="w-full h-[40%]" // Reduced height to give more space for inputs
-                resizeMode="contain"
+      <View className="h-full">
+        <Image source={images.walkingToaster} className="w-full h-[300px]" resizeMode="contain" />
+        <View className="flex-1 bg-primary-300 px-7 items-center">
+          {!showEmailAuth && (
+            <>
+              <Text className="uppercase font-courier-bold text-4xl mt-4 mb-5">Continue With</Text>
+              {Platform.OS === "ios" && <AppleAuth />}
+              <Text className="uppercase font-courier-bold text-1xl my-6">or Continue With</Text>
+              <ToasterButton
+                title="EMAIL"
+                onPress={() => {
+                  setShowEmailAuth(true)
+                }}
+                icon="mail"
+                variant="blue"
               />
-
-              <View className="px-10 mb-6">
-                <Text className="text-base text-center uppercase font-courier text-black-200">
-                  Welcome To Real Scout
-                </Text>
-              </View>
-
-              <View className="px-5 py-1 mt-5">
-                <Input
-                  label="Email"
-                  leftIcon={{ type: "font-awesome", name: "envelope" }}
-                  onChangeText={(text) => setEmail(text)}
-                  value={email}
-                  placeholder="email@address.com"
-                  autoCapitalize={"none"}
-                  containerStyle={{ paddingHorizontal: 0 }}
-                  keyboardType="email-address"
-                  returnKeyType="next"
-                />
-              </View>
-
-              <View className="px-5 py-1">
-                <Input
-                  label="Password"
-                  leftIcon={{ type: "font-awesome", name: "lock" }}
-                  onChangeText={(text) => setPassword(text)}
-                  value={password}
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  autoCapitalize={"none"}
-                  containerStyle={{ paddingHorizontal: 0 }}
-                  returnKeyType="done"
-                  onSubmitEditing={Keyboard.dismiss}
-                />
-              </View>
-
-              <View className="px-5 py-1 mt-5">
-                <Button
-                  title="Sign in"
-                  disabled={loading}
-                  onPress={signInWithEmail}
-                  buttonStyle={{ borderRadius: 8 }}
-                />
-              </View>
-
-              <View className="px-5 py-1 mb-5">
-                <Button
-                  title="Sign up"
-                  disabled={loading}
-                  onPress={signUpWithEmail}
-                  buttonStyle={{ borderRadius: 8 }}
-                />
-              </View>
-            </ScrollView>
-          </SafeAreaView>
+            </>
+          )}
+          {showEmailAuth && <EmailAuth />}
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+
+        {/* Back button at the bottom */}
+        {showEmailAuth && (
+          <View className="w-full bg-primary-300 px-7 pb-20">
+            <View className="w-[60px]">
+              <ToasterButton
+                onPress={() => {
+                  setShowEmailAuth(false)
+                }}
+                title="<"
+                variant="blue"
+              />
+            </View>
+          </View>
+        )}
+      </View>
+    </KeyboardAwareScrollView>
   )
 }
 

@@ -5,16 +5,18 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo512.png",
-    "scheme": "Toaster",
+    "scheme": "com.toaster",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "useAppleSignIn": true,
+      "bundleIdentifier": "com.spaans.toaster"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo128.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#EDE1D8"
       }
     },
     "web": {
@@ -29,7 +31,7 @@
         {
           "image": "./assets/images/splash-icon.png",
           "resizeMode": "cover",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#EDE1D8",
           "enableFullScreenImage_legacy": true
         }
       ],
@@ -43,10 +45,20 @@
             "./assets/fonts/CourierPrime-Regular.ttf"
           ]
         }
-      ]
+      ],
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9c9afa2f-0d55-4c87-80b8-2bdd587ed227"
+      }
+    },
+    "owner": "spaans"
   }
 }

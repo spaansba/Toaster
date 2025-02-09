@@ -2,6 +2,8 @@ import { SplashScreen, Stack } from "expo-router"
 import "./global.css"
 import { useFonts } from "expo-font"
 import { useEffect } from "react"
+import { KeyboardProvider } from "react-native-keyboard-controller"
+import AuthProvider from "@/providers/AuthProvider"
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -21,5 +23,11 @@ export default function RootLayout() {
     return null
   }
 
-  return <Stack screenOptions={{ headerShown: false }} />
+  return (
+    <KeyboardProvider>
+      <AuthProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+      </AuthProvider>
+    </KeyboardProvider>
+  )
 }

@@ -2,8 +2,11 @@ import { Text, SafeAreaView, TouchableOpacity } from "react-native"
 import React from "react"
 import { Link, router } from "expo-router"
 import { supabase } from "@/lib/supabase"
+import { useAuth } from "@/providers/AuthProvider"
 
 const home = () => {
+  const { session } = useAuth()
+  console.log("home session", session)
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut()
@@ -26,10 +29,6 @@ const home = () => {
       }}
     >
       <Text className="font-bold text-lg my-10 font-courier-italic">Hello</Text>
-      <Link href="/explore">Explore</Link>
-      <Link href="/profile">Profile</Link>
-      <Link href="/properties/1">Property</Link>
-
       <TouchableOpacity onPress={handleLogout} className="mt-4 bg-red-500 px-4 py-2 rounded-md">
         <Text className="text-white font-semibold">Logout</Text>
       </TouchableOpacity>

@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // NOTE: Update this to include the paths to all of your component files.
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
@@ -19,6 +18,14 @@ module.exports = {
         },
         accent: {},
         danger: "#F75555",
+        toaster: {
+          yellow: "#FFD787",
+          green: "#BAFFA0",
+          blue: "#87CEFA",
+          pink: "#FF69B4",
+          orange: "#FF7F50",
+          purple: "#B19CD9",
+        },
       },
     },
   },
