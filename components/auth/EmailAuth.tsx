@@ -2,21 +2,14 @@ import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
-import { useRouter } from "expo-router"
 import React, { useState } from "react"
 import { Alert, Text } from "react-native"
 
 function EmailAuth() {
-  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // Add this to get your redirect URL
-  const redirectUrl = makeRedirectUri({
-    scheme: "com.toaster",
-    path: "/",
-  })
-
+  const redirectTo = makeRedirectUri()
   async function signInWithEmail() {
     setLoading(true)
     try {
@@ -44,9 +37,6 @@ function EmailAuth() {
     } = await supabase.auth.signUp({
       email: email,
       password: password,
-      options: {
-        emailRedirectTo: redirectUrl,
-      },
     })
 
     if (error) Alert.alert(error.message)
