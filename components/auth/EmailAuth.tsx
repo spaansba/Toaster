@@ -2,6 +2,7 @@ import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
+
 import React, { useState } from "react"
 import { Alert, Text } from "react-native"
 
@@ -9,7 +10,7 @@ function EmailAuth() {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const redirectTo = makeRedirectUri()
+  const redirectTo = makeRedirectUri({ scheme: "com.toaster", path: "/home" })
   async function signInWithEmail() {
     setLoading(true)
     try {

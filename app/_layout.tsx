@@ -4,6 +4,7 @@ import { useFonts } from "expo-font"
 import { useEffect } from "react"
 import { KeyboardProvider } from "react-native-keyboard-controller"
 import AuthProvider from "@/providers/AuthProvider"
+import { makeRedirectUri } from "expo-auth-session"
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
