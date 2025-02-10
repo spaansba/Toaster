@@ -6,7 +6,7 @@ import { useAuth } from "@/providers/AuthProvider"
 
 const home = () => {
   const { session } = useAuth()
-  console.log("home session", session)
+
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut()

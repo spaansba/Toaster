@@ -27,7 +27,6 @@ const AppleAuth = () => {
         ],
       })
 
-      console.log(credential)
       // Sign in via Supabase Auth.
       if (credential.identityToken) {
         const {
@@ -37,7 +36,7 @@ const AppleAuth = () => {
           provider: "apple",
           token: credential.identityToken,
         })
-        console.log(JSON.stringify({ error, user }, null, 2))
+
         if (!error) {
           router.replace("/")
         }

@@ -7,7 +7,6 @@ import { ActivityIndicator } from "react-native"
 
 export default function RootLayout() {
   const { session, isLoading } = useAuth()
-  console.log("root session", session)
 
   if (isLoading) {
     return <ActivityIndicator />

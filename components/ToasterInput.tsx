@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons"
 
 interface ToasterInputProps extends Omit<TextInputProps, "style"> {
   label?: string
-  error?: string
+  errors?: string[]
 }
 
 const ToasterInput: React.FC<ToasterInputProps> = ({
@@ -17,7 +17,7 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
   returnKeyType,
   onSubmitEditing,
   autoCapitalize,
-  error,
+  errors,
   ...rest
 }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -58,7 +58,13 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
           )}
         </View>
       </View>
-      {error && <Text className="mt-1 text-red-500 text-sm">{error}</Text>}
+      <View className="mt-1">
+        {errors?.map((error, index) => (
+          <Text key={index} className="mt-2 text-red-500 text-sm">
+            {error}
+          </Text>
+        ))}
+      </View>
     </View>
   )
 }

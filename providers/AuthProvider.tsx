@@ -41,13 +41,15 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const fetchSession = async () => {
       const { data, error } = await supabase.auth.getSession()
-      //   console.log(data.session)
       setSession(data.session)
       setIsLoading(false)
     }
 
     fetchSession()
-    supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange((e, session) => {
+      console.log("event", e)
+      if (e === "PASSWORD_RECOVERY") {
+      }
       setSession(session)
       setIsLoading(false)
     })

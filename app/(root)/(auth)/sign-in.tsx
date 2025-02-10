@@ -54,23 +54,12 @@ export default function SignIn() {
               />
             </>
           )}
-          {showEmailAuth && <EmailAuth />}
+          {showEmailAuth && (
+            <>
+              <EmailAuth setShowEmailAuth={setShowEmailAuth} />
+            </>
+          )}
         </View>
-
-        {/* Back button at the bottom */}
-        {showEmailAuth && (
-          <View className="w-full bg-primary-300 px-7 pb-20">
-            <View className="w-[60px]">
-              <ToasterButton
-                onPress={() => {
-                  setShowEmailAuth(false)
-                }}
-                title="<"
-                variant="blue"
-              />
-            </View>
-          </View>
-        )}
       </View>
     </KeyboardAwareScrollView>
   )
