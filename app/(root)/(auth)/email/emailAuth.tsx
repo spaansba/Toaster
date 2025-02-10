@@ -4,17 +4,15 @@ import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
 import * as WebBrowser from "expo-web-browser"
 import React, { useState } from "react"
-import { Alert, Text, Keyboard, View } from "react-native"
+import { Alert, Text, Keyboard, View, Image } from "react-native"
 import { AuthWeakPasswordError, type WeakPasswordReasons } from "@supabase/supabase-js"
-import PasswordReset from "./PasswordReset"
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
+import images from "@/constants/images"
+import { router } from "expo-router"
 
 WebBrowser.maybeCompleteAuthSession()
 
-type EmailAuthProps = {
-  setShowEmailAuth: (show: boolean) => void
-}
-
-function EmailAuth({ setShowEmailAuth }: EmailAuthProps) {
+function EmailAuth() {
   const [isSigningIn, setIsSigningIn] = useState(false)
   const [isSigningUp, setIsSigningUp] = useState(false)
   const [email, setEmail] = useState("")
@@ -117,70 +115,73 @@ function EmailAuth({ setShowEmailAuth }: EmailAuthProps) {
     }
   }
 
-  if (showPasswordReset) {
-    return <PasswordReset onBack={() => setShowPasswordReset(false)} inputEmail={email} />
-  }
-
   return (
-    <View className="w-full">
-      <ToasterInput
-        label="EMAIL ADDRESS"
-        onChangeText={(text) => setEmail(text.trim())}
-        value={email}
-        placeholder="email@address.com"
-        autoCapitalize="none"
-        keyboardType="email-address"
-        returnKeyType="next"
-        errors={emailErrors}
-      />
-      <ToasterInput
-        label="PASSWORD"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry={true}
-        placeholder="Password"
-        autoCapitalize="none"
-        returnKeyType="done"
-        onSubmitEditing={Keyboard.dismiss}
-        errors={passwordErrors}
-      />
-      <View className="items-center mb-4">
-        <Text
-          className="text-blue-500 text-sm font-courier"
-          onPress={() => setShowPasswordReset(true)}
-        >
-          Forgot password?
-        </Text>
-      </View>
-      <ToasterButton
-        title={isSigningIn ? "SIGNING IN..." : "SIGN IN"}
-        disabled={isSigningIn || isSigningUp}
-        loading={isSigningIn}
-        onPress={signInWithEmail}
-        variant="green"
-      />
-      <View className="items-center my-6">
-        <Text className="uppercase font-courier-bold text-1xl">No Account?</Text>
-      </View>
-      <ToasterButton
-        title={isSigningUp ? "SIGNING UP..." : "SIGN UP"}
-        disabled={isSigningIn || isSigningUp}
-        loading={isSigningUp}
-        onPress={signUpWithEmail}
-        variant="yellow"
-      />
-      <View className="w-full bg-primary-300 pt-[25px]">
-        <View className="w-[60px]">
-          <ToasterButton
-            onPress={() => {
-              setShowEmailAuth(false)
-            }}
-            title="<"
-            variant="blue"
-          />
+    <KeyboardAwareScrollView
+      style={{ flex: 1, backgroundColor: "#EDE1D8" }}
+      contentContainerClassName="mt-2 h-full"
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
+    >
+      <Image source={images.walkingToaster} className="w-full h-[200px]" resizeMode="contain" />
+      <View className="px-7">
+        <ToasterInput
+          label="EMAIL ADDRESS"
+          onChangeText={(text) => setEmail(text.trim())}
+          value={email}
+          placeholder="email@address.com"
+          autoCapitalize="none"
+          keyboardType="email-address"
+          returnKeyType="next"
+          errors={emailErrors}
+        />
+        <ToasterInput
+          label="PASSWORD"
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={true}
+          placeholder="Password"
+          autoCapitalize="none"
+          returnKeyType="done"
+          onSubmitEditing={Keyboard.dismiss}
+          errors={passwordErrors}
+        />
+        <View className="items-center mb-4">
+          <Text
+            className="text-blue-500 text-sm font-courier"
+            onPress={() =>
+              router.push({
+                pathname: "/email/forgotPasswordInput",
+                params: { inputEmail: email },
+              })
+            }
+          >
+            Forgot password?
+          </Text>
+        </View>
+        <ToasterButton
+          title={isSigningIn ? "SIGNING IN..." : "SIGN IN"}
+          disabled={isSigningIn || isSigningUp}
+          loading={isSigningIn}
+          onPress={signInWithEmail}
+          variant="green"
+        />
+        <View className="items-center my-6">
+          <Text className="uppercase font-courier-bold text-1xl">No Account?</Text>
+        </View>
+        <ToasterButton
+          title={isSigningUp ? "SIGNING UP..." : "SIGN UP"}
+          disabled={isSigningIn || isSigningUp}
+          loading={isSigningUp}
+          onPress={signUpWithEmail}
+          variant="yellow"
+        />
+        <View className="items-center mt-4">
+          <Text className="text-blue-500 text-sm font-courier" onPress={() => router.back()}>
+            Other Sign In Methods
+          </Text>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   )
 }
 

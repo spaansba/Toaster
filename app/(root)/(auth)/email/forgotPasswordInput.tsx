@@ -4,13 +4,10 @@ import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
 import { Alert, Text, View, Pressable } from "react-native"
 import { makeRedirectUri } from "expo-auth-session"
+import { useLocalSearchParams } from "expo-router"
 
-type PasswordResetProps = {
-  onBack: () => void
-  inputEmail?: string
-}
-
-const PasswordReset = ({ onBack, inputEmail }: PasswordResetProps) => {
+const ForgotPasswordInput = () => {
+  const { inputEmail } = useLocalSearchParams<{ inputEmail: string }>()
   const [email, setEmail] = useState(inputEmail || "")
   const [isResetting, setIsResetting] = useState(false)
   const [emailErrors, setEmailErrors] = useState<string[]>([])
@@ -37,7 +34,6 @@ const PasswordReset = ({ onBack, inputEmail }: PasswordResetProps) => {
           "Check your email",
           "We've sent you a password reset link. Please check your inbox."
         )
-        onBack()
       }
     } catch (error) {
       console.error("Password reset error:", error)
@@ -74,12 +70,8 @@ const PasswordReset = ({ onBack, inputEmail }: PasswordResetProps) => {
         onPress={resetPassword}
         variant="blue"
       />
-
-      <Pressable onPress={onBack} className="mt-6">
-        <Text className="text-blue-500 text-sm font-courier text-center">Back to Sign In</Text>
-      </Pressable>
     </View>
   )
 }
 
-export default PasswordReset
+export default ForgotPasswordInput
