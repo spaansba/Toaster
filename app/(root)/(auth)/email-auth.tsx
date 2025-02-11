@@ -4,12 +4,12 @@ import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
 import * as WebBrowser from "expo-web-browser"
 import React, { useState } from "react"
-import { Alert, Text, Keyboard, View, Image } from "react-native"
+import { Alert, Text, Keyboard, View } from "react-native"
 import { AuthWeakPasswordError, type WeakPasswordReasons } from "@supabase/supabase-js"
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { router } from "expo-router"
-
+import { Image } from "expo-image"
 WebBrowser.maybeCompleteAuthSession()
 
 function EmailAuth() {
@@ -19,7 +19,6 @@ function EmailAuth() {
   const [password, setPassword] = useState("")
   const [emailErrors, setEmailErrors] = useState<string[]>([])
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
-  const [showPasswordReset, setShowPasswordReset] = useState(false)
 
   const redirectTo = makeRedirectUri({
     scheme: "com.toaster",
@@ -118,11 +117,17 @@ function EmailAuth() {
   return (
     <KeyboardAwareScrollView
       style={{ flex: 1, backgroundColor: "#EDE1D8" }}
-      contentContainerClassName="mt-2 h-full"
+      contentContainerClassName="mt-6 h-full"
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
     >
-      <Image source={images.walkingToaster} className="w-full h-[200px]" resizeMode="contain" />
+      <Image
+        source={images.walkingToaster}
+        style={{ width: "100%", height: 200 }}
+        contentFit="contain"
+        cachePolicy="memory-disk"
+        transition={0}
+      />
       <View className="px-7">
         <ToasterInput
           label="EMAIL ADDRESS"
@@ -141,6 +146,7 @@ function EmailAuth() {
           secureTextEntry={true}
           placeholder="Password"
           autoCapitalize="none"
+          keyboardType="default"
           returnKeyType="done"
           onSubmitEditing={Keyboard.dismiss}
           errors={passwordErrors}
@@ -150,7 +156,7 @@ function EmailAuth() {
             className="text-blue-500 text-sm font-courier"
             onPress={() =>
               router.push({
-                pathname: "/email/forgotPasswordInput",
+                pathname: "/request-reset-password",
                 params: { inputEmail: email },
               })
             }
