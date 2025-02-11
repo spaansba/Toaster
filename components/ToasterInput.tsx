@@ -17,6 +17,8 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
   returnKeyType,
   onSubmitEditing,
   autoCapitalize,
+  textContentType,
+  autoComplete,
   errors,
   ...rest
 }) => {
@@ -41,6 +43,8 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
             returnKeyType={returnKeyType}
             onSubmitEditing={onSubmitEditing}
             autoCapitalize={autoCapitalize}
+            textContentType={textContentType}
+            autoComplete={autoComplete}
             className="px-4 py-2.5 text-base leading-6 min-h-[44px] font-courier"
             placeholderTextColor="#666"
             {...rest}

@@ -17,8 +17,6 @@ const UpdatePassword = () => {
   const updatePassword = async () => {
     setIsUpdating(true)
     const { data, error } = await supabase.auth.updateUser({ password: password })
-    console.log(data)
-    console.log(error)
     if (data) alert("Password updated successfully!")
     if (error) alert(error)
     setIsUpdating(false)

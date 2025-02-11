@@ -132,21 +132,23 @@ function EmailAuth() {
         <ToasterInput
           label="EMAIL ADDRESS"
           onChangeText={(text) => setEmail(text.trim())}
-          value={email}
           placeholder="email@address.com"
           autoCapitalize="none"
-          keyboardType="email-address"
+          keyboardType="default"
+          textContentType="username"
+          autoComplete="username"
           returnKeyType="next"
-          errors={emailErrors}
+          //  errors={emailErrors}
         />
         <ToasterInput
           label="PASSWORD"
           onChangeText={setPassword}
-          value={password}
           secureTextEntry={true}
           placeholder="Password"
           autoCapitalize="none"
           keyboardType="default"
+          textContentType="password"
+          autoComplete="password"
           returnKeyType="done"
           onSubmitEditing={Keyboard.dismiss}
           errors={passwordErrors}

@@ -50,9 +50,9 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setIsLoading(false)
-
+      console.log(event)
       // Handle navigation based on auth state
-      if (event === "SIGNED_IN" && session) {
+      if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) {
         router.replace("/")
       } else if (event === "SIGNED_OUT") {
         router.replace("/sign-in")

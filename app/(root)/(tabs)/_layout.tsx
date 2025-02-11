@@ -3,7 +3,9 @@ import React, { useEffect } from "react"
 import { FontAwesome, Ionicons } from "@expo/vector-icons"
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
 import { useAuth } from "@/providers/AuthProvider"
-
+import ToastIcon from "@/components/svg/ToastIcon"
+import SvgComponent from "@/components/svg/SvgComponent"
+import { View } from "react-native"
 function TabsLayout() {
   const { session } = useAuth()
 
@@ -13,7 +15,7 @@ function TabsLayout() {
     }
   }, [session])
   const tabIconSize = 28
-  const tabColor = "#FBC567"
+  const tabColor = "#EDE1D8"
   return (
     <Tabs
       screenOptions={({ navigation }) => ({
@@ -22,28 +24,26 @@ function TabsLayout() {
         tabBarInactiveTintColor: "#6B7280",
         tabBarShowLabel: false,
         tabBarStyle: {
+          borderTopWidth: 2,
+          borderTopColor: "#000000",
           backgroundColor: tabColor,
-          paddingTop: 5,
+          paddingTop: 3,
         },
       })}
     >
       <Tabs.Screen
-        name="home"
+        name="explore"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <FontAwesome6
-              name="pen-to-square"
-              size={tabIconSize}
-              color={focused ? color : "#6B7280"}
-            />
+            <SvgComponent size={50} color={focused ? color : "#6B7280"} strokeWidth={8} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="home"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? "compass" : "compass-outline"} size={30} color={color} />
+            <ToastIcon size={40} color={focused ? color : "#6B7280"} strokeWidth={8} />
           ),
         }}
       />
