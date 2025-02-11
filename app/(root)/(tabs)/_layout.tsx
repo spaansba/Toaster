@@ -1,6 +1,6 @@
 import { router, Tabs } from "expo-router"
 import React, { useEffect } from "react"
-import { FontAwesome, Ionicons } from "@expo/vector-icons"
+import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons"
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
 import { useAuth } from "@/providers/AuthProvider"
 import ToastIcon from "@/components/svg/ToastIcon"
@@ -43,7 +43,7 @@ function TabsLayout() {
         name="home"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <ToastIcon size={40} color={focused ? color : "#6B7280"} strokeWidth={8} />
+            <Feather name="plus-circle" size={30} color="black" />
           ),
         }}
       />
