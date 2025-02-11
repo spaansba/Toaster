@@ -116,7 +116,7 @@ function EmailAuth() {
 
   return (
     <KeyboardAwareScrollView
-      style={{ flex: 1, backgroundColor: "#EDE1D8" }}
+      style={{ flex: 1, backgroundColor: "#EDE1D81A" }}
       contentContainerClassName="mt-6 h-full"
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"

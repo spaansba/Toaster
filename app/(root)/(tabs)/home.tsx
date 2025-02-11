@@ -21,7 +21,7 @@ const home = () => {
 
   return (
     <SafeAreaView
-      className="bg-primary-300"
+      className="bg-primary-200"
       style={{
         flex: 1,
         justifyContent: "center",

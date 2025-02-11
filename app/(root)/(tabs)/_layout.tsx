@@ -1,11 +1,8 @@
 import { router, Tabs } from "expo-router"
 import React, { useEffect } from "react"
-import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons"
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6"
+import { FontAwesome } from "@expo/vector-icons"
 import { useAuth } from "@/providers/AuthProvider"
-import ToastIcon from "@/components/svg/ToastIcon"
-import SvgComponent from "@/components/svg/SvgComponent"
-import { View } from "react-native"
+import SquareButton from "@/components/CenterTabButton"
 function TabsLayout() {
   const { session } = useAuth()
 
@@ -15,7 +12,7 @@ function TabsLayout() {
     }
   }, [session])
   const tabIconSize = 28
-  const tabColor = "#EDE1D8"
+  const tabColor = "#B19CD9"
   return (
     <Tabs
       screenOptions={({ navigation }) => ({
@@ -24,27 +21,24 @@ function TabsLayout() {
         tabBarInactiveTintColor: "#6B7280",
         tabBarShowLabel: false,
         tabBarStyle: {
-          borderTopWidth: 2,
+          borderTopWidth: 3,
           borderTopColor: "#000000",
           backgroundColor: tabColor,
-          paddingTop: 3,
         },
       })}
     >
       <Tabs.Screen
-        name="explore"
+        name="toaster"
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <SvgComponent size={50} color={focused ? color : "#6B7280"} strokeWidth={8} />
+            <FontAwesome name="print" size={tabIconSize} color={focused ? color : "#6B7280"} />
           ),
         }}
       />
       <Tabs.Screen
         name="home"
         options={{
-          tabBarIcon: ({ focused, color }) => (
-            <Feather name="plus-circle" size={30} color="black" />
-          ),
+          tabBarButton: (props) => <SquareButton />,
         }}
       />
       <Tabs.Screen

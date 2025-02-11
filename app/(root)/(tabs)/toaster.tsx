@@ -1,7 +1,7 @@
-import { SafeAreaView, Text } from "react-native"
+import { View, Text, SafeAreaView } from "react-native"
 import React from "react"
 
-const profile = () => {
+const Toaster = () => {
   return (
     <SafeAreaView
       className="bg-primary-200"
@@ -11,9 +11,9 @@ const profile = () => {
         alignItems: "center",
       }}
     >
-      <Text className="font-bold text-lg my-10 font-courier-italic">Hello</Text>
+      <Text className="font-bold text-lg my-10 font-courier-italic">My Toaster Tab</Text>
     </SafeAreaView>
   )
 }
 
-export default profile
+export default Toaster

@@ -26,7 +26,6 @@ module.exports = {
           orange: "#FF7F50",
           purple: "#B19CD9",
         },
-        mainBackground: "#EDE1D8",
       },
     },
   },
