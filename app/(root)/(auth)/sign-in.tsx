@@ -5,6 +5,7 @@ import ToasterButton from "@/components/ToasterButton"
 import AppleAuth from "@/components/auth/AppleAuth"
 import { useAuth } from "@/providers/AuthProvider"
 import { Image } from "expo-image"
+
 export default function SignIn() {
   const { session, isLoading } = useAuth()
   if (isLoading) {
@@ -31,7 +32,7 @@ export default function SignIn() {
             {Platform.OS === "ios" && <AppleAuth />}
             <Text className="uppercase font-courier-bold text-1xl my-6">or Continue With</Text>
             <ToasterButton
-              title="EMAIL"
+              title={{ text: "EMAIL" }}
               onPress={() => {
                 router.push("/email-auth")
               }}

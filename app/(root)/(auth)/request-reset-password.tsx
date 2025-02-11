@@ -79,7 +79,10 @@ const RequestResetPassword = () => {
         />
 
         <ToasterButton
-          title={isResetting ? "SENDING..." : "SEND RESET LINK"}
+          title={{
+            text: "SEND RESET LINK",
+            updating: { isUpdating: isResetting, text: "SENDING..." },
+          }}
           disabled={isResetting || !email}
           loading={isResetting}
           onPress={resetPassword}

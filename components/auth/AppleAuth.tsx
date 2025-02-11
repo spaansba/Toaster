@@ -79,7 +79,7 @@ const AppleAuth = () => {
     return VARIANTS.black.loading
   }
 
-  return <ToasterButton onPress={handlePress} title="APPLE" icon="logo-apple" />
+  return <ToasterButton onPress={handlePress} title={{ text: "APPLE" }} icon="logo-apple" />
 }
 
 export default AppleAuth

@@ -2,8 +2,16 @@ import React, { useState } from "react"
 import { TouchableOpacity, Text, View, ActivityIndicator, LayoutChangeEvent } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
+type ButtonTitle = {
+  text: string
+  updating?: {
+    text: string
+    isUpdating: boolean
+  }
+}
+
 type ToasterButtonProps = {
-  title: string
+  title: ButtonTitle
   onPress: () => void
   disabled?: boolean
   loading?: boolean
@@ -95,6 +103,8 @@ function ToasterButton({
     setButtonLayout({ width, height })
   }
 
+  const buttonTitle = title.updating?.isUpdating ? title.updating.text : title.text
+
   return (
     <View className="relative mb-4 w-full">
       <View
@@ -131,7 +141,7 @@ function ToasterButton({
                 ${getTextColor()}
               `}
             >
-              {title}
+              {buttonTitle}
             </Text>
           </View>
         </View>

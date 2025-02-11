@@ -165,7 +165,13 @@ function EmailAuth() {
           </Text>
         </View>
         <ToasterButton
-          title={isSigningIn ? "SIGNING IN..." : "SIGN IN"}
+          title={{
+            text: "SIGN IN",
+            updating: {
+              text: "SIGNING IN...",
+              isUpdating: isSigningIn,
+            },
+          }}
           disabled={isSigningIn || isSigningUp}
           loading={isSigningIn}
           onPress={signInWithEmail}
@@ -175,7 +181,13 @@ function EmailAuth() {
           <Text className="uppercase font-courier-bold text-1xl">No Account?</Text>
         </View>
         <ToasterButton
-          title={isSigningUp ? "SIGNING UP..." : "SIGN UP"}
+          title={{
+            text: "SIGN UP",
+            updating: {
+              text: "SIGNING UP...",
+              isUpdating: isSigningUp,
+            },
+          }}
           disabled={isSigningIn || isSigningUp}
           loading={isSigningUp}
           onPress={signUpWithEmail}
