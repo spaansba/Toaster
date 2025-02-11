@@ -19,7 +19,7 @@ const RequestResetPassword = () => {
     try {
       const redirectTo = makeRedirectUri({
         scheme: "com.toaster",
-        path: "home",
+        path: "update-password",
       })
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: redirectTo,
@@ -81,7 +81,7 @@ const RequestResetPassword = () => {
         <ToasterButton
           title={{
             text: "SEND RESET LINK",
-            updating: { isUpdating: isResetting, text: "SENDING..." },
+            updating: { isUpdating: isResetting, updateText: "SENDING..." },
           }}
           disabled={isResetting || !email}
           loading={isResetting}

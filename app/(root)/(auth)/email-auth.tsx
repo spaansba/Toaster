@@ -168,7 +168,7 @@ function EmailAuth() {
           title={{
             text: "SIGN IN",
             updating: {
-              text: "SIGNING IN...",
+              updateText: "SIGNING IN...",
               isUpdating: isSigningIn,
             },
           }}
@@ -184,7 +184,7 @@ function EmailAuth() {
           title={{
             text: "SIGN UP",
             updating: {
-              text: "SIGNING UP...",
+              updateText: "SIGNING UP...",
               isUpdating: isSigningUp,
             },
           }}

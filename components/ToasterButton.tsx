@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons"
 type ButtonTitle = {
   text: string
   updating?: {
-    text: string
+    updateText: string
     isUpdating: boolean
   }
 }
@@ -103,7 +103,7 @@ function ToasterButton({
     setButtonLayout({ width, height })
   }
 
-  const buttonTitle = title.updating?.isUpdating ? title.updating.text : title.text
+  const buttonTitle = title.updating?.isUpdating ? title.updating.updateText : title.text
 
   return (
     <View className="relative mb-4 w-full">

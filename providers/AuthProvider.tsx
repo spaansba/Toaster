@@ -48,8 +48,6 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     fetchSession()
     supabase.auth.onAuthStateChange((e, session) => {
       console.log("event", e)
-      if (e === "PASSWORD_RECOVERY") {
-      }
       setSession(session)
       setIsLoading(false)
     })

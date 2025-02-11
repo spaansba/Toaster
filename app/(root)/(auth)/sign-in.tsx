@@ -7,15 +7,6 @@ import { useAuth } from "@/providers/AuthProvider"
 import { Image } from "expo-image"
 
 export default function SignIn() {
-  const { session, isLoading } = useAuth()
-  if (isLoading) {
-    return null // or a loading spinner
-  }
-
-  if (session) {
-    return <Redirect href="/home" />
-  }
-
   return (
     <ScrollView className="bg-mainBackground">
       <View className="h-full">

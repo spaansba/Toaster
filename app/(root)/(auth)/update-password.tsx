@@ -15,10 +15,13 @@ const UpdatePassword = () => {
   const [isUpdating, setIsUpdating] = useState(false)
 
   const updatePassword = async () => {
-    return
-    const { data, error } = await supabase.auth.resetPasswordForEmail(password, {
-      redirectTo: "https://example.com/update-password",
-    })
+    setIsUpdating(true)
+    const { data, error } = await supabase.auth.updateUser({ password: password })
+    console.log(data)
+    console.log(error)
+    if (data) alert("Password updated successfully!")
+    if (error) alert(error)
+    setIsUpdating(false)
   }
 
   return (
@@ -58,7 +61,7 @@ const UpdatePassword = () => {
           title={{
             text: "Update Password",
             updating: {
-              text: "Updating Password...",
+              updateText: "Updating Password...",
               isUpdating: isUpdating,
             },
           }}
