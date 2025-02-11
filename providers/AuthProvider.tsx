@@ -5,6 +5,7 @@ import * as Linking from "expo-linking"
 import { makeRedirectUri } from "expo-auth-session"
 import * as WebBrowser from "expo-web-browser"
 import * as QueryParams from "expo-auth-session/build/QueryParams"
+import { router } from "expo-router"
 
 type AuthData = {
   session: Session | null
@@ -46,11 +47,23 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     }
 
     fetchSession()
-    supabase.auth.onAuthStateChange((e, session) => {
-      console.log("event", e)
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setIsLoading(false)
+
+      // Handle navigation based on auth state
+      if (event === "SIGNED_IN" && session) {
+        router.replace("/")
+      } else if (event === "SIGNED_OUT") {
+        router.replace("/sign-in")
+      } else if (event === "PASSWORD_RECOVERY") {
+        router.replace("/sign-in")
+      }
     })
+
+    return () => {
+      data.subscription.unsubscribe()
+    }
   }, [])
 
   return <AuthContext.Provider value={{ session, isLoading }}>{children}</AuthContext.Provider>

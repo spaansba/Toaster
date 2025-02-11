@@ -8,13 +8,15 @@ import { router, useLocalSearchParams } from "expo-router"
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
+import { useAuth } from "@/providers/AuthProvider"
 const RequestResetPassword = () => {
   const { inputEmail } = useLocalSearchParams<{ inputEmail: string }>()
   const [email, setEmail] = useState(inputEmail || "")
   const [isResetting, setIsResetting] = useState(false)
   const [emailErrors, setEmailErrors] = useState<string[]>([])
+  const { session } = useAuth()
 
-  async function resetPassword() {
+  async function ResetPassword() {
     setIsResetting(true)
     try {
       const redirectTo = makeRedirectUri({
@@ -42,6 +44,7 @@ const RequestResetPassword = () => {
       Alert.alert("Error", "An unexpected error occurred while resetting password")
     } finally {
       setIsResetting(false)
+      console.log(session)
     }
   }
 
@@ -85,7 +88,7 @@ const RequestResetPassword = () => {
           }}
           disabled={isResetting || !email}
           loading={isResetting}
-          onPress={resetPassword}
+          onPress={ResetPassword}
           variant="blue"
         />
 
