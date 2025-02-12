@@ -7,6 +7,7 @@ import { router } from "expo-router"
 const CenterTabButton = () => {
   const fakeBorderWidth = 3
   const stickOutMargin = 20
+  const borderColor = "#F1F0EC"
   return (
     <Pressable onPress={() => router.push("/home")}>
       <View
@@ -38,11 +39,11 @@ const CenterTabButton = () => {
         <View
           style={{
             position: "absolute",
-            top: stickOutMargin,
+            top: stickOutMargin - 0.5, // -0.5 for andriod
             left: -fakeBorderWidth,
             bottom: -fakeBorderWidth,
             width: fakeBorderWidth,
-            backgroundColor: "black",
+            backgroundColor: borderColor,
           }}
         />
 
@@ -50,11 +51,11 @@ const CenterTabButton = () => {
         <View
           style={{
             position: "absolute",
-            top: stickOutMargin,
+            top: stickOutMargin - 0.5,
             right: -fakeBorderWidth,
             bottom: -fakeBorderWidth,
             width: fakeBorderWidth,
-            backgroundColor: "black",
+            backgroundColor: borderColor,
           }}
         />
 
@@ -66,7 +67,7 @@ const CenterTabButton = () => {
             right: 0,
             bottom: -fakeBorderWidth,
             height: fakeBorderWidth,
-            backgroundColor: "black",
+            backgroundColor: borderColor,
           }}
         />
       </View>

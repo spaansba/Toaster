@@ -21,7 +21,7 @@ function TabsLayout() {
         tabBarInactiveTintColor: "#6B7280",
         tabBarShowLabel: false,
         tabBarStyle: {
-          borderTopWidth: 3,
+          borderTopWidth: 0,
           borderTopColor: "#000000",
           backgroundColor: tabColor,
         },
