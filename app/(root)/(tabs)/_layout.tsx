@@ -28,6 +28,14 @@ function TabsLayout() {
       })}
     >
       <Tabs.Screen
+        name="test"
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <FontAwesome name="book" size={tabIconSize} color={focused ? color : "#6B7280"} />
+          ),
+        }}
+      ></Tabs.Screen>
+      <Tabs.Screen
         name="toaster"
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -35,12 +43,12 @@ function TabsLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="home"
         options={{
           tabBarButton: (props) => <SquareButton />,
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="profile"
         options={{
