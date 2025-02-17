@@ -12,6 +12,7 @@ function TabsLayout() {
       router.replace("/")
     }
   }, [session])
+
   const tabIconSize = 28
   const tabColor = "#e5e5e3"
   return (

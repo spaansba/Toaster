@@ -2,8 +2,6 @@ import { supabase } from "@/lib/supabase"
 import type { Session } from "@supabase/supabase-js"
 import { createContext, useContext, useEffect, useState, type PropsWithChildren } from "react"
 import * as Linking from "expo-linking"
-import { makeRedirectUri } from "expo-auth-session"
-import * as WebBrowser from "expo-web-browser"
 import * as QueryParams from "expo-auth-session/build/QueryParams"
 import { router } from "expo-router"
 
