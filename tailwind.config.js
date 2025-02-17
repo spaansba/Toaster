@@ -12,9 +12,9 @@ module.exports = {
       },
       colors: {
         primary: {
-          100: "#EDE1D80A",
-          200: "#F1F0EC",
-          300: "#EDE1D8",
+          100: "#fff3e1A1",
+          200: "#fff3e1",
+          300: "#fff3e1A2",
         },
         accent: {},
         danger: "#F75555",

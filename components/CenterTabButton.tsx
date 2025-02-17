@@ -9,7 +9,7 @@ const CenterTabButton = () => {
   const stickOutMargin = 20
   const borderColor = "#F1F0EC"
   return (
-    <Pressable onPress={() => router.push("/home")}>
+    <Pressable onPress={() => router.push("/test")}>
       <View
         style={{
           position: "relative",

@@ -34,7 +34,7 @@ const EditorScreen = () => {
   })
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} className="bg-primary-200">
       <ScrollView style={styles.scrollView}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: "black",
+    // borderWidth: 2,
+    // borderColor: "black",
   },
   keyboardAvoidingView: {
     flex: 1,
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   },
   editorContainer: {
     flex: 1,
-    backgroundColor: "#ffffff",
   },
   editor: {
     height: 300,

@@ -3,6 +3,7 @@ import React, { useEffect } from "react"
 import { FontAwesome } from "@expo/vector-icons"
 import { useAuth } from "@/providers/AuthProvider"
 import SquareButton from "@/components/CenterTabButton"
+import CircleTabBarButton from "@/components/CircleTabBarButton"
 function TabsLayout() {
   const { session } = useAuth()
 
@@ -12,7 +13,7 @@ function TabsLayout() {
     }
   }, [session])
   const tabIconSize = 28
-  const tabColor = "#B19CD9"
+  const tabColor = "#e5e5e3"
   return (
     <Tabs
       screenOptions={({ navigation }) => ({
@@ -21,20 +22,14 @@ function TabsLayout() {
         tabBarInactiveTintColor: "#6B7280",
         tabBarShowLabel: false,
         tabBarStyle: {
-          borderTopWidth: 0,
+          height: 85,
+          paddingTop: 10,
+          borderTopWidth: 1.3,
           borderTopColor: "#000000",
           backgroundColor: tabColor,
         },
       })}
     >
-      <Tabs.Screen
-        name="test"
-        options={{
-          tabBarIcon: ({ focused, color }) => (
-            <FontAwesome name="book" size={tabIconSize} color={focused ? color : "#6B7280"} />
-          ),
-        }}
-      ></Tabs.Screen>
       <Tabs.Screen
         name="toaster"
         options={{
@@ -43,6 +38,12 @@ function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="test"
+        options={{
+          tabBarButton: (props) => <CircleTabBarButton />,
+        }}
+      ></Tabs.Screen>
       {/* <Tabs.Screen
         name="home"
         options={{
