@@ -22,7 +22,7 @@ export default function profile() {
 
       const { data, error, status } = await supabase
         .from("profiles")
-        .select(`username, asd, avatar_url`)
+        .select(`username, avatar_url`)
         .eq("id", session?.user.id)
         .single()
       if (error && status !== 406) {

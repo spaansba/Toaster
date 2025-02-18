@@ -1,6 +1,5 @@
 import React, { useRef } from "react"
 import {
-  StyleSheet,
   SafeAreaView,
   Platform,
   Text,
@@ -12,9 +11,9 @@ import {
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
-import Animated, { useAnimatedStyle, withSpring } from "react-native-reanimated"
+import Animated, { useAnimatedStyle } from "react-native-reanimated"
 
-const EditorScreen = () => {
+export default function sendMessage() {
   const richEditor = useRef<RichEditor>(null)
   const { height, heightWhenOpened, isClosed } = useKeyboardAnimation()
   const tabBarHeight = useBottomTabBarHeight()
@@ -27,25 +26,25 @@ const EditorScreen = () => {
     return {
       transform: [
         {
-          translateY: -height.value + tabBarHeight,
+          translateY: -height.get() + tabBarHeight,
         },
       ],
     }
   })
 
   return (
-    <SafeAreaView style={styles.safeArea} className="bg-primary-200">
-      <ScrollView style={styles.scrollView}>
+    <SafeAreaView className="flex-1 bg-primary-200">
+      <ScrollView className="flex-1">
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.keyboardAvoidingView}
+          className="flex-1"
         >
           <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <View style={styles.debugContainer}>
+            <View className="p-2.5">
               <Text>
-                Keyboard shown: {String(!isClosed.value)}
+                Keyboard shown: {String(!isClosed.get())}
                 {"\n"}
-                Keyboard height: {height.value}
+                Keyboard height: {height.get()}
               </Text>
             </View>
           </TouchableWithoutFeedback>
@@ -54,9 +53,9 @@ const EditorScreen = () => {
             ref={richEditor}
             useContainer={true}
             initialHeight={200}
-            style={styles.editor}
+            className="h-[300px] min-h-[300px] max-h-[300px]"
             placeholder="What's on your mind"
-            containerStyle={styles.editorContainer}
+            containerStyle={{ flex: 1 }}
             onChange={(descriptionText) => {
               console.log("descriptionText:", descriptionText)
             }}
@@ -64,13 +63,16 @@ const EditorScreen = () => {
         </KeyboardAvoidingView>
       </ScrollView>
 
-      {isClosed.value && (
-        <Animated.View style={[styles.toolbarContainer, toolbarAnimatedStyle]}>
+      {isClosed.get() && (
+        <Animated.View
+          style={toolbarAnimatedStyle}
+          className="absolute left-0 right-0 bottom-0 border-t border-[#E8E8E8] bg-white z-50"
+        >
           <RichToolbar
             editor={richEditor}
             disabledIconTint="darkgrey"
             selectedIconTint="black"
-            style={styles.richBar}
+            className="bg-white"
             actions={[actions.setBold, actions.setItalic, actions.setUnderline, actions.heading1]}
           />
         </Animated.View>
@@ -78,43 +80,3 @@ const EditorScreen = () => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-    // borderWidth: 2,
-    // borderColor: "black",
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-  },
-  debugContainer: {
-    padding: 10,
-  },
-  editorContainer: {
-    flex: 1,
-  },
-  editor: {
-    height: 300,
-    minHeight: 300,
-    maxHeight: 300,
-  },
-  richBar: {
-    backgroundColor: "white",
-  },
-  toolbarContainer: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderTopWidth: 1,
-    borderTopColor: "#E8E8E8",
-    backgroundColor: "white",
-    zIndex: 999,
-  },
-})
-
-export default EditorScreen

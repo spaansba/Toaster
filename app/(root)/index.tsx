@@ -11,7 +11,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (!isLoading) {
       if (session) {
-        router.replace("/test")
+        router.replace("/sendMessage")
       } else {
         router.replace("/sign-in")
       }

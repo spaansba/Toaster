@@ -40,7 +40,7 @@ function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="test"
+        name="sendMessage"
         options={{
           tabBarButton: (props) => <CircleTabBarButton />,
         }}
