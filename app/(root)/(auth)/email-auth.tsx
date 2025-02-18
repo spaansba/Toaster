@@ -167,7 +167,9 @@ function EmailAuth() {
           </Text>
         </View>
         <ToasterButton
-          title={{
+          className="w-full h-[55px]"
+          content={{
+            type: "text",
             text: "SIGN IN",
             updating: {
               updateText: "SIGNING IN...",
@@ -183,7 +185,9 @@ function EmailAuth() {
           <Text className="uppercase font-courier-bold text-1xl">No Account?</Text>
         </View>
         <ToasterButton
-          title={{
+          className="w-full h-[55px]"
+          content={{
+            type: "text",
             text: "SIGN UP",
             updating: {
               updateText: "SIGNING UP...",

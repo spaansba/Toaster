@@ -82,7 +82,9 @@ const RequestResetPassword = () => {
         />
 
         <ToasterButton
-          title={{
+          className="w-full h-[55px]"
+          content={{
+            type: "text",
             text: "SEND RESET LINK",
             updating: { isUpdating: isResetting, updateText: "SENDING..." },
           }}

@@ -1,26 +1,61 @@
 import React, { useState } from "react"
-import { TouchableOpacity, Text, View, ActivityIndicator, LayoutChangeEvent } from "react-native"
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  ActivityIndicator,
+  LayoutChangeEvent,
+  type AnimatableNumericValue,
+  type DimensionValue,
+} from "react-native"
 import { Ionicons } from "@expo/vector-icons"
+import type { SvgProps } from "react-native-svg"
 
-type ButtonTitle = {
-  text: string
-  updating?: {
-    updateText: string
-    isUpdating: boolean
-  }
-}
+type ButtonContent =
+  | {
+      type: "text"
+      text: string
+      updating?: {
+        updateText: string
+        isUpdating: boolean
+      }
+      leftIcon?: {
+        glyph: keyof typeof Ionicons.glyphMap
+        size?: number
+      }
+    }
+  | {
+      type: "ionicon"
+      icon: keyof typeof Ionicons.glyphMap
+      size?: number
+    }
+  | {
+      type: "svg-component"
+      SvgComponent: React.ComponentType<SvgProps>
+      size?: number
+    }
+  | {
+      type: "svg-element"
+      element: React.ReactElement
+    }
 
 type ToasterButtonProps = {
-  title: ButtonTitle
+  content: ButtonContent
   onPress: () => void
   disabled?: boolean
   loading?: boolean
-  variant?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple"
-  icon?: keyof typeof Ionicons.glyphMap
-  iconSize?: number
+  variant?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple" | "white"
+  borderRadius?: string | AnimatableNumericValue | undefined
+  shadowOffset?: DimensionValue | undefined
+  className?: string // Added className prop
 }
 
 const VARIANTS = {
+  white: {
+    bg: "bg-white",
+    text: "text-black",
+    loading: "#000000",
+  },
   yellow: {
     bg: "bg-toaster-yellow",
     text: "text-black",
@@ -54,13 +89,14 @@ const VARIANTS = {
 }
 
 function ToasterButton({
-  title,
+  content,
   onPress,
   disabled = false,
   loading = false,
   variant = "yellow",
-  icon,
-  iconSize = 25,
+  borderRadius = 4,
+  shadowOffset = 5,
+  className = "", // Default to empty string
 }: ToasterButtonProps): JSX.Element {
   const [buttonLayout, setButtonLayout] = useState({ width: 0, height: 0 })
 
@@ -79,23 +115,71 @@ function ToasterButton({
     return VARIANTS[variant].loading
   }
 
-  const renderIcon = () => {
+  const renderContent = () => {
     if (loading) {
-      return <ActivityIndicator color={getLoadingColor()} className="mr-2" />
+      return <ActivityIndicator color={getLoadingColor()} />
     }
 
-    if (icon) {
-      return (
-        <Ionicons
-          name={icon}
-          size={iconSize}
-          color={disabled ? "#6B7280" : "black"}
-          className="mr-2"
-        />
-      )
-    }
+    switch (content.type) {
+      case "text": {
+        return (
+          <View className="flex-row items-center justify-center z-20">
+            {content.leftIcon && (
+              <View className="absolute left-0">
+                <Ionicons
+                  name={content.leftIcon.glyph}
+                  size={content.leftIcon.size ?? 25}
+                  color={disabled ? "#6B7280" : "black"}
+                  className="mr-2"
+                />
+              </View>
+            )}
 
-    return null
+            <View className="flex-1 items-center">
+              <Text
+                className={`
+                  text-lg
+                  font-courier-bold
+                  leading-[20px]
+                  ${getTextColor()}
+                `}
+              >
+                {content.updating?.isUpdating ? content.updating.updateText : content.text}
+              </Text>
+            </View>
+          </View>
+        )
+      }
+
+      case "ionicon": {
+        return (
+          <View className="items-center justify-center">
+            <Ionicons
+              name={content.icon}
+              size={content.size ?? 25}
+              color={disabled ? "#6B7280" : "black"}
+            />
+          </View>
+        )
+      }
+
+      case "svg-component": {
+        const { SvgComponent } = content
+        return (
+          <View className="items-center justify-center">
+            <SvgComponent
+              width={content.size ?? 25}
+              height={content.size ?? 25}
+              color={disabled ? "#6B7280" : "black"}
+            />
+          </View>
+        )
+      }
+
+      case "svg-element": {
+        return <View className="items-center justify-center">{content.element}</View>
+      }
+    }
   }
 
   const onLayout = (event: LayoutChangeEvent) => {
@@ -103,13 +187,14 @@ function ToasterButton({
     setButtonLayout({ width, height })
   }
 
-  const buttonTitle = title.updating?.isUpdating ? title.updating.updateText : title.text
-
   return (
-    <View className="relative mb-4 w-full">
+    <View className={`relative ${className}`}>
       <View
-        className="absolute top-1.5 left-1.5 bg-black rounded"
+        className="absolute bg-black"
         style={{
+          left: shadowOffset,
+          top: shadowOffset,
+          borderRadius: borderRadius,
           width: buttonLayout.width,
           height: buttonLayout.height,
         }}
@@ -121,32 +206,18 @@ function ToasterButton({
         onLayout={onLayout}
         className={`
           relative
-          px-6 
-          py-3.5 
-          rounded
+          h-full 
+          px-3
           border-2 
           border-black
           ${getBackgroundColor()}
         `}
+        style={{ borderRadius: borderRadius }}
       >
-        <View className="flex-row items-center justify-center">
-          <View className="absolute left-0">{renderIcon()}</View>
-
-          <View className="flex-1 items-center">
-            <Text
-              className={`
-                text-lg
-                font-courier-bold
-                leading-[20px]
-                ${getTextColor()}
-              `}
-            >
-              {buttonTitle}
-            </Text>
-          </View>
-        </View>
+        <View className="flex-1 justify-center items-center">{renderContent()}</View>
       </TouchableOpacity>
     </View>
   )
 }
+
 export default ToasterButton

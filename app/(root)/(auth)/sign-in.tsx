@@ -22,12 +22,19 @@ export default function SignIn() {
             <Text className="uppercase font-courier-bold text-4xl mt-4 mb-5">Continue With</Text>
             {Platform.OS === "ios" && <AppleAuth />}
             <Text className="uppercase font-courier-bold text-1xl my-6">or Continue With</Text>
+
             <ToasterButton
-              title={{ text: "EMAIL" }}
+              className="w-full h-[55px]"
+              content={{
+                type: "text",
+                text: "EMAIL",
+                leftIcon: {
+                  glyph: "mail",
+                },
+              }}
               onPress={() => {
                 router.push("/email-auth")
               }}
-              icon="mail"
               variant="blue"
             />
           </>

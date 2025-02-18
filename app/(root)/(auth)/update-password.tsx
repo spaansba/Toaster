@@ -56,7 +56,8 @@ const UpdatePassword = () => {
         />
 
         <ToasterButton
-          title={{
+          content={{
+            type: "text",
             text: "Update Password",
             updating: {
               updateText: "Updating Password...",
