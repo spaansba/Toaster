@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState, type PropsWithChildren 
 import * as Linking from "expo-linking"
 import * as QueryParams from "expo-auth-session/build/QueryParams"
 import { router } from "expo-router"
+import { useQuery } from "@tanstack/react-query"
+import { createLoggedInUserQueryOptions } from "@/state/serverState/queryOptions"
 
 type AuthData = {
   session: Session | null
@@ -48,7 +50,6 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setIsLoading(false)
-      console.log(event)
       // Handle navigation based on auth state
       if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) {
         router.replace("/")

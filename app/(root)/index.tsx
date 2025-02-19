@@ -1,11 +1,9 @@
-import { supabase } from "@/lib/supabase"
 import { useAuth } from "@/providers/AuthProvider"
-import type { Session } from "@supabase/supabase-js"
-import { Stack, router } from "expo-router"
-import { useEffect, useState } from "react"
+import { router } from "expo-router"
+import { useEffect } from "react"
 import { ActivityIndicator } from "react-native"
 
-export default function RootLayout() {
+export default function App() {
   const { session, isLoading } = useAuth()
 
   useEffect(() => {

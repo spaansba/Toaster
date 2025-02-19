@@ -61,7 +61,6 @@ const AppleAuth = () => {
       } else {
         Alert.alert("Error", "An unexpected error occurred.")
       }
-      console.log("Apple Auth Error:", e)
     } finally {
       setLoading(false)
     }

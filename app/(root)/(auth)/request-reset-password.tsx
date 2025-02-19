@@ -44,7 +44,6 @@ const RequestResetPassword = () => {
       Alert.alert("Error", "An unexpected error occurred while resetting password")
     } finally {
       setIsResetting(false)
-      console.log(session)
     }
   }
 

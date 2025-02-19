@@ -4,6 +4,8 @@ import { FontAwesome } from "@expo/vector-icons"
 import { useAuth } from "@/providers/AuthProvider"
 import SquareButton from "@/components/CenterTabButton"
 import CircleTabBarButton from "@/components/CircleTabBarButton"
+import { useQuery } from "@tanstack/react-query"
+import { createLoggedInUserQueryOptions } from "@/state/serverState/queryOptions"
 function TabsLayout() {
   const { session } = useAuth()
 
@@ -15,6 +17,7 @@ function TabsLayout() {
 
   const tabIconSize = 28
   const tabColor = "#e5e5e3"
+
   return (
     <Tabs
       screenOptions={({ navigation }) => ({
@@ -45,12 +48,6 @@ function TabsLayout() {
           tabBarButton: (props) => <CircleTabBarButton />,
         }}
       ></Tabs.Screen>
-      {/* <Tabs.Screen
-        name="home"
-        options={{
-          tabBarButton: (props) => <SquareButton />,
-        }}
-      /> */}
       <Tabs.Screen
         name="profile"
         options={{
