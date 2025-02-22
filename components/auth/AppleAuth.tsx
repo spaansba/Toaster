@@ -1,9 +1,9 @@
-import { Alert } from "react-native"
 import React from "react"
 import * as AppleAuthentication from "expo-apple-authentication"
 import { useRouter } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
 import { supabase } from "@/lib/supabase"
+import Toast from "react-native-toast-message"
 
 const VARIANTS = {
   black: {
@@ -47,19 +47,40 @@ const AppleAuth = () => {
       if (typeof e === "object" && e !== null && "code" in e) {
         switch (e.code) {
           case "ERR_REQUEST_CANCELED":
+            Toast.show({
+              type: "info",
+              text1: "Authentication Stopped",
+              text2: "Try again or try another method",
+            })
             // user cancelld sign in request
             break
           case "ERR_INVALID_RESPONSE":
-            Alert.alert("Authentication Failed", "Invalid response from Apple.")
+            Toast.show({
+              type: "error",
+              text1: "Authentication Error",
+              text2: "Invalid response from Apple",
+            })
             break
           case "ERR_NOT_AVAILABLE":
-            Alert.alert("Not Available", "Apple authentication is not available on this device.")
+            Toast.show({
+              type: "error",
+              text1: "Authentication Error",
+              text2: "Apple authentication is not available on this device",
+            })
             break
           default:
-            Alert.alert("Authentication Error", "An error occurred during Apple sign in.")
+            Toast.show({
+              type: "error",
+              text1: "Authentication Error",
+              text2: "An error occurred during Apple sign in",
+            })
         }
       } else {
-        Alert.alert("Error", "An unexpected error occurred.")
+        Toast.show({
+          type: "error",
+          text1: "Authentication Error",
+          text2: "An unexpected error occurred",
+        })
       }
     } finally {
       setLoading(false)
@@ -82,6 +103,7 @@ const AppleAuth = () => {
     <ToasterButton
       className="w-full h-[55px]"
       onPress={handlePress}
+      loading={loading}
       content={{
         type: "text",
         text: "APPLE",

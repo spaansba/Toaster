@@ -9,6 +9,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
 import { useAuth } from "@/providers/AuthProvider"
+import Toast from "react-native-toast-message"
 const RequestResetPassword = () => {
   const { inputEmail } = useLocalSearchParams<{ inputEmail: string }>()
   const [email, setEmail] = useState(inputEmail || "")
@@ -31,17 +32,32 @@ const RequestResetPassword = () => {
         if (error.message.includes("Email not found")) {
           setEmailErrors(["No account found with this email address"])
         } else {
-          Alert.alert("Error", error.message)
+          console.error("Unexpected error while trying to reset password ", error)
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: "Unexpected error while trying to reset password",
+          })
         }
       } else {
-        Alert.alert(
-          "Check your email",
-          "We've sent you a password reset link. Please check your inbox."
-        )
+        Toast.show({
+          type: "general",
+          text1: "Check Your Mail",
+          text2: "We've sent you a password reset link",
+          props: {
+            ionIcon: "mail-unread-outline",
+          },
+          visibilityTime: 5000,
+        })
       }
     } catch (error) {
       console.error("Password reset error:", error)
-      Alert.alert("Error", "An unexpected error occurred while resetting password")
+      console.error("Unexpected error while trying to reset password ", error)
+      Toast.show({
+        type: "error",
+        text1: "Error",
+        text2: "Unexpected error while trying to reset password",
+      })
     } finally {
       setIsResetting(false)
     }

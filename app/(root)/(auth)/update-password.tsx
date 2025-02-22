@@ -8,6 +8,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
 import { useState } from "react"
+import Toast from "react-native-toast-message"
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState("")
@@ -17,8 +18,20 @@ const UpdatePassword = () => {
   const updatePassword = async () => {
     setIsUpdating(true)
     const { data, error } = await supabase.auth.updateUser({ password: password })
-    if (data) alert("Password updated successfully!")
-    if (error) alert(error)
+    if (data) {
+      Toast.show({
+        type: "success",
+        text1: "Update Successfull",
+        text2: "Password has been updated",
+      })
+    }
+    if (error) {
+      Toast.show({
+        type: "error",
+        text1: "Update Unsuccessfull",
+        text2: error.message,
+      })
+    }
     setIsUpdating(false)
   }
 

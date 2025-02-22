@@ -10,6 +10,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { router } from "expo-router"
 import { Image } from "expo-image"
+import { Toast } from "react-native-toast-message/lib/src/Toast"
+import { Ionicons } from "@expo/vector-icons"
 WebBrowser.maybeCompleteAuthSession()
 
 function EmailAuth() {
@@ -35,14 +37,27 @@ function EmailAuth() {
 
       if (error) {
         if (error.code === "invalid_credentials") {
-          Alert.alert("Error", "Invalid email or password")
+          Toast.show({
+            type: "error",
+            text1: "Login Error",
+            text2: "Invalid email or password",
+          })
         } else {
-          Alert.alert("Error", error.message)
+          console.error(error.message)
+          Toast.show({
+            type: "error",
+            text1: "Login Error",
+            text2: "An unexpected error occured during sign-in, try again",
+          })
         }
       }
     } catch (error) {
       console.error("Sign in error:", error)
-      Alert.alert("Error", "An unexpected error occurred during sign in")
+      Toast.show({
+        type: "error",
+        text1: "Login Error",
+        text2: "An unexpected error occured during sign-in, try again",
+      })
     } finally {
       setIsSigningIn(false)
     }
@@ -100,15 +115,32 @@ function EmailAuth() {
             setEmailErrors((prev) => [...prev, "Email is invalid"])
             break
           default:
-            Alert.alert("Error", error.message)
+            console.error("Sign up error:", error)
+            Toast.show({
+              type: "error",
+              text1: "Login Error",
+              text2: "An unexpected error occured during sign-in, try again",
+            })
             break
         }
       } else if (!session) {
-        Alert.alert("Verification Required", "Please check your inbox for email verification!")
+        Toast.show({
+          type: "general",
+          text1: "Verification Required",
+          text2: "Please check your inbox",
+          props: {
+            ionIcon: "mail-unread-outline",
+          },
+          visibilityTime: 5000,
+        })
       }
     } catch (error) {
       console.error("Sign up error:", error)
-      Alert.alert("Error", "An unexpected error occurred during sign up")
+      Toast.show({
+        type: "error",
+        text1: "Login Error",
+        text2: "An unexpected error occured during sign-in, try again",
+      })
     } finally {
       setIsSigningUp(false)
     }

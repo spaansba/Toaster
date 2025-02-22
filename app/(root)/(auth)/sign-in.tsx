@@ -3,7 +3,6 @@ import images from "@/constants/images"
 import { Redirect, router } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
 import AppleAuth from "@/components/auth/AppleAuth"
-import { useAuth } from "@/providers/AuthProvider"
 import { Image } from "expo-image"
 import Toast from "react-native-toast-message"
 
@@ -12,7 +11,34 @@ export default function SignIn() {
     Toast.show({
       type: "success",
       text1: "Hello",
-      text2: "This is some something 👋",
+      text2: "This went really well!",
+    })
+  }
+
+  const showToastError = () => {
+    Toast.show({
+      type: "error",
+      text1: "Hello",
+      text2:
+        "This went semi wellas das dasmnd aksjdh kasjdh kjashf kjash fkJSAHF JKASDH JKFASHKJF HFDKJS ",
+    })
+  }
+
+  const showToastInfo = () => {
+    Toast.show({
+      type: "info",
+      text1: "Hello",
+      text2: "This went wrong",
+    })
+  }
+  const showToastGeneral = () => {
+    Toast.show({
+      type: "general",
+      text1: "Hello",
+      text2: "This went wrong",
+      props: {
+        ionIcon: "airplane",
+      },
     })
   }
   return (
@@ -47,6 +73,9 @@ export default function SignIn() {
             />
           </>
           <Button title="Show toast" onPress={showToast} />
+          <Button title="Show toast Error" onPress={showToastError} />
+          <Button title="Show toast info" onPress={showToastInfo} />
+          <Button title="Show toast general" onPress={showToastGeneral} />
         </View>
       </View>
     </ScrollView>
