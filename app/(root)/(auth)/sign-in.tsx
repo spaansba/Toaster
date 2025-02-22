@@ -1,12 +1,20 @@
-import { View, Text, Platform, ScrollView } from "react-native"
+import { View, Text, Platform, ScrollView, Button } from "react-native"
 import images from "@/constants/images"
 import { Redirect, router } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
 import AppleAuth from "@/components/auth/AppleAuth"
 import { useAuth } from "@/providers/AuthProvider"
 import { Image } from "expo-image"
+import Toast from "react-native-toast-message"
 
 export default function SignIn() {
+  const showToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "Hello",
+      text2: "This is some something 👋",
+    })
+  }
   return (
     <ScrollView className="bg-primary-200">
       <View className="h-full">
@@ -38,6 +46,7 @@ export default function SignIn() {
               variant="blue"
             />
           </>
+          <Button title="Show toast" onPress={showToast} />
         </View>
       </View>
     </ScrollView>

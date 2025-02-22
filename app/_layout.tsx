@@ -6,6 +6,7 @@ import { KeyboardProvider } from "react-native-keyboard-controller"
 import AuthProvider from "@/providers/AuthProvider"
 import { AppState, LogBox } from "react-native"
 import { supabase } from "@/lib/supabase"
+import Toast from "react-native-toast-message"
 
 LogBox.ignoreAllLogs(true)
 LogBox.ignoreLogs(["Unspecified error"])
@@ -42,6 +43,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(root)" options={{ headerShown: false }} />
         </Stack>
+        <Toast />
       </KeyboardProvider>
     </AuthProvider>
   )

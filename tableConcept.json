@@ -1,0 +1,37 @@
+[
+  {
+    "profile": {
+      "profilePicture": "image_url",
+      "name": "string",
+      "send": 0,
+      "status": "string",
+      "settings": {
+        "dontDisturbTime": "string",
+        "darkmode": false,
+        "accountDetails": {
+          "email": "string",
+          "delete": "button",
+          "signOut": "button"
+        }
+      },
+      "friendList": [
+        {
+          "profilePicture": "image_url",
+          "name": "string",
+          "streak": 0
+        }
+      ]
+    }
+  },
+  {
+    "printer": {
+      "profilePicture": "image_url",
+      "name": "string",
+      "printerId": "string",
+      "toasts recieved": "number",
+      "status": "online | offline",
+      "paired users": "list of users",
+      "broadcasts": "list of broadcasts"
+    }
+  }
+]

@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, TouchableOpacity } from "react-native"
+import { Text, SafeAreaView, TouchableOpacity, Button } from "react-native"
 import React from "react"
 import { supabase } from "@/lib/supabase"
 import { router } from "expo-router"
@@ -15,6 +15,7 @@ const Toaster = () => {
       console.error("Error logging out:", error)
     }
   }
+
   return (
     <SafeAreaView
       className="bg-primary-200"
