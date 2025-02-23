@@ -15,40 +15,30 @@ const AuthContext = createContext<AuthData>({
   session: null,
   isLoading: true,
 })
+const createSessionFromUrl = async (url: string) => {
+  const { params, errorCode } = QueryParams.getQueryParams(url)
+
+  if (errorCode) throw new Error(errorCode)
+  const { access_token, refresh_token } = params
+
+  if (!access_token) throw new Error("no access token")
+
+  const { data, error } = await supabase.auth.setSession({
+    access_token,
+    refresh_token,
+  })
+  if (error) throw error
+  return data.session
+}
 
 export default function AuthProvider({ children }: PropsWithChildren) {
+  const url = Linking.useURL()
   const [session, setSession] = useState<Session | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [isResettingPassword, setIsResettingPassword] = useState(false)
-  const url = Linking.useURL()
 
   useEffect(() => {
     if (url) {
-      const { params, errorCode } = QueryParams.getQueryParams(url)
-      console.log(params)
-      if (params.error_description === "Email link is invalid or has expired") {
-        Toast.show({
-          type: "error",
-          text1: "Password Reset Failed",
-          text2: params.error_description || "Link is invalid or expired",
-        })
-        router.replace("/request-reset-password")
-        return
-      }
-      if (params.access_token) {
-        // This emits a SIGNED_IN event, which if we are trying to reset password from email auth page is going to fire onAuthStateChange > rerout to homepage
-        // Thats why we set the isResettingPassword boolean
-        setIsResettingPassword(() => true)
-        supabase.auth
-          .setSession({
-            access_token: params.access_token,
-            refresh_token: params.refresh_token,
-          })
-          .then(({ data, error }) => {
-            if (error) console.error("Error setting session:", error)
-            else setSession(data.session)
-          })
-      }
+      createSessionFromUrl(url)
     }
   }, [url])
 
@@ -68,17 +58,13 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     }
 
     fetchSession()
+
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session)
       setIsLoading(false)
-      console.log("event", event)
-      console.log("isResettingPass", isResettingPassword)
+      console.log(event)
       // Handle navigation based on auth state
-      if (
-        (event === "SIGNED_IN" || event === "INITIAL_SESSION") &&
-        session &&
-        !isResettingPassword
-      ) {
+      if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) {
         router.replace("/")
       } else if (event === "SIGNED_OUT") {
         router.replace("/sign-in")
@@ -86,7 +72,6 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         router.replace("/update-password")
       }
     })
-    setIsResettingPassword(false)
 
     return () => {
       data.subscription.unsubscribe()

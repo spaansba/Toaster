@@ -2,17 +2,17 @@ import { Text, View } from "react-native"
 import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
-import { makeRedirectUri } from "expo-auth-session"
-import { router, useLocalSearchParams } from "expo-router"
+import { router } from "expo-router"
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
 import { useState } from "react"
 import Toast from "react-native-toast-message"
+import { useAuth } from "@/providers/AuthProvider"
+import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
+import { AuthWeakPasswordError } from "@supabase/supabase-js"
 
 const UpdatePassword = () => {
-  const params = useLocalSearchParams()
-  console.log(params)
   const [password, setPassword] = useState("")
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
   const [isUpdating, setIsUpdating] = useState(false)
@@ -20,18 +20,33 @@ const UpdatePassword = () => {
   const updatePassword = async () => {
     setIsUpdating(true)
     const { data, error } = await supabase.auth.updateUser({ password: password })
+    if (error) {
+      switch (error.code) {
+        case "weak_password":
+          if (error instanceof AuthWeakPasswordError) {
+            setPasswordErrors(WeakPasswordHelper(error))
+          } else {
+            setPasswordErrors([
+              "Your password needs the following characters:\n• At least one uppercase letter (A-Z)\n• At least one lowercase letter (a-z)\n• At least one number (0-9)\n• At least 6 characters long",
+            ])
+          }
+          break
+        default:
+          console.error("Password recovery error", error)
+          Toast.show({
+            type: "error",
+            text1: "Password Recovery Error",
+            text2: "An unexpected error occured during password recovery, try again",
+          })
+          break
+      }
+      return
+    }
     if (data) {
       Toast.show({
         type: "success",
         text1: "Update Successfull",
         text2: "Password has been updated",
-      })
-    }
-    if (error) {
-      Toast.show({
-        type: "error",
-        text1: "Update Unsuccessfull",
-        text2: error.message,
       })
     }
     setIsUpdating(false)
@@ -71,6 +86,7 @@ const UpdatePassword = () => {
         />
 
         <ToasterButton
+          className="w-full h-[55px]"
           content={{
             type: "text",
             text: "Update Password",

@@ -4,14 +4,14 @@ import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
 import * as WebBrowser from "expo-web-browser"
 import React, { useState } from "react"
-import { Alert, Text, Keyboard, View } from "react-native"
-import { AuthWeakPasswordError, type WeakPasswordReasons } from "@supabase/supabase-js"
+import { Text, Keyboard, View } from "react-native"
+import { AuthWeakPasswordError } from "@supabase/supabase-js"
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { router } from "expo-router"
 import { Image } from "expo-image"
 import { Toast } from "react-native-toast-message/lib/src/Toast"
-import { Ionicons } from "@expo/vector-icons"
+import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
 WebBrowser.maybeCompleteAuthSession()
 
 function EmailAuth() {
@@ -22,8 +22,16 @@ function EmailAuth() {
   const [emailErrors, setEmailErrors] = useState<string[]>([])
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
 
+  const gotoPasswordRecovery = () => {
+    router.push({
+      pathname: "/request-reset-password",
+      params: { inputEmail: email },
+    })
+  }
+
   const redirectTo = makeRedirectUri({
     scheme: "com.toaster",
+    path: "sendMessage",
   })
 
   async function signInWithEmail() {
@@ -65,10 +73,7 @@ function EmailAuth() {
   async function signUpWithEmail() {
     setIsSigningUp(true)
     try {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -78,32 +83,28 @@ function EmailAuth() {
           },
         },
       })
+      console.log(error?.code)
       setEmailErrors([])
       setPasswordErrors([])
       if (error) {
         switch (error.code) {
+          case "user_already_exists":
+            Toast.show({
+              type: "info",
+              text1: "User already exists",
+              text2: "Try logging in or recover",
+              visibilityTime: 5000,
+              onPress: gotoPasswordRecovery,
+              props: {
+                onPressButtonText: "Recover Password",
+              },
+            })
           case "anonymous_provider_disabled":
             setEmailErrors((prev) => [...prev, "Provide an email address"])
             break
           case "weak_password":
             if (error instanceof AuthWeakPasswordError) {
-              const errors: string[] = []
-              error.reasons.forEach((reason: WeakPasswordReasons) => {
-                if (reason === "characters") {
-                  errors.push(
-                    "Your password needs the following characters:\n• At least one uppercase letter (A-Z)\n• At least one lowercase letter (a-z)\n• At least one number (0-9)"
-                  )
-                }
-                if (reason === "length") {
-                  errors.push("Password must be at least 6 characters")
-                }
-                if (reason === "pwned") {
-                  errors.push(
-                    "This password has been compromised in data breaches. Please choose a different one."
-                  )
-                }
-              })
-              setPasswordErrors(errors)
+              setPasswordErrors(WeakPasswordHelper(error))
             } else {
               setPasswordErrors([
                 "Your password needs the following characters:\n• At least one uppercase letter (A-Z)\n• At least one lowercase letter (a-z)\n• At least one number (0-9)\n• At least 6 characters long",
@@ -122,7 +123,7 @@ function EmailAuth() {
             })
             break
         }
-      } else if (!session) {
+      } else if (!data.session) {
         Toast.show({
           type: "general",
           text1: "Verification Required",
@@ -188,12 +189,7 @@ function EmailAuth() {
         <View className="items-center mb-4">
           <Text
             className="text-blue-500 text-sm font-courier"
-            onPress={() =>
-              router.push({
-                pathname: "/request-reset-password",
-                params: { inputEmail: email },
-              })
-            }
+            onPress={() => gotoPasswordRecovery()}
           >
             Forgot password?
           </Text>
