@@ -1,16 +1,20 @@
 import { useAuth } from "@/providers/AuthProvider"
 import { router, Stack } from "expo-router"
-import React from "react"
+import React, { useEffect } from "react"
 
 export default function AuthLayout() {
   const { session, isLoading } = useAuth()
+
+  useEffect(() => {
+    if (!isLoading && session) {
+      router.replace("/")
+    }
+  }, [session, isLoading])
+
   if (isLoading) {
     return null // or a loading spinner
   }
 
-  if (session) {
-    router.replace("/")
-  }
   return (
     <Stack
       screenOptions={{

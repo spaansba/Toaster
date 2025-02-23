@@ -15,7 +15,6 @@ const RequestResetPassword = () => {
   const [email, setEmail] = useState(inputEmail || "")
   const [isResetting, setIsResetting] = useState(false)
   const [emailErrors, setEmailErrors] = useState<string[]>([])
-  const { session } = useAuth()
 
   async function ResetPassword() {
     setIsResetting(true)
@@ -24,26 +23,23 @@ const RequestResetPassword = () => {
         scheme: "com.toaster",
         path: "update-password",
       })
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: redirectTo,
       })
 
       if (error) {
-        if (error.message.includes("Email not found")) {
-          setEmailErrors(["No account found with this email address"])
+        if (error.code === "over_email_send_rate_limit") {
+          setEmailErrors(["Not too fast, check your mail first"])
         } else {
+          console.log(error.code)
+          setEmailErrors([error.message])
           console.error("Unexpected error while trying to reset password ", error)
-          Toast.show({
-            type: "error",
-            text1: "Error",
-            text2: "Unexpected error while trying to reset password",
-          })
         }
       } else {
         Toast.show({
           type: "general",
           text1: "Check Your Mail",
-          text2: "We've sent you a password reset link",
+          text2: "This mail might end up in your spam folder",
           props: {
             ionIcon: "mail-unread-outline",
           },

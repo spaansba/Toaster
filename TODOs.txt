@@ -5,3 +5,4 @@
 - Create better auth email
 - Change email rate limit from 100 to 5 configuration > Rate Limits
 - When account already exists under email show message
+- Create 404 page

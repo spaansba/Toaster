@@ -35,7 +35,6 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
         {/* Input container */}
         <View className="relative bg-white border-2 border-black rounded">
           <TextInput
-            value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
             secureTextEntry={isPassword && !showPassword}

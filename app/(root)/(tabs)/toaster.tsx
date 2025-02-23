@@ -6,11 +6,9 @@ import { router } from "expo-router"
 const Toaster = () => {
   const handleLogout = async () => {
     try {
+      // This will automatically rerout to /sign-in
       const { error } = await supabase.auth.signOut()
       if (error) throw error
-      router.replace("/sign-in")
-      // After signing out, router will automatically redirect to sign-in
-      // because of the auth check in root layout
     } catch (error) {
       console.error("Error logging out:", error)
     }

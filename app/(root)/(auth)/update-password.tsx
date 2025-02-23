@@ -3,7 +3,7 @@ import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
-import { router } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
@@ -11,6 +11,8 @@ import { useState } from "react"
 import Toast from "react-native-toast-message"
 
 const UpdatePassword = () => {
+  const params = useLocalSearchParams()
+  console.log(params)
   const [password, setPassword] = useState("")
   const [passwordErrors, setPasswordErrors] = useState<string[]>([])
   const [isUpdating, setIsUpdating] = useState(false)

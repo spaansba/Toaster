@@ -24,14 +24,13 @@ function EmailAuth() {
 
   const redirectTo = makeRedirectUri({
     scheme: "com.toaster",
-    path: "home",
   })
 
   async function signInWithEmail() {
     setIsSigningIn(true)
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email,
+        email: email.trim(),
         password,
       })
 
@@ -163,14 +162,15 @@ function EmailAuth() {
       <View className="px-7">
         <ToasterInput
           label="EMAIL ADDRESS"
-          onChangeText={(text) => setEmail(text.trim())}
+          value={email}
+          onChangeText={setEmail}
           placeholder="email@address.com"
           autoCapitalize="none"
-          keyboardType="default"
-          textContentType="username"
-          autoComplete="username"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          autoComplete="email"
           returnKeyType="next"
-          //  errors={emailErrors}
+          errors={emailErrors}
         />
         <ToasterInput
           label="PASSWORD"
