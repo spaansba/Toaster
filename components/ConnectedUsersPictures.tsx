@@ -5,19 +5,34 @@ import { Image } from "expo-image"
 
 type ConnectedUsersPictures = {
   imagesAsUrl?: string[]
-  size?: DimensionValue | undefined
+  size?: DimensionValue
+  maxVisibleUsers?: number
+  overlapPercentage?: number // Percentage of overlap (0-100)
 }
 
-const ConnectedUsersPictures = ({ imagesAsUrl, size = 45 }: ConnectedUsersPictures) => {
-  const BaseUserPicture = () => {
+const ConnectedUsersPictures = ({
+  imagesAsUrl = [],
+  size = 30,
+  maxVisibleUsers = 5,
+  overlapPercentage = 35,
+}: ConnectedUsersPictures) => {
+  const sizeValue = typeof size === "number" ? size : 45
+
+  // Calculate the negative margin for overlapping the profiles
+  const overlapMargin = -((sizeValue * overlapPercentage) / 100)
+
+  // Determine how many avatars to show
+  const extraUsers = imagesAsUrl.length - maxVisibleUsers
+
+  const BaseUserPicture = ({ imageUrl }: { imageUrl: string }) => {
     return (
       <View
         className="border-primary-200 border-[1px] rounded-full overflow-hidden"
         style={{ width: size, height: size }}
       >
-        <View className=" border-black border-[1px] rounded-full overflow-hidden">
+        <View className="border-black border-[1px] rounded-full overflow-hidden">
           <Image
-            source={images.hoofd}
+            source={imageUrl}
             style={{ width: "100%", height: "100%" }}
             contentFit="cover"
             cachePolicy="memory-disk"
@@ -29,32 +44,36 @@ const ConnectedUsersPictures = ({ imagesAsUrl, size = 45 }: ConnectedUsersPictur
   }
 
   return (
-    <View className="flex-row ">
-      <View className="z-[1]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[30px] z-[2]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[60px] z-[3]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[90px] z-[4]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[120px] z-[5]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[150px] z-[6]">
-        <BaseUserPicture />
-      </View>
-      <View className="absolute left-[180px] z-[7]">
-        <View className="size-[45px] border-primary-200 border-[1px] rounded-full overflow-hidden">
+    <View className="flex-row">
+      {imagesAsUrl.map((imageUrl, index) =>
+        index < maxVisibleUsers ? (
+          <View
+            key={`user-${imageUrl}`}
+            style={{
+              marginLeft: index > 0 ? overlapMargin : 0,
+              zIndex: index,
+            }}
+          >
+            <BaseUserPicture imageUrl={imageUrl} />
+          </View>
+        ) : null
+      )}
+
+      {extraUsers > 1 && (
+        <View
+          style={{
+            marginLeft: overlapMargin,
+            zIndex: maxVisibleUsers + 1,
+            width: size,
+            height: size,
+          }}
+          className="border-primary-200 border-[1px] rounded-full overflow-hidden"
+        >
           <View className="border-black border-[1px] rounded-full overflow-hidden bg-white justify-center items-center flex-1">
-            <Text className="text-center">+9</Text>
+            <Text className="text-center text-xs">+{extraUsers}</Text>
           </View>
         </View>
-      </View>
+      )}
     </View>
   )
 }
