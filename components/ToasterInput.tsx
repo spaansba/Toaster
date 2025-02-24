@@ -31,10 +31,10 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
       {label && <Text className="mb-1 text-base font-courier-bold">{label}</Text>}
       <View className="relative w-full">
         {/* Shadow element */}
-        <View className="absolute inset-0 bg-black rounded translate-x-[5px] translate-y-[5px]" />
+        <View className="absolute inset-0 bg-black rounded-lg translate-x-[5px] translate-y-[5px]" />
 
         {/* Input container */}
-        <View className="relative bg-white border-2 border-black rounded">
+        <View className="relative bg-white border-2 border-black rounded-lg">
           <TextInput
             onChangeText={onChangeText}
             placeholder={placeholder}

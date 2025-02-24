@@ -8,10 +8,3 @@ export function createLoggedInUserQueryOptions(userId: string | undefined) {
     enabled: !!userId, // This doesnt effect prefetched queries.
   })
 }
-
-export function createAllUsersQueryOptions() {
-  return queryOptions({
-    queryKey: ["allUsers"],
-    queryFn: () => getAllUsers(),
-  })
-}

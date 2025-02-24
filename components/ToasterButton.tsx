@@ -95,7 +95,7 @@ function ToasterButton({
   disabled = false,
   loading = false,
   variant = "yellow",
-  borderRadius = 4,
+  borderRadius = 8,
   shadowOffset = 5,
   className = "", // Default to empty string
 }: ToasterButtonProps): JSX.Element {

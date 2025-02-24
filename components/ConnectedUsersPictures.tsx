@@ -1,6 +1,5 @@
-import { View, Text, type DimensionValue } from "react-native"
+import { View, type DimensionValue, type ColorValue } from "react-native"
 import React from "react"
-import images from "@/constants/images"
 import { Image } from "expo-image"
 import { ToastText } from "./ToastText"
 
@@ -9,6 +8,7 @@ type ConnectedUsersPictures = {
   size?: DimensionValue
   maxVisibleUsers?: number
   overlapPercentage?: number // Percentage of overlap (0-100)
+  backgroundColor: ColorValue | undefined
 }
 
 const ConnectedUsersPictures = ({
@@ -16,6 +16,7 @@ const ConnectedUsersPictures = ({
   size = 30,
   maxVisibleUsers = 5,
   overlapPercentage = 35,
+  backgroundColor,
 }: ConnectedUsersPictures) => {
   const sizeValue = typeof size === "number" ? size : 45
 
@@ -28,8 +29,8 @@ const ConnectedUsersPictures = ({
   const BaseUserPicture = ({ imageUrl }: { imageUrl: string }) => {
     return (
       <View
-        className="border-primary-200 border-[1px] rounded-full overflow-hidden"
-        style={{ width: size, height: size }}
+        className=" border-[1px] rounded-full overflow-hidden"
+        style={{ width: size, height: size, borderColor: backgroundColor }}
       >
         <View className="border-black border-[1px] rounded-full overflow-hidden">
           <Image
@@ -67,8 +68,9 @@ const ConnectedUsersPictures = ({
             zIndex: maxVisibleUsers + 1,
             width: size,
             height: size,
+            borderColor: backgroundColor,
           }}
-          className="border-primary-200 border-[1px] rounded-full overflow-hidden"
+          className="border-[1px] rounded-full overflow-hidden"
         >
           <View className="border-black border-[1px] rounded-full overflow-hidden bg-white justify-center items-center flex-1">
             <ToastText className="text-center " style={{ fontSize: 10 }}>

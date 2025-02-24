@@ -20,15 +20,15 @@ const Toaster = () => {
 
   return (
     <SafeAreaView className="bg-primary-200 h-full">
-      <View className="flex-1 justify-center content-center">
+      <View className="flex-1 justify-center content-center mx-5">
         <ToastText className="font-bold text-lg my-10 font-courier-italic">Toaster</ToastText>
         <TouchableOpacity onPress={handleLogout} className="mt-4 bg-red-500 px-4 py-2 rounded-md">
           <ToastText className="text-white">Logout</ToastText>
         </TouchableOpacity>
+
+        <ToastText className="font-courier-bold mt-5">Connected printers</ToastText>
         <ConnectedToastersWrapper />
       </View>
-
-      {/* <ConnectedUsersPictures /> */}
     </SafeAreaView>
   )
 }
