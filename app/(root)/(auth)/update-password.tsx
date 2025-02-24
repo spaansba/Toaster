@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { View } from "react-native"
 import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
 import { supabase } from "@/lib/supabase"
@@ -8,9 +8,9 @@ import images from "@/constants/images"
 import { Image } from "expo-image"
 import { useState } from "react"
 import Toast from "react-native-toast-message"
-import { useAuth } from "@/providers/AuthProvider"
 import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
 import { AuthWeakPasswordError } from "@supabase/supabase-js"
+import { ToastText } from "@/components/ToastText"
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState("")
@@ -68,10 +68,10 @@ const UpdatePassword = () => {
       />
       <View className="px-7">
         <View className="mb-8">
-          <Text className="font-courier-bold text-2xl mb-2">Reset Password</Text>
-          <Text className="font-courier text-gray-600">
+          <ToastText className="font-courier-bold text-2xl mb-2">Reset Password</ToastText>
+          <ToastText className=" text-gray-600">
             Enter your email address and we'll send you instructions to reset your password.
-          </Text>
+          </ToastText>
         </View>
 
         <ToasterInput
@@ -102,9 +102,9 @@ const UpdatePassword = () => {
         />
 
         <View className="items-center mt-4">
-          <Text className="text-blue-500 text-sm font-courier" onPress={() => router.back()}>
+          <ToastText className="text-blue-500 text-sm " onPress={() => router.back()}>
             Back to Sign In
-          </Text>
+          </ToastText>
         </View>
       </View>
     </KeyboardAwareScrollView>

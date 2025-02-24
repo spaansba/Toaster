@@ -12,6 +12,7 @@ import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
 import Animated, { useAnimatedStyle } from "react-native-reanimated"
+import { ToastText } from "@/components/ToastText"
 
 export default function sendMessage() {
   const richEditor = useRef<RichEditor>(null)
@@ -41,11 +42,11 @@ export default function sendMessage() {
         >
           <TouchableWithoutFeedback onPress={dismissKeyboard}>
             <View className="p-2.5">
-              <Text>
+              <ToastText>
                 Keyboard shown: {String(!isClosed.get())}
                 {"\n"}
                 Keyboard height: {height.get()}
-              </Text>
+              </ToastText>
             </View>
           </TouchableWithoutFeedback>
 

@@ -1,10 +1,11 @@
-import { View, Text, Platform, ScrollView, Button } from "react-native"
+import { View, Platform, ScrollView, Button } from "react-native"
 import images from "@/constants/images"
-import { Redirect, router } from "expo-router"
+import { router } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
 import AppleAuth from "@/components/auth/AppleAuth"
 import { Image } from "expo-image"
 import Toast from "react-native-toast-message"
+import { ToastText } from "@/components/ToastText"
 
 export default function SignIn() {
   const showToast = () => {
@@ -53,9 +54,13 @@ export default function SignIn() {
         />
         <View className="flex-1 bg-primary-200 px-7 items-center">
           <>
-            <Text className="uppercase font-courier-bold text-4xl mt-4 mb-5">Continue With</Text>
+            <ToastText className="uppercase font-courier-bold text-4xl mt-4 mb-5">
+              Continue With
+            </ToastText>
             {Platform.OS === "ios" && <AppleAuth />}
-            <Text className="uppercase font-courier-bold text-1xl my-6">or Continue With</Text>
+            <ToastText className="uppercase font-courier-bold text-1xl my-6">
+              or Continue With
+            </ToastText>
 
             <ToasterButton
               className="w-full h-[55px]"

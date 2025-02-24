@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, TouchableOpacity } from "react-native"
 import React from "react"
 import { Image } from "expo-image"
 import images from "@/constants/images"
@@ -6,9 +6,11 @@ import Svg, { Path } from "react-native-svg"
 import { Ionicons } from "@expo/vector-icons"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
 import tailwindConfig from "@/tailwind.config.js"
+import { ToastText } from "../ToastText"
 
 type ConntectedToasterType = {
   style?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple"
+  handleOnSettingsPress: () => void
 }
 
 const getToasterColor = (style: string): string => {
@@ -21,7 +23,7 @@ const getToasterColor = (style: string): string => {
   }
 }
 
-const ConnectedToaster = ({ style = "green" }: ConntectedToasterType) => {
+const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: ConntectedToasterType) => {
   const backgroundColor = getToasterColor(style)
   return (
     <View className="relative">
@@ -52,7 +54,7 @@ const ConnectedToaster = ({ style = "green" }: ConntectedToasterType) => {
 
             {/* Name + toast count */}
             <View className="ml-3 justify-between py-1">
-              <Text className="font-courier-bold text-xl">Bart</Text>
+              <ToastText className=" text-xl font-courier-bold">Bart</ToastText>
               <View className="flex flex-row gap-1">
                 <Svg width={18} height={15} viewBox="0 0 18 15" fill="none">
                   <Path
@@ -60,19 +62,22 @@ const ConnectedToaster = ({ style = "green" }: ConntectedToasterType) => {
                     fill="#57544E"
                   />
                 </Svg>
-                <Text className="text-md font-courier">100</Text>
+                <ToastText className="text-md font-courier">100</ToastText>
 
                 <View className="mx-1 flex justify-center">
                   <Ionicons name="ellipse" size={5} />
                 </View>
-                <Text className="text-md font-courier">Today</Text>
+                <ToastText className="text-md font-courier">Today</ToastText>
               </View>
             </View>
           </View>
 
           {/* Right section: settings and connected users */}
           <View className="justify-between items-end py-1">
-            <Ionicons name="ellipse" size={5} />
+            <TouchableOpacity onPress={handleOnSettingsPress}>
+              <Ionicons name="ellipsis-vertical-sharp" size={18} />
+            </TouchableOpacity>
+
             <ConnectedUsersPictures
               imagesAsUrl={[
                 images.hoofd,

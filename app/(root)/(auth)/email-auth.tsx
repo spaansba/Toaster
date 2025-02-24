@@ -12,6 +12,7 @@ import { router } from "expo-router"
 import { Image } from "expo-image"
 import { Toast } from "react-native-toast-message/lib/src/Toast"
 import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
+import { ToastText } from "@/components/ToastText"
 WebBrowser.maybeCompleteAuthSession()
 
 function EmailAuth() {
@@ -187,12 +188,9 @@ function EmailAuth() {
           errors={passwordErrors}
         />
         <View className="items-center mb-4">
-          <Text
-            className="text-blue-500 text-sm font-courier"
-            onPress={() => gotoPasswordRecovery()}
-          >
+          <ToastText className="text-blue-500 text-sm" onPress={() => gotoPasswordRecovery()}>
             Forgot password?
-          </Text>
+          </ToastText>
         </View>
         <ToasterButton
           className="w-full h-[55px]"
@@ -210,7 +208,7 @@ function EmailAuth() {
           variant="green"
         />
         <View className="items-center my-6">
-          <Text className="uppercase font-courier-bold text-1xl">No Account?</Text>
+          <ToastText className="uppercase font-courier-bold text-1xl">No Account?</ToastText>
         </View>
         <ToasterButton
           className="w-full h-[55px]"
@@ -228,9 +226,9 @@ function EmailAuth() {
           variant="yellow"
         />
         <View className="items-center mt-4">
-          <Text className="text-blue-500 text-sm font-courier" onPress={() => router.back()}>
+          <ToastText className="text-blue-500 text-sm mt-2" onPress={() => router.back()}>
             Other Sign In Methods
-          </Text>
+          </ToastText>
         </View>
       </View>
     </KeyboardAwareScrollView>

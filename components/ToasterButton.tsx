@@ -10,6 +10,7 @@ import {
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import type { SvgProps } from "react-native-svg"
+import { ToastText } from "./ToastText"
 
 type ButtonContent =
   | {
@@ -136,7 +137,7 @@ function ToasterButton({
             )}
 
             <View className="flex-1 items-center">
-              <Text
+              <ToastText
                 className={`
                   text-lg
                   font-courier-bold
@@ -145,7 +146,7 @@ function ToasterButton({
                 `}
               >
                 {content.updating?.isUpdating ? content.updating.updateText : content.text}
-              </Text>
+              </ToastText>
             </View>
           </View>
         )

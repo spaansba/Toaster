@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { View, TextInput, Text, TextInputProps, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
+import { ToastText } from "./ToastText"
 
 interface ToasterInputProps extends Omit<TextInputProps, "style"> {
   label?: string
@@ -63,9 +64,9 @@ const ToasterInput: React.FC<ToasterInputProps> = ({
       </View>
       <View className="mt-1">
         {errors?.map((error, index) => (
-          <Text key={index} className="mt-2 text-red-500 text-sm">
+          <ToastText key={index} className="mt-2 text-red-500 text-sm">
             {error}
-          </Text>
+          </ToastText>
         ))}
       </View>
     </View>

@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Pressable } from "react-native"
 import { type ToastConfigParams, type ToastHideParams } from "react-native-toast-message"
 import { Ionicons } from "@expo/vector-icons"
 import { hide } from "expo-router/build/utils/splash"
+import { ToastText } from "./ToastText"
 
 type CustomToastProps = {
   ionIcon?: keyof typeof Ionicons.glyphMap
@@ -50,12 +51,12 @@ const CustomBaseToast = ({
             <Ionicons name={ionIcon} size={19} color={headerTextColor} />
           </View>
           <View className="flex-col mt-[1px] mr-10">
-            <Text className="text-md font-bold" style={{ color: headerTextColor }}>
+            <ToastText className="text-md font-courier-bold" style={{ color: headerTextColor }}>
               {headerText}
-            </Text>
-            <Text className="text-s mt-[1px]" style={{ color: bodyTextColor }}>
+            </ToastText>
+            <ToastText className="text-s mt-[1px]" style={{ color: bodyTextColor }}>
               {bodyText}
-            </Text>
+            </ToastText>
           </View>
         </View>
         {showButton && (
@@ -66,12 +67,12 @@ const CustomBaseToast = ({
               hide()
             }}
           >
-            <Text
+            <ToastText
               className="text-center py-2.5 text-sm font-medium"
               style={{ color: bodyTextColor }}
             >
               {onPressButtonText}
-            </Text>
+            </ToastText>
           </Pressable>
         )}
       </View>

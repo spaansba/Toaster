@@ -2,6 +2,7 @@ import { View, Text, type DimensionValue } from "react-native"
 import React from "react"
 import images from "@/constants/images"
 import { Image } from "expo-image"
+import { ToastText } from "./ToastText"
 
 type ConnectedUsersPictures = {
   imagesAsUrl?: string[]
@@ -70,7 +71,9 @@ const ConnectedUsersPictures = ({
           className="border-primary-200 border-[1px] rounded-full overflow-hidden"
         >
           <View className="border-black border-[1px] rounded-full overflow-hidden bg-white justify-center items-center flex-1">
-            <Text className="text-center text-xs">+{extraUsers}</Text>
+            <ToastText className="text-center " style={{ fontSize: 10 }}>
+              +{extraUsers}
+            </ToastText>
           </View>
         </View>
       )}
