@@ -5,8 +5,24 @@ import images from "@/constants/images"
 import Svg, { Path } from "react-native-svg"
 import { Ionicons } from "@expo/vector-icons"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
+import tailwindConfig from "@/tailwind.config.js"
 
-const ConnectedToaster = () => {
+type ConntectedToasterType = {
+  style?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple"
+}
+
+const getToasterColor = (style: string): string => {
+  try {
+    const config = tailwindConfig as any
+    return config.theme.extend.colors.toaster[style] || "#FFD787" // Default to yellow
+  } catch (error) {
+    // If there's any error accessing the config, return the default yellow
+    return "#FFD787"
+  }
+}
+
+const ConnectedToaster = ({ style = "green" }: ConntectedToasterType) => {
+  const backgroundColor = getToasterColor(style)
   return (
     <View className="relative">
       <View
@@ -16,7 +32,10 @@ const ConnectedToaster = () => {
           top: 5,
         }}
       />
-      <View className="relative w-full border-black border-2 bg-toaster-yellow z-20 rounded">
+      <View
+        className="relative w-full border-black border-2 z-20 rounded"
+        style={{ backgroundColor: backgroundColor }}
+      >
         <View className="flex-row mx-4 my-3 justify-between">
           {/* Left section: profile picture + info */}
           <View className="flex-row">

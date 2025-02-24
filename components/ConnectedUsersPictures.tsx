@@ -48,7 +48,7 @@ const ConnectedUsersPictures = ({
       {imagesAsUrl.map((imageUrl, index) =>
         index < maxVisibleUsers ? (
           <View
-            key={`user-${imageUrl}`}
+            key={`user-${imageUrl}-${index}`}
             style={{
               marginLeft: index > 0 ? overlapMargin : 0,
               zIndex: index,
