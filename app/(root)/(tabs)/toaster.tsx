@@ -27,7 +27,6 @@ const Toaster = () => {
         </TouchableOpacity>
 
         <ToastText className="font-courier-bold mt-5">Connected printers</ToastText>
-        <ConnectedToastersWrapper />
       </View>
     </SafeAreaView>
   )

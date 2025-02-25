@@ -37,7 +37,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
           }}
         />
         <View
-          className="relative w-full border-black border-2 z-20 rounded-lg"
+          className="relative w-full border-black border-[3px] z-20 rounded-lg"
           style={{ backgroundColor: backgroundColor }}
         >
           <View className="flex-row mx-4 my-3 justify-between">
@@ -55,8 +55,10 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
               </View>
 
               {/* Name + toast count */}
-              <View className="ml-3 justify-between py-1">
+              <View className="ml-3 justify-between py-[2px]">
                 <ToastText className=" text-xl font-courier-bold">Bart</ToastText>
+                <ToastText className=" text-sm mt-[-12px]">SDFI37DFX</ToastText>
+
                 <View className="flex flex-row gap-1">
                   <Svg width={16} height={13} viewBox="0 0 18 15" fill="none">
                     <Path

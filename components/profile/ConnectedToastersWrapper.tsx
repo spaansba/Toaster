@@ -55,11 +55,8 @@ const ConnectedToastersWrapper = () => {
             </View>
           </View>
         }
-        initialScrollIndex={1}
+        initialScrollOffset={60}
         keyExtractor={(item) => item.id}
-        maintainVisibleContentPosition={true}
-        // Performance optimizations
-        removeClippedSubviews={true}
       />
     </>
   )

@@ -41,7 +41,7 @@ const ProfileWrapper = () => {
               activeView === "connected" ? "text-black" : "text-gray-400"
             }`}
           >
-            Connected Toasters
+            Toasters
           </ToastText>
         </Pressable>
         <Pressable onPress={() => setActiveView("add")}>
