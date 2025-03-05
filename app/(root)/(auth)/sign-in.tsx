@@ -5,7 +5,7 @@ import ToasterButton from "@/components/ToasterButton"
 import AppleAuth from "@/components/auth/AppleAuth"
 import { Image } from "expo-image"
 import Toast from "react-native-toast-message"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 
 export default function SignIn() {
   const showToast = () => {

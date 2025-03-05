@@ -7,15 +7,12 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  SectionList,
 } from "react-native"
-import React, { forwardRef, useCallback, useMemo, useRef, useState } from "react"
-import { ToastText } from "../ToastText"
-import ToastTextButton from "../ToastTextButton"
+import React, { useCallback, useState } from "react"
+import { ToastText } from "../general/ToastText"
 import Ionicons from "@expo/vector-icons/Ionicons"
-import { LegendList } from "@legendapp/list"
-import { Image } from "expo-image"
-import images from "@/constants/images"
-import type { ToasterData } from "@/types/types"
+import type { ToasterData, ToasterStyle } from "@/types/types"
 import ToasterCard from "./ToasterCard"
 
 type RecipientBottomSheetProps = {
@@ -24,28 +21,66 @@ type RecipientBottomSheetProps = {
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+type userSectionListData = {
+  title: string
+  data: {
+    id: string
+    name: string
+    style: ToasterStyle
+  }[]
+}
+
 const RecipientBottomSheet = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
   const [searchText, setSearchText] = useState("")
-
-  // Create a properly typed array of toaster data
-  const mostUsedtoasters: ToasterData[] = useMemo(
-    () => [
-      { id: "1", style: "blue" },
-      { id: "2", style: "green" },
-      { id: "3", style: "yellow" },
-      { id: "4", style: "purple" },
-      { id: "5", style: "yellow" },
-    ],
-    []
-  )
-
+  const sectionData: userSectionListData[] = [
+    {
+      title: "Most Used Toasters",
+      data: [
+        { id: "t001", name: "BreakfastMaster 3000", style: "blue" },
+        { id: "t002", name: "ToastPro Elite", style: "green" },
+        { id: "t003", name: "CrispMaker Deluxe", style: "pink" },
+      ],
+    },
+    {
+      title: "A",
+      data: [
+        { id: "t004", name: "Avocado Toaster", style: "yellow" },
+        { id: "t005", name: "AlphaBake Supreme", style: "orange" },
+        { id: "t006", name: "ArtisanCrisp", style: "purple" },
+      ],
+    },
+    {
+      title: "B",
+      data: [{ id: "t007", name: "BagelMaster Pro", style: "blue" }],
+    },
+    {
+      title: "C",
+      data: [
+        { id: "t011", name: "CrispnCrunchy", style: "orange" },
+        { id: "t012", name: "CuisineToast", style: "purple" },
+        { id: "t013", name: "ClassicCrisp", style: "blue" },
+      ],
+    },
+  ]
   const handleIsVisible = () => {
     setIsModalVisible((prev) => !prev)
   }
 
   // Memoize the render item function
   const renderItem = useCallback(
-    ({ item }: { item: ToasterData }) => <ToasterCard style={item.style}></ToasterCard>,
+    ({
+      item,
+      index,
+      section,
+    }: {
+      item: ToasterData
+      index: number
+      section: userSectionListData
+    }) => {
+      const isFirst = index === 0
+      const isLast = index === section.data.length - 1
+      return <ToasterCard style={item.style} isFirst={isFirst} isLast={isLast} />
+    },
     []
   )
 
@@ -91,16 +126,15 @@ const RecipientBottomSheet = ({ isModalVisible, setIsModalVisible }: RecipientBo
         </View>
 
         <View>
-          <ToastText>MOST USED TOASTERS</ToastText>
-          <LegendList
-            style={{ backgroundColor: "#fff3e1" }}
-            data={mostUsedtoasters}
-            estimatedItemSize={110}
+          <SectionList
+            sections={sectionData}
             renderItem={renderItem}
-            // onViewableItemsChanged={(info) => handleViewableItemsChanged(info)}
-            // ListHeaderComponent={ListHeaderComponent}
-            initialScrollOffset={0}
-            keyExtractor={(item: ToasterData) => item.id}
+            keyExtractor={(item) => item.id}
+            renderSectionHeader={({ section: { title } }) => (
+              <View className="">
+                <ToastText className="font-courier-bold bg-primary-200">{title}</ToastText>
+              </View>
+            )}
           />
         </View>
       </View>

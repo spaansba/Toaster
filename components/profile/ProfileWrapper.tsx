@@ -1,6 +1,6 @@
 import { View, SafeAreaView, TouchableOpacity, TextInput, Animated } from "react-native"
 import React, { useState, useCallback, useMemo } from "react"
-import { ToastText } from "../ToastText"
+import { ToastText } from "../general/ToastText"
 import ConnectedToaster from "./ConnectedToaster"
 import { LegendList, type ViewToken } from "@legendapp/list"
 import { Feather, Ionicons } from "@expo/vector-icons"

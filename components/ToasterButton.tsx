@@ -10,7 +10,7 @@ import {
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import type { SvgProps } from "react-native-svg"
-import { ToastText } from "./ToastText"
+import { ToastText } from "./general/ToastText"
 
 type ButtonContent =
   | {

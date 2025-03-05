@@ -9,7 +9,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import images from "@/constants/images"
 import { Image } from "expo-image"
 import Toast from "react-native-toast-message"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 const RequestResetPassword = () => {
   const { inputEmail } = useLocalSearchParams<{ inputEmail: string }>()
   const [email, setEmail] = useState(inputEmail || "")

@@ -12,7 +12,7 @@ import { router } from "expo-router"
 import { Image } from "expo-image"
 import { Toast } from "react-native-toast-message/lib/src/Toast"
 import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 WebBrowser.maybeCompleteAuthSession()
 
 function EmailAuth() {

@@ -13,7 +13,7 @@ import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
 import Animated, { useAnimatedStyle } from "react-native-reanimated"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 import RecipientBottomSheet from "@/components/messenger/RecipientBottomSheet"
 import type { BottomSheetModal } from "@gorhom/bottom-sheet"
 

@@ -1,7 +1,7 @@
 import { View, type DimensionValue, type ColorValue } from "react-native"
 import React from "react"
 import { Image } from "expo-image"
-import { ToastText } from "./ToastText"
+import { ToastText } from "./general/ToastText"
 
 type ConnectedUsersPictures = {
   imagesAsUrl?: string[]

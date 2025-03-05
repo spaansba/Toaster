@@ -2,7 +2,7 @@ import { Animated, View, Easing } from "react-native"
 import React, { useEffect, useRef } from "react"
 import { Image } from "expo-image"
 import images from "@/constants/images"
-import { ToastText } from "../ToastText"
+import { ToastText } from "../general/ToastText"
 
 const ProfileHeader = ({
   isExpanded = true,

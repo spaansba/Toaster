@@ -5,7 +5,7 @@ import images from "@/constants/images"
 import Svg, { Path } from "react-native-svg"
 import { Ionicons } from "@expo/vector-icons"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
-import { ToastText } from "../ToastText"
+import { ToastText } from "../general/ToastText"
 import { getToasterColor } from "@/helpers/GetToasterColor"
 import type { ToasterStyle } from "@/types/types"
 

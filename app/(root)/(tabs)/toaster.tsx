@@ -5,7 +5,7 @@ import { router } from "expo-router"
 import ConnectedUsersPictures from "@/components/ConnectedUsersPictures"
 import ConnectedToaster from "@/components/profile/ConnectedToaster"
 import ConnectedToastersWrapper from "@/components/profile/ConnectedToastersWrapper"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 
 const Toaster = () => {
   const handleLogout = async () => {

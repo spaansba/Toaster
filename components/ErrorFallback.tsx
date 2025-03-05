@@ -2,7 +2,7 @@ import { View, Text, Pressable } from "react-native"
 import React from "react"
 import type { FallbackProps } from "react-error-boundary"
 import { isSupbasePostgrestError } from "@/helpers/SupabasePostgrestError"
-import { ToastText } from "./ToastText"
+import { ToastText } from "./general/ToastText"
 
 const ErrorFallback = (props: FallbackProps) => {
   const { error, resetErrorBoundary } = props

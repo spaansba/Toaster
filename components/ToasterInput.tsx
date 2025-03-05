@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { View, TextInput, Text, TextInputProps, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { ToastText } from "./ToastText"
+import { ToastText } from "./general/ToastText"
 
 interface ToasterInputProps extends Omit<TextInputProps, "style"> {
   label?: string

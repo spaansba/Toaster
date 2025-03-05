@@ -10,7 +10,7 @@ import { useState } from "react"
 import Toast from "react-native-toast-message"
 import { WeakPasswordHelper } from "@/helpers/WeakPasswordHelper"
 import { AuthWeakPasswordError } from "@supabase/supabase-js"
-import { ToastText } from "@/components/ToastText"
+import { ToastText } from "@/components/general/ToastText"
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState("")
