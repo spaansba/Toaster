@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import {
   SafeAreaView,
   Platform,
@@ -7,17 +7,21 @@ import {
   ScrollView,
   View,
   TouchableWithoutFeedback,
+  Button,
 } from "react-native"
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
 import Animated, { useAnimatedStyle } from "react-native-reanimated"
 import { ToastText } from "@/components/ToastText"
+import RecipientBottomSheet from "@/components/messenger/RecipientBottomSheet"
+import type { BottomSheetModal } from "@gorhom/bottom-sheet"
 
 export default function sendMessage() {
   const richEditor = useRef<RichEditor>(null)
   const { height, heightWhenOpened, isClosed } = useKeyboardAnimation()
   const tabBarHeight = useBottomTabBarHeight()
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
   const dismissKeyboard = () => {
     richEditor.current?.blurContentEditor()
@@ -33,9 +37,17 @@ export default function sendMessage() {
     }
   })
 
+  const handlePresentModal = () => setModalVisible(true)
+  const [modalVisible, setModalVisible] = useState(false)
   return (
-    <SafeAreaView className="flex-1 bg-primary-200">
-      <ScrollView className="flex-1">
+    <SafeAreaView className="h-full bg-primary-200">
+      <ScrollView className="">
+        <Button title="open" onPress={handlePresentModal}></Button>
+        <RecipientBottomSheet
+          title="hello"
+          isModalVisible={modalVisible}
+          setIsModalVisible={setModalVisible}
+        />
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           className="flex-1"

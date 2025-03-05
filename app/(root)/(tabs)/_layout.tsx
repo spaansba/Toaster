@@ -51,6 +51,7 @@ function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: true,
           tabBarIcon: ({ focused, color }) => (
             <FontAwesome name="user-o" size={tabIconSize} color={focused ? color : "#6B7280"} />
           ),

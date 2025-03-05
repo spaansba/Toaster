@@ -28,38 +28,7 @@ const ConnectedToastersWrapper = () => {
     { id: "10", style: "green" },
   ]
 
-  return (
-    <>
-      <LegendList
-        style={{ backgroundColor: "white" }}
-        data={toasters}
-        estimatedItemSize={110}
-        renderItem={({ item }) => (
-          <ConnectedToaster handleOnSettingsPress={() => {}} style={item.style} />
-        )}
-        ListHeaderComponent={
-          <View className="px-4 py-3 bg-white border-b-[1px] border-black">
-            <View className="flex-row items-center bg-gray-100 rounded-full px-3 py-2 border-[1px] border-black">
-              <Feather name="search" size={18} color="black" />
-              <TextInput
-                className="flex-1 ml-2 font-courier"
-                placeholder="Search toasters..."
-                value={searchQuery}
-                onChangeText={setSearchQuery}
-              />
-              {searchQuery.length > 0 && (
-                <TouchableOpacity onPress={() => setSearchQuery("")}>
-                  <Feather name="x" size={18} color="black" />
-                </TouchableOpacity>
-              )}
-            </View>
-          </View>
-        }
-        initialScrollOffset={60}
-        keyExtractor={(item) => item.id}
-      />
-    </>
-  )
+  return <></>
 }
 
 export default ConnectedToastersWrapper

@@ -1,33 +1,23 @@
-import { View, Text, TouchableOpacity, type ColorValue } from "react-native"
+import { View, TouchableOpacity } from "react-native"
 import React from "react"
 import { Image } from "expo-image"
 import images from "@/constants/images"
 import Svg, { Path } from "react-native-svg"
 import { Ionicons } from "@expo/vector-icons"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
-import tailwindConfig from "@/tailwind.config.js"
 import { ToastText } from "../ToastText"
+import { getToasterColor } from "@/helpers/GetToasterColor"
+import type { ToasterStyle } from "@/types/types"
 
-type ConntectedToasterType = {
-  style?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple"
-
+type ConntectedToasterProps = {
+  style?: ToasterStyle
   handleOnSettingsPress: () => void
 }
 
-const getToasterColor = (style: string): string => {
-  try {
-    const config = tailwindConfig as any
-    return config.theme.extend.colors.toaster[style] || "#FFD787" // Default to yellow
-  } catch (error) {
-    // If there's any error accessing the config, return the default yellow
-    return "#FFD787"
-  }
-}
-
-const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: ConntectedToasterType) => {
+const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: ConntectedToasterProps) => {
   const backgroundColor = getToasterColor(style)
   return (
-    <View className="px-6 py-3 min-h-[100px]">
+    <View className="px-5 py-3 min-h-[100px] bg-primary-200">
       <View className="relative">
         <View
           className="absolute bg-black w-full h-full rounded-lg"

@@ -8,6 +8,8 @@ import { AppState, LogBox } from "react-native"
 import { supabase } from "@/lib/supabase"
 import Toast from "react-native-toast-message"
 import { toastConfig } from "@/components/ReactToastMessageConfig"
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 LogBox.ignoreAllLogs(true)
 LogBox.ignoreLogs(["Unspecified error"])
@@ -39,13 +41,17 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthProvider>
-      <KeyboardProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(root)" options={{ headerShown: false }} />
-        </Stack>
-        <Toast config={toastConfig} visibilityTime={3500} />
-      </KeyboardProvider>
-    </AuthProvider>
+    <GestureHandlerRootView>
+      <AuthProvider>
+        <BottomSheetModalProvider>
+          <KeyboardProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(root)" options={{ headerShown: false }} />
+            </Stack>
+            <Toast config={toastConfig} visibilityTime={3500} />
+          </KeyboardProvider>
+        </BottomSheetModalProvider>
+      </AuthProvider>
+    </GestureHandlerRootView>
   )
 }
