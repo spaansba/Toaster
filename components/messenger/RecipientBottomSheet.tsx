@@ -1,4 +1,13 @@
-import { Alert, Button, Modal, Pressable, StyleSheet, View, TextInput } from "react-native"
+import {
+  Alert,
+  Button,
+  Modal,
+  Pressable,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native"
 import React, { forwardRef, useCallback, useMemo, useRef, useState } from "react"
 import { ToastText } from "../ToastText"
 import ToastTextButton from "../ToastTextButton"
@@ -7,6 +16,7 @@ import { LegendList } from "@legendapp/list"
 import { Image } from "expo-image"
 import images from "@/constants/images"
 import type { ToasterData } from "@/types/types"
+import ToasterCard from "./ToasterCard"
 
 type RecipientBottomSheetProps = {
   title: string
@@ -35,23 +45,7 @@ const RecipientBottomSheet = ({ isModalVisible, setIsModalVisible }: RecipientBo
 
   // Memoize the render item function
   const renderItem = useCallback(
-    ({ item }: { item: ToasterData }) => (
-      <View className={`flex-row h-[50px] items-center ml-3 bg-${item.style}`}>
-        <View className="border-black border-[1px] size-[35px] rounded-full overflow-hidden">
-          <Image
-            source={images.hoofd}
-            style={{ width: "100%", height: "100%" }}
-            contentFit="cover"
-            cachePolicy="memory-disk"
-            transition={0}
-          />
-        </View>
-        <View className="flex-col ml-3">
-          <ToastText className="font-courier-bold">Name</ToastText>
-          <ToastText className="color-gray-500">Today</ToastText>
-        </View>
-      </View>
-    ),
+    ({ item }: { item: ToasterData }) => <ToasterCard style={item.style}></ToasterCard>,
     []
   )
 
@@ -62,21 +56,21 @@ const RecipientBottomSheet = ({ isModalVisible, setIsModalVisible }: RecipientBo
       visible={isModalVisible}
       onRequestClose={handleIsVisible}
     >
-      <View className="h-full p-4 bg-toaster-yellow">
+      <View className="h-full p-4 bg-primary-200">
         <View className="flex-row justify-between items-center mb-6">
           {/* Headers */}
-          <Pressable onPress={() => setIsModalVisible(false)}>
+          <TouchableOpacity onPress={() => setIsModalVisible(false)}>
             <ToastText className="font-courier-bold text-xl">Cancel</ToastText>
-          </Pressable>
+          </TouchableOpacity>
 
           <View className="flex-col items-center absolute inset-x-0 mx-auto">
             <ToastText>ADD RECIPIENTS</ToastText>
             <ToastText>0/63</ToastText>
           </View>
 
-          <Pressable onPress={() => setIsModalVisible(false)}>
+          <TouchableOpacity onPress={() => setIsModalVisible(false)}>
             <ToastText className="font-courier-bold text-xl">Finish</ToastText>
-          </Pressable>
+          </TouchableOpacity>
         </View>
 
         {/* SearchBar */}
