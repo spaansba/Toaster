@@ -3,10 +3,10 @@ import React, { useState } from "react"
 import type { ToasterStyle } from "@/types/types"
 import { Image } from "expo-image"
 import images from "@/constants/images"
-import { getToasterColor } from "@/helpers/GetToasterColor"
+import { getToasterColors } from "@/helpers/GetToasterColor"
 import { ToastText } from "../general/ToastText"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
-import CheckmarkCircle from "../general/CheckmarkCircle"
+import CheckBox from "../general/CheckBox"
 
 type ToasterCardProps = {
   isFirst: boolean
@@ -16,23 +16,24 @@ type ToasterCardProps = {
 
 const ToasterCard = ({ isFirst, isLast, style }: ToasterCardProps) => {
   const [isClicked, setIsClicked] = useState(false)
-  const backgroundColor = getToasterColor(style)
+  const { color, lightColor } = getToasterColors(style)
+
+  // Choose either normal color or light color based on isSelected
+  const backgroundColor = isClicked ? color : lightColor
 
   const getBorderStyle = () => {
-    const borderSize = "1px"
-    const borderColor = "border-black"
     switch (true) {
       case isFirst && isLast:
-        return `${borderColor} border-[${borderSize}] rounded-t-lg rounded-b-lg`
+        return `border-black border-[1px] rounded-t-lg rounded-b-lg`
 
       case isFirst:
-        return `${borderColor} border-[${borderSize}] rounded-t-lg`
+        return `border-black border-[1px] rounded-t-lg`
 
       case isLast:
-        return `${borderColor} border-l-[${borderSize}] border-r-[${borderSize}] border-b-[${borderSize}] rounded-b-lg`
+        return `border-black border-l-[1px] border-r-[1px] border-b-[1px] rounded-b-lg`
 
       default:
-        return `${borderColor} border-l-[${borderSize}] border-r-[${borderSize}] border-b-[${borderSize}]`
+        return `border-black border-l-[1px] border-r-[1px] border-b-[1px]`
     }
   }
 
@@ -72,17 +73,13 @@ const ToasterCard = ({ isFirst, isLast, style }: ToasterCardProps) => {
               images.hoofd,
               images.hoofd,
               images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
             ]}
             size={20}
-            maxVisibleUsers={4}
+            maxVisibleUsers={8}
           />
-          <CheckmarkCircle showCheckmark={isClicked} />
+          <View className="ml-2">
+            <CheckBox showCheckmark={isClicked} />
+          </View>
         </View>
       </View>
     </Pressable>

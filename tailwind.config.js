@@ -19,12 +19,21 @@ module.exports = {
         accent: {},
         danger: "#F75555",
         toaster: {
-          yellow: "#FFD787",
-          green: "#BAFFA0",
+          // Original colors
           blue: "#87CEFA",
-          pink: "#FF69B4",
-          orange: "#FF7F50",
-          purple: "#B19CD9",
+          green: "#98FB98",
+          pink: "#FFA7B6",
+          yellow: "#FFD787",
+          orange: "#FFA07A",
+          purple: "#DDA0DD",
+
+          // Light variants
+          "light-blue": "#87CEFAA2",
+          "light-green": "#98FB98A2",
+          "light-pink": "#FFA7B6A2",
+          "light-yellow": "#FFD787A2",
+          "light-orange": "#FFA07AA2",
+          "light-purple": "#DDA0DDA2",
         },
       },
     },
