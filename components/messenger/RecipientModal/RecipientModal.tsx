@@ -2,24 +2,19 @@ import { Modal, Pressable, View, TextInput, TouchableOpacity } from "react-nativ
 import React, { useState } from "react"
 import { ToastText } from "../../general/ToastText"
 import Ionicons from "@expo/vector-icons/Ionicons"
-import type { CardToaster, userSectionListData } from "@/types/types"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
+import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 
 type RecipientBottomSheetProps = {
-  connectedToasters: userSectionListData[]
   title: string
   isModalVisible: boolean
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const RecipientModal = ({
-  connectedToasters,
-  isModalVisible,
-  setIsModalVisible,
-}: RecipientBottomSheetProps) => {
+const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
   const [searchText, setSearchText] = useState("")
-  const [selectedToasters, setSelectedToasters] = useState<CardToaster[]>([])
+  const { availableToasters, selectedToasters, setSelectedToasters } = useMessagingToasters()
 
   const handleIsVisible = () => {
     setIsModalVisible((prev) => !prev)
@@ -39,7 +34,7 @@ const RecipientModal = ({
             <ToastText className="font-courier-bold text-xl">Cancel</ToastText>
           </TouchableOpacity>
 
-          <View className="flex-col items-center absolute inset-x-0 mx-auto">
+          <View className="flex-col items-center">
             <ToastText>ADD RECIPIENTS</ToastText>
             <ToastText>0/63</ToastText>
           </View>
@@ -53,7 +48,7 @@ const RecipientModal = ({
         <View className="flex-row items-center bg-white rounded-full px-3 py-2 mb-4">
           <Ionicons name="search-outline" size={20} color="#666" />
           <TextInput
-            className="flex-1 ml-2 font-courier text-base"
+            className="ml-2 font-courier text-base flex-1"
             placeholder="Search"
             value={searchText}
             onChangeText={setSearchText}
@@ -65,17 +60,14 @@ const RecipientModal = ({
             </Pressable>
           )}
         </View>
-        <View className="mb-5">
-          <SelectedRecipientList
-            selectedToasters={selectedToasters}
-            setSelectedToasters={setSelectedToasters}
-          />
+
+        <View className="mb-4">
+          <SelectedRecipientList />
         </View>
-        <View>
-          <RecipientSectionList
-            connectedToasters={connectedToasters}
-            setSelectedToasters={setSelectedToasters}
-          />
+
+        {/* Give flex-1 to this container to allow proper scrolling */}
+        <View className="flex-1">
+          <RecipientSectionList />
         </View>
       </View>
     </Modal>

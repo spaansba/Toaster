@@ -12,11 +12,12 @@ type ToasterCardProps = {
   isFirst: boolean
   isLast: boolean
   data: CardToaster
+  isSelected: boolean
   onPress: (toaster: CardToaster) => void
 }
 
-const ToasterCard = ({ isFirst, isLast, data, onPress }: ToasterCardProps) => {
-  const [isActive, setIsActive] = useState(data.isSelected)
+const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCardProps) => {
+  const [isActive, setIsActive] = useState(isSelected)
   const { color, lightColor } = getToasterColors(data.style)
 
   // Choose either normal color or light color based on isSelected
@@ -60,7 +61,7 @@ const ToasterCard = ({ isFirst, isLast, data, onPress }: ToasterCardProps) => {
             />
           </View>
           <View className="flex-col ml-3">
-            <ToastText className="font-courier-bold">Name</ToastText>
+            <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
             <ToastText className="color-gray-500">Today</ToastText>
           </View>
         </View>
@@ -77,7 +78,7 @@ const ToasterCard = ({ isFirst, isLast, data, onPress }: ToasterCardProps) => {
               images.hoofd,
             ]}
             size={20}
-            maxVisibleUsers={8}
+            maxVisibleUsers={2}
           />
           <View className="ml-2">
             <CheckBox showCheckmark={isActive} />

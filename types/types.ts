@@ -12,10 +12,9 @@ export type BaseToaster = {
 
 export type CardToaster = BaseToaster & {
   style: ToasterStyle
-  isSelected: boolean
 }
 
-export type userSectionListData = {
+export type ToasterSectionListData = {
   title: string
   data: CardToaster[]
 }

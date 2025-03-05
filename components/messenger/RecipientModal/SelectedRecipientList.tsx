@@ -4,16 +4,10 @@ import { LegendList } from "@legendapp/list"
 import images from "@/constants/images"
 import type { CardToaster } from "@/types/types"
 import { Image } from "expo-image"
+import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 
-type SelectedRecipientList = {
-  selectedToasters: CardToaster[]
-  setSelectedToasters: React.Dispatch<React.SetStateAction<CardToaster[]>>
-}
-
-const SelectedRecipientList = ({
-  selectedToasters,
-  setSelectedToasters,
-}: SelectedRecipientList) => {
+const SelectedRecipientList = () => {
+  const { availableToasters, selectedToasters, setSelectedToasters } = useMessagingToasters()
   const renderSelectedItem = useCallback(
     ({ item, index }: { item: CardToaster; index: number }) => {
       const isFirst = index === 0
@@ -40,6 +34,7 @@ const SelectedRecipientList = ({
       renderItem={renderSelectedItem}
       keyExtractor={(item) => item.id}
       horizontal={true}
+      estimatedItemSize={35}
     />
   )
 }
