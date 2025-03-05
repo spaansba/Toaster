@@ -1,9 +1,9 @@
 import { View, Text, Pressable } from "react-native"
 import React, { useState } from "react"
-import type { ToasterStyle } from "@/types/types"
+import type { CardToaster, ToasterStyle } from "@/types/types"
 import { Image } from "expo-image"
 import images from "@/constants/images"
-import { getToasterColors } from "@/helpers/GetToasterColor"
+import { getToasterColors } from "@/helpers/GetToasterColors"
 import { ToastText } from "../general/ToastText"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
 import CheckBox from "../general/CheckBox"
@@ -11,15 +11,16 @@ import CheckBox from "../general/CheckBox"
 type ToasterCardProps = {
   isFirst: boolean
   isLast: boolean
-  style: ToasterStyle
+  data: CardToaster
+  onPress: (toaster: CardToaster) => void
 }
 
-const ToasterCard = ({ isFirst, isLast, style }: ToasterCardProps) => {
-  const [isClicked, setIsClicked] = useState(false)
-  const { color, lightColor } = getToasterColors(style)
+const ToasterCard = ({ isFirst, isLast, data, onPress }: ToasterCardProps) => {
+  const [isActive, setIsActive] = useState(data.isSelected)
+  const { color, lightColor } = getToasterColors(data.style)
 
   // Choose either normal color or light color based on isSelected
-  const backgroundColor = isClicked ? color : lightColor
+  const backgroundColor = isActive ? color : lightColor
 
   const getBorderStyle = () => {
     switch (true) {
@@ -38,7 +39,8 @@ const ToasterCard = ({ isFirst, isLast, style }: ToasterCardProps) => {
   }
 
   const handlePress = () => {
-    setIsClicked(!isClicked)
+    setIsActive(!isActive)
+    onPress(data)
   }
 
   return (
@@ -78,7 +80,7 @@ const ToasterCard = ({ isFirst, isLast, style }: ToasterCardProps) => {
             maxVisibleUsers={8}
           />
           <View className="ml-2">
-            <CheckBox showCheckmark={isClicked} />
+            <CheckBox showCheckmark={isActive} />
           </View>
         </View>
       </View>

@@ -7,7 +7,12 @@ import { Feather, Ionicons } from "@expo/vector-icons"
 import { Image } from "expo-image"
 import images from "@/constants/images"
 import ToasterButton from "../ToasterButton"
-import type { ToasterData } from "@/types/types"
+import type { ToasterStyle } from "@/types/types"
+
+type ToasterData = {
+  id: string
+  style: ToasterStyle
+}
 
 const ProfileWrapper = () => {
   const [searchQuery, setSearchQuery] = useState("")

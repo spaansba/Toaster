@@ -14,8 +14,9 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
 import Animated, { useAnimatedStyle } from "react-native-reanimated"
 import { ToastText } from "@/components/general/ToastText"
-import RecipientBottomSheet from "@/components/messenger/RecipientBottomSheet"
+import RecipientBottomSheet from "@/components/messenger/RecipientModal/RecipientModal"
 import type { BottomSheetModal } from "@gorhom/bottom-sheet"
+import type { CardToaster, userSectionListData } from "@/types/types"
 
 export default function sendMessage() {
   const richEditor = useRef<RichEditor>(null)
@@ -37,6 +38,99 @@ export default function sendMessage() {
     }
   })
 
+  const sectionData: userSectionListData[] = [
+    {
+      title: "Most Used Toasters",
+      data: [
+        {
+          id: "t001",
+          toasterName: "BreakfastMaster 3000",
+          style: "blue",
+          picture_url: "",
+          isSelected: true,
+        },
+        {
+          id: "t002",
+          toasterName: "ToastPro Elite",
+          style: "green",
+          picture_url: "",
+          isSelected: true,
+        },
+        {
+          id: "t003",
+          toasterName: "CrispMaker Deluxe",
+          style: "pink",
+          picture_url: "",
+          isSelected: false,
+        },
+      ],
+    },
+    {
+      title: "A",
+      data: [
+        {
+          id: "t004",
+          toasterName: "Avocado Toaster",
+          style: "yellow",
+          picture_url: "",
+          isSelected: false,
+        },
+        {
+          id: "t005",
+          toasterName: "AlphaBake Supreme",
+          style: "orange",
+          picture_url: "",
+          isSelected: false,
+        },
+        {
+          id: "t006",
+          toasterName: "ArtisanCrisp",
+          style: "purple",
+          picture_url: "",
+          isSelected: false,
+        },
+      ],
+    },
+    {
+      title: "B",
+      data: [
+        {
+          id: "t007",
+          toasterName: "BagelMaster Pro",
+          style: "blue",
+          picture_url: "",
+          isSelected: false,
+        },
+      ],
+    },
+    {
+      title: "C",
+      data: [
+        {
+          id: "t011",
+          toasterName: "CrispnCrunchy",
+          style: "orange",
+          picture_url: "",
+          isSelected: false,
+        },
+        {
+          id: "t012",
+          toasterName: "CuisineToast",
+          style: "purple",
+          picture_url: "",
+          isSelected: false,
+        },
+        {
+          id: "t013",
+          toasterName: "ClassicCrisp",
+          style: "blue",
+          picture_url: "",
+          isSelected: false,
+        },
+      ],
+    },
+  ]
+
   const handlePresentModal = () => setModalVisible(true)
   const [modalVisible, setModalVisible] = useState(false)
   return (
@@ -44,6 +138,7 @@ export default function sendMessage() {
       <ScrollView className="">
         <Button title="open" onPress={handlePresentModal}></Button>
         <RecipientBottomSheet
+          connectedToasters={sectionData}
           title="hello"
           isModalVisible={modalVisible}
           setIsModalVisible={setModalVisible}

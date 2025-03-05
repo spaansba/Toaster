@@ -6,7 +6,7 @@ import Svg, { Path } from "react-native-svg"
 import { Ionicons } from "@expo/vector-icons"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
 import { ToastText } from "../general/ToastText"
-import { getToasterColor } from "@/helpers/GetToasterColor"
+import { getToasterColors } from "@/helpers/GetToasterColors"
 import type { ToasterStyle } from "@/types/types"
 
 type ConntectedToasterProps = {
@@ -15,7 +15,7 @@ type ConntectedToasterProps = {
 }
 
 const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: ConntectedToasterProps) => {
-  const backgroundColor = getToasterColor(style)
+  const backgroundColor = getToasterColors(style)
   return (
     <View className="px-5 py-3 min-h-[100px] bg-primary-200">
       <View className="relative">
@@ -28,7 +28,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
         />
         <View
           className="relative w-full border-black border-[3px] z-20 rounded-lg"
-          style={{ backgroundColor: backgroundColor }}
+          style={{ backgroundColor: backgroundColor.color }}
         >
           <View className="flex-row mx-4 my-3 justify-between">
             {/* Left section: profile picture + info */}
@@ -73,7 +73,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
               </TouchableOpacity>
 
               <ConnectedUsersPictures
-                backgroundColor={backgroundColor}
+                backgroundColor={backgroundColor.color}
                 imagesAsUrl={[
                   images.hoofd,
                   images.hoofd,
