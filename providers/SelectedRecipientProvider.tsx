@@ -18,115 +18,8 @@ type MessagingToasterProviderProps = {
 }
 
 export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> = ({ children }) => {
-  const [availableToasters, setAvailableToasters] = useState<CardToaster[]>([
-    {
-      id: "t001",
-      toasterName: "BreakfastMaster 3000",
-      style: "blue",
-      picture_url: "",
-    },
-    {
-      id: "t002",
-      toasterName: "ToastPro Elite",
-      style: "green",
-      picture_url: "",
-    },
-    {
-      id: "t003",
-      toasterName: "Avocado Deluxe",
-      style: "pink",
-      picture_url: "",
-    },
-    {
-      id: "t004",
-      toasterName: "BagelMaster Toaster",
-      style: "yellow",
-      picture_url: "",
-    },
-    {
-      id: "t005",
-      toasterName: "AlphaBake Supreme",
-      style: "orange",
-      picture_url: "",
-    },
-    {
-      id: "t006",
-      toasterName: "ArtisanCrisp",
-      style: "purple",
-      picture_url: "",
-    },
-    {
-      id: "t007",
-      toasterName: "BagelMaster Pro",
-      style: "blue",
-      picture_url: "",
-    },
-    {
-      id: "t011",
-      toasterName: "CrispnCrunchy",
-      style: "orange",
-      picture_url: "",
-    },
-    {
-      id: "t012",
-      toasterName: "CuisineToast",
-      style: "purple",
-      picture_url: "",
-    },
-    {
-      id: "t013",
-      toasterName: "ClassicCrisp",
-      style: "blue",
-      picture_url: "",
-    },
-    {
-      id: "t014",
-      toasterName: "Geret",
-      style: "yellow",
-      picture_url: "",
-    },
-    {
-      id: "t015",
-      toasterName: "Plat",
-      style: "pink",
-      picture_url: "",
-    },
-
-    {
-      id: "t016",
-      toasterName: "Plat",
-      style: "pink",
-      picture_url: "",
-    },
-
-    {
-      id: "t017",
-      toasterName: "Plat",
-      style: "pink",
-      picture_url: "",
-    },
-
-    {
-      id: "t018",
-      toasterName: "Plat",
-      style: "pink",
-      picture_url: "",
-    },
-  ])
-  const [selectedToasters, setSelectedToasters] = useState<CardToaster[]>([
-    {
-      id: "t002",
-      toasterName: "ToastPro Elite",
-      style: "green",
-      picture_url: "",
-    },
-    {
-      id: "t003",
-      toasterName: "Avocado Deluxe",
-      style: "pink",
-      picture_url: "",
-    },
-  ])
+  const [availableToasters, setAvailableToasters] = useState<CardToaster[]>(DummyDataFullList)
+  const [selectedToasters, setSelectedToasters] = useState<CardToaster[]>(DummySelectedList)
 
   const toggleToasterSelection = (toaster: CardToaster) => {
     setSelectedToasters((prev) => {
@@ -163,12 +56,369 @@ export const useMessagingToasters = (): ToasterContextType => {
   return context
 }
 
-// Example usage:
-//
-// // In your app root
-// <MessagingToasterProvider>
-//   <App />
-// </MessagingToasterProvider>
-//
-// // In any component
-// const { availableToasters, selectedToasters, setSelectedToasters } = useMessagingToasters();
+const DummySelectedList: CardToaster[] = [
+  {
+    id: "t0101",
+    toasterName: "ToastPro Elite",
+    style: "green",
+    picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+    ],
+  },
+  {
+    id: "t0100",
+    toasterName: "Avocado Deluxe",
+    style: "pink",
+    picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+      {
+        id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+      {
+        id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+    ],
+  },
+]
+
+const DummyDataFullList: CardToaster[] = [
+  {
+    id: "t001",
+    toasterName: "BreakfastMaster 3000",
+    style: "blue",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+      {
+        id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+      {
+        id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+    ],
+  },
+  {
+    id: "t002",
+    toasterName: "ToastPro Elite",
+    style: "green",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+    ],
+  },
+  {
+    id: "t003",
+    toasterName: "Avocado Deluxe",
+    style: "purple",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+      {
+        id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+      {
+        id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+      {
+        id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+    ],
+  },
+  {
+    id: "t004",
+    toasterName: "BagelMaster Toaster",
+    style: "yellow",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+      {
+        id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+    ],
+  },
+  {
+    id: "t005",
+    toasterName: "AlphaBake Supreme",
+    style: "orange",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+      {
+        id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+      {
+        id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+      {
+        id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+    ],
+  },
+  {
+    id: "t006",
+    toasterName: "ArtisanCrisp",
+    style: "purple",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+    ],
+  },
+  {
+    id: "t007",
+    toasterName: "BagelMaster Pro",
+    style: "blue",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+      {
+        id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+      {
+        id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+    ],
+  },
+  {
+    id: "t011",
+    toasterName: "CrispnCrunchy",
+    style: "orange",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+      {
+        id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+    ],
+  },
+  {
+    id: "t012",
+    toasterName: "CuisineToast",
+    style: "purple",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+      {
+        id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+    ],
+  },
+  {
+    id: "t013",
+    toasterName: "ClassicCrisp",
+    style: "blue",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+      {
+        id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+      {
+        id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+      {
+        id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+    ],
+  },
+  {
+    id: "t014",
+    toasterName: "Geret",
+    style: "yellow",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+    ],
+  },
+  {
+    id: "t015",
+    toasterName: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+      {
+        id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+      {
+        id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+    ],
+  },
+  {
+    id: "t016",
+    toasterName: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+    ],
+  },
+  {
+    id: "t017",
+    toasterName: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+      {
+        id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+      {
+        id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+    ],
+  },
+  {
+    id: "t018",
+    toasterName: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+      {
+        id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+    ],
+  },
+]

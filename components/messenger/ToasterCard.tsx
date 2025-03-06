@@ -17,9 +17,7 @@ type ToasterCardProps = {
 }
 
 const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCardProps) => {
-  //const [isActive, setIsActive] = useState(isSelected)
   const { color, lightColor } = getToasterColors(data.style)
-
   // Choose either normal color or light color based on isSelected
   const backgroundColor = isSelected ? color : lightColor
 
@@ -68,15 +66,8 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
 
         <View className="flex-row items-center">
           <ConnectedUsersPictures
+            connectedUsers={data.connected_users}
             backgroundColor={backgroundColor}
-            imagesAsUrl={[
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-              images.hoofd,
-            ]}
             size={20}
             maxVisibleUsers={2}
           />

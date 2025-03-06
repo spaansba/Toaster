@@ -12,6 +12,7 @@ export type BaseToaster = {
 
 export type CardToaster = BaseToaster & {
   style: ToasterStyle
+  connected_users: BaseUser[]
 }
 
 export type ToasterSectionListData = {
