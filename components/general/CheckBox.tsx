@@ -1,5 +1,6 @@
 import { View, Text } from "react-native"
 import React from "react"
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated"
 
 type CheckmarkCircleProps = {
   showCheckmark: boolean
@@ -17,7 +18,13 @@ const CheckBox = ({ showCheckmark }: CheckmarkCircleProps) => {
           showCheckmark ? "bg-[#dd86f4]" : "bg-white"
         }`}
       >
-        {showCheckmark ? <Text style={{ fontSize: 14, color: "black" }}>✓</Text> : <View />}
+        {showCheckmark ? (
+          <Animated.View entering={ZoomIn.duration(150)} exiting={ZoomOut.duration(150)}>
+            <Text style={{ fontSize: 14, color: "black" }}>✓</Text>
+          </Animated.View>
+        ) : (
+          <View />
+        )}
       </View>
     </View>
   )

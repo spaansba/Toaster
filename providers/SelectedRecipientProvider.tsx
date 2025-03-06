@@ -7,6 +7,7 @@ type ToasterContextType = {
   selectedToasters: CardToaster[]
   toggleToasterSelection: (toaster: CardToaster) => void
   setAvailableToasters: React.Dispatch<React.SetStateAction<CardToaster[]>>
+  removeAllSelectedToasters: () => void
 }
 
 // Create the context
@@ -21,6 +22,9 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
   const [availableToasters, setAvailableToasters] = useState<CardToaster[]>(DummyDataFullList)
   const [selectedToasters, setSelectedToasters] = useState<CardToaster[]>(DummySelectedList)
 
+  const removeAllSelectedToasters = () => {
+    setSelectedToasters([])
+  }
   const toggleToasterSelection = (toaster: CardToaster) => {
     setSelectedToasters((prev) => {
       const isAlreadySelected = prev.some((item) => item.toaster_id === toaster.toaster_id)
@@ -38,6 +42,7 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
     selectedToasters,
     toggleToasterSelection,
     setAvailableToasters,
+    removeAllSelectedToasters,
   }
 
   return (

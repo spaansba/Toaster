@@ -4,6 +4,7 @@ import { Modal, Pressable, TextInput, TouchableOpacity, View } from "react-nativ
 import { ToastText } from "../../general/ToastText"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
+import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 
 type RecipientBottomSheetProps = {
   title: string
@@ -16,6 +17,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
   const handleIsVisible = () => {
     setIsModalVisible((prev) => !prev)
   }
+  const { selectedToasters } = useMessagingToasters()
 
   return (
     <Modal
@@ -33,7 +35,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
 
           <View className="flex-col items-center">
             <ToastText>ADD RECIPIENTS</ToastText>
-            <ToastText>0/63</ToastText>
+            <ToastText>{`${selectedToasters.length}/63`}</ToastText>
           </View>
 
           <TouchableOpacity onPress={() => setIsModalVisible(false)}>

@@ -2,40 +2,33 @@ import { ToastText } from "@/components/general/ToastText"
 import images from "@/constants/images"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 import type { CardToaster } from "@/types/types"
+import { Ionicons } from "@expo/vector-icons"
 import { LegendList, type LegendListRef } from "@legendapp/list"
 import { Image } from "expo-image"
 import React, { useEffect, useLayoutEffect, useRef } from "react"
-import { TouchableOpacity, View, Text, Pressable } from "react-native"
+import { Pressable, Text, View } from "react-native"
 import Animated, {
   CurvedTransition,
   FadeInDown,
-  FadeInUp,
-  FadeOutDown,
-  FlipInEasyX,
-  Layout,
   LinearTransition,
   ZoomIn,
-  ZoomInEasyUp,
-  ZoomInUp,
   ZoomOut,
 } from "react-native-reanimated"
 
 const SelectedRecipientList = () => {
-  const { selectedToasters, toggleToasterSelection } = useMessagingToasters()
+  const { selectedToasters, toggleToasterSelection, removeAllSelectedToasters } =
+    useMessagingToasters()
   const legendListRef = useRef<LegendListRef>(null)
   const prevSelectedToasterCountRef = useRef(selectedToasters.length)
 
-  // On adding a new item (not deleting) to the list scroll to the end of the list
-  useEffect(() => {
+  useLayoutEffect(() => {
     const currentCount = selectedToasters.length
     if (currentCount > prevSelectedToasterCountRef.current && currentCount > 0) {
       //Wait for painting to be completed to set the index
-      requestAnimationFrame(() => {
-        legendListRef.current?.scrollToIndex({
-          index: selectedToasters.length - 1,
-          animated: true,
-          viewPosition: 1,
-        })
+      legendListRef.current?.scrollToIndex({
+        index: selectedToasters.length - 1,
+        animated: false, // Keep on false, otherwise the user cant click on another item to add u
+        viewPosition: 1,
       })
     }
     prevSelectedToasterCountRef.current = currentCount
@@ -58,7 +51,7 @@ const SelectedRecipientList = () => {
     return (
       <Animated.View
         entering={ZoomIn.duration(100)}
-        layout={CurvedTransition.duration(150)}
+        layout={CurvedTransition.duration(80)}
         exiting={ZoomOut.duration(100)}
         className="flex-col h-full justify-center items-center mx-3 gap-1 min-w-[78px]"
       >
@@ -98,34 +91,25 @@ const SelectedRecipientList = () => {
   return (
     <>
       <Animated.View layout={LinearTransition.duration(300)}>
-        {selectedToasters.length > 0 ? (
-          <LegendList
-            ref={legendListRef}
-            style={{
-              minHeight: 100,
-              borderRadius: 8,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 2,
-              width: "100%",
-            }}
-            data={selectedToasters}
-            renderItem={renderSelectedItem}
-            keyExtractor={(item) => item.toaster_id}
-            horizontal={true}
-            estimatedItemSize={110}
-          />
-        ) : (
-          <View
-            style={{
-              minHeight: 100,
-              borderRadius: 8,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 2,
-              width: "100%",
-            }}
-          >
+        <View className="min-h-[105px] relative rounded-lg bg-white border-2 border-black w-full mt-2">
+          {selectedToasters.length > 0 ? (
+            <>
+              <Pressable
+                onPress={removeAllSelectedToasters}
+                className="bg-danger absolute w-[30px] flex justify-center items-center h-[30px] rounded-xl border-black border-2 right-[-10px] top-[-10px] z-30"
+              >
+                <Ionicons name="trash-outline" size={18}></Ionicons>
+              </Pressable>
+              <LegendList
+                ref={legendListRef}
+                data={selectedToasters}
+                renderItem={renderSelectedItem}
+                keyExtractor={(item) => item.toaster_id}
+                horizontal={true}
+                estimatedItemSize={105}
+              />
+            </>
+          ) : (
             <Animated.View
               entering={FadeInDown.duration(300)}
               className="w-full h-[100px] justify-center items-center"
@@ -135,8 +119,8 @@ const SelectedRecipientList = () => {
                 Select recipients to start Toasting
               </ToastText>
             </Animated.View>
-          </View>
-        )}
+          )}
+        </View>
       </Animated.View>
     </>
   )
