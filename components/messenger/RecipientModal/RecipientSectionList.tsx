@@ -5,13 +5,29 @@ import React from "react"
 import { SectionList, View } from "react-native"
 import ToasterCard from "../ToasterCard"
 
-const RecipientSectionList = () => {
-  const { availableToasters, selectedToasters, toggleToasterSelection } = useMessagingToasters()
+type RecipientSectionListProps = {
+  filteredToasterList: CardToaster[]
+  isFiltered: boolean
+}
 
-  // Organizes toasters into alphabetical sections based on the first letter of their names.
-  const createSectionList = (): ToasterSectionListData[] => {
+const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSectionListProps) => {
+  const { selectedToasters, toggleToasterSelection } = useMessagingToasters()
+
+  //Create set for faster lookups
+  const selectedToasterIds = new Set(selectedToasters.map((toaster) => toaster.toaster_id))
+
+  const createFilteredSectionList = (): ToasterSectionListData[] => {
+    return [
+      {
+        title: "Connections",
+        data: [...filteredToasterList].sort((a, b) => a.toaster_name.localeCompare(b.toaster_name)), // sort a-z
+      },
+    ]
+  }
+
+  const createUnfilteredSectionList = (): ToasterSectionListData[] => {
     const sectionsObj: Record<string, CardToaster[]> = {}
-    availableToasters.forEach((toaster) => {
+    filteredToasterList.forEach((toaster) => {
       const letter = toaster.toaster_name.charAt(0).toUpperCase()
 
       if (!sectionsObj[letter]) {
@@ -28,10 +44,6 @@ const RecipientSectionList = () => {
       }))
   }
 
-  const handleItemPress = (toaster: CardToaster) => {
-    toggleToasterSelection(toaster)
-  }
-
   // Memoize the render item function
   const renderItem = ({
     item,
@@ -44,9 +56,7 @@ const RecipientSectionList = () => {
   }) => {
     const isFirst = index === 0
     const isLast = index === section.data.length - 1
-    const isSelected = selectedToasters.some(
-      (selectedToaster) => selectedToaster.toaster_id === item.toaster_id
-    )
+    const isSelected = selectedToasterIds.has(item.toaster_id)
 
     return (
       <ToasterCard
@@ -54,13 +64,13 @@ const RecipientSectionList = () => {
         isFirst={isFirst}
         isLast={isLast}
         isSelected={isSelected}
-        onPress={() => handleItemPress(item)}
+        onPress={() => toggleToasterSelection(item)}
       />
     )
   }
   return (
     <SectionList
-      sections={createSectionList()}
+      sections={isFiltered ? createFilteredSectionList() : createUnfilteredSectionList()}
       renderItem={renderItem}
       keyExtractor={(toaster) => toaster.toaster_id}
       renderSectionHeader={({ section: { title } }) => (

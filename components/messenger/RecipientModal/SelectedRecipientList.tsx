@@ -18,21 +18,6 @@ import Animated, {
 const SelectedRecipientList = () => {
   const { selectedToasters, toggleToasterSelection, removeAllSelectedToasters } =
     useMessagingToasters()
-  const legendListRef = useRef<LegendListRef>(null)
-  const prevSelectedToasterCountRef = useRef(selectedToasters.length)
-
-  useLayoutEffect(() => {
-    const currentCount = selectedToasters.length
-    if (currentCount > prevSelectedToasterCountRef.current && currentCount > 0) {
-      //Wait for painting to be completed to set the index
-      legendListRef.current?.scrollToIndex({
-        index: selectedToasters.length - 1,
-        animated: false, // Keep on false, otherwise the user cant click on another item to add u
-        viewPosition: 1,
-      })
-    }
-    prevSelectedToasterCountRef.current = currentCount
-  }, [selectedToasters])
 
   const renderSelectedItem = ({ item, index }: { item: CardToaster; index: number }) => {
     const processName = (name: string) => {
@@ -101,7 +86,6 @@ const SelectedRecipientList = () => {
                 <Ionicons name="trash-outline" size={18}></Ionicons>
               </Pressable>
               <LegendList
-                ref={legendListRef}
                 data={selectedToasters}
                 renderItem={renderSelectedItem}
                 keyExtractor={(item) => item.toaster_id}

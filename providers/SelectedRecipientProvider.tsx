@@ -32,7 +32,7 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
       if (isAlreadySelected) {
         return prev.filter((item) => item.toaster_id !== toaster.toaster_id)
       } else {
-        return [...prev, toaster]
+        return [toaster, ...prev] // Add to beginning instead of end so that the user comes at the beginning of the selected list
       }
     })
   }
