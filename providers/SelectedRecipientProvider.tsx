@@ -1,11 +1,11 @@
 import type { BaseToaster, CardToaster } from "@/types/types"
-import React, { createContext, useState, useContext, ReactNode } from "react"
+import React, { createContext, useState, useContext, ReactNode, useMemo, useCallback } from "react"
 
 // Define the context type
 type ToasterContextType = {
   availableToasters: CardToaster[]
   selectedToasters: CardToaster[]
-  setSelectedToasters: React.Dispatch<React.SetStateAction<CardToaster[]>>
+  toggleToasterSelection: (toaster: CardToaster) => void
   setAvailableToasters: React.Dispatch<React.SetStateAction<CardToaster[]>>
 }
 
@@ -128,15 +128,32 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
     },
   ])
 
-  const value = {
-    availableToasters,
-    selectedToasters,
-    setSelectedToasters,
-    setAvailableToasters,
-  }
+  const toggleToasterSelection = useCallback((toaster: CardToaster) => {
+    setSelectedToasters((prev) => {
+      const isAlreadySelected = prev.some((item) => item.id === toaster.id)
+
+      if (isAlreadySelected) {
+        return prev.filter((item) => item.id !== toaster.id)
+      } else {
+        return [...prev, toaster]
+      }
+    })
+  }, [])
+
+  const contextValue = useMemo(
+    () => ({
+      availableToasters,
+      selectedToasters,
+      toggleToasterSelection,
+      setAvailableToasters,
+    }),
+    [availableToasters, selectedToasters, toggleToasterSelection, setAvailableToasters]
+  )
 
   return (
-    <MessagingToasterContext.Provider value={value}>{children}</MessagingToasterContext.Provider>
+    <MessagingToasterContext.Provider value={contextValue}>
+      {children}
+    </MessagingToasterContext.Provider>
   )
 }
 

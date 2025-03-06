@@ -17,11 +17,11 @@ type ToasterCardProps = {
 }
 
 const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCardProps) => {
-  const [isActive, setIsActive] = useState(isSelected)
+  //const [isActive, setIsActive] = useState(isSelected)
   const { color, lightColor } = getToasterColors(data.style)
 
   // Choose either normal color or light color based on isSelected
-  const backgroundColor = isActive ? color : lightColor
+  const backgroundColor = isSelected ? color : lightColor
 
   const getBorderStyle = () => {
     switch (true) {
@@ -40,7 +40,7 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
   }
 
   const handlePress = () => {
-    setIsActive(!isActive)
+    // setIsActive(!isActive)
     onPress(data)
   }
 
@@ -81,7 +81,7 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
             maxVisibleUsers={2}
           />
           <View className="ml-2">
-            <CheckBox showCheckmark={isActive} />
+            <CheckBox showCheckmark={isSelected} />
           </View>
         </View>
       </View>

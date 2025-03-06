@@ -21,7 +21,8 @@ import { ToastText } from "@/components/general/ToastText"
 import RecipientBottomSheet from "@/components/messenger/RecipientModal/RecipientModal"
 import type { BottomSheetModal } from "@gorhom/bottom-sheet"
 import { MessagingToasterProvider } from "@/providers/SelectedRecipientProvider"
-
+import { Image } from "expo-image"
+import images from "@/constants/images"
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false,
@@ -35,6 +36,9 @@ export default function sendMessage() {
   const dismissKeyboard = () => {
     richEditor.current?.blurContentEditor()
   }
+
+  //Preload images
+  Image.prefetch(images.hoofd, "memory-disk")
 
   const toolbarAnimatedStyle = useAnimatedStyle(() => {
     return {

@@ -6,7 +6,7 @@ import { ToastText } from "@/components/general/ToastText"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 
 const RecipientSectionList = () => {
-  const { availableToasters, selectedToasters, setSelectedToasters } = useMessagingToasters()
+  const { availableToasters, selectedToasters, toggleToasterSelection } = useMessagingToasters()
 
   // Organizes toasters into alphabetical sections based on the first letter of their names.
   const createSectionList = (): ToasterSectionListData[] => {
@@ -29,16 +29,7 @@ const RecipientSectionList = () => {
   }
 
   const handleItemPress = (item: CardToaster) => {
-    setSelectedToasters((prev) => {
-      const isAlreadySelected = prev.some((selectedItem) => selectedItem.id === item.id)
-
-      if (isAlreadySelected) {
-        return prev.filter((selectedItem) => selectedItem.id !== item.id)
-      } else {
-        return [...prev, item]
-      }
-    })
-    console.log("Item pressed:", item)
+    toggleToasterSelection(item)
   }
   // Memoize the render item function
   const renderItem = useCallback(
@@ -64,7 +55,7 @@ const RecipientSectionList = () => {
         />
       )
     },
-    []
+    [selectedToasters]
   )
   return (
     <SectionList

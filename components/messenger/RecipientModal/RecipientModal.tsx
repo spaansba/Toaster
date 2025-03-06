@@ -14,8 +14,6 @@ type RecipientBottomSheetProps = {
 
 const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
   const [searchText, setSearchText] = useState("")
-  const { availableToasters, selectedToasters, setSelectedToasters } = useMessagingToasters()
-
   const handleIsVisible = () => {
     setIsModalVisible((prev) => !prev)
   }
