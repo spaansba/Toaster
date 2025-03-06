@@ -1,8 +1,7 @@
-import { View, Text, Pressable } from "react-native"
-import React from "react"
-import { Square } from "./svg/Square"
 import { Ionicons } from "@expo/vector-icons"
 import { router } from "expo-router"
+import React from "react"
+import { Pressable, View } from "react-native"
 
 const CenterTabButton = () => {
   const fakeBorderWidth = 3

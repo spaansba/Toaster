@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { Keyboard, Platform, type KeyboardEventName } from "react-native"
+import { Platform, type KeyboardEventName } from "react-native"
 import { useKeyboardHandler } from "react-native-keyboard-controller"
 import { useSharedValue } from "react-native-reanimated"
 

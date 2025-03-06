@@ -1,5 +1,5 @@
-import { View, Text, Animated, ActivityIndicator } from "react-native"
-import React, { useEffect } from "react"
+import React from "react"
+import { ActivityIndicator, View } from "react-native"
 
 const LoadingSpinner = () => {
   return (

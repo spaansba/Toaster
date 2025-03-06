@@ -1,7 +1,6 @@
-import { Ionicons } from "@expo/vector-icons"
 import { router } from "expo-router"
-import React, { useState } from "react"
-import { Pressable, View, LayoutChangeEvent } from "react-native"
+import React from "react"
+import { View } from "react-native"
 import Svg, { Line } from "react-native-svg"
 import ToasterButton from "./ToasterButton"
 

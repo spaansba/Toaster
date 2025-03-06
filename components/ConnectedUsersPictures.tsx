@@ -1,9 +1,9 @@
-import { View, type DimensionValue, type ColorValue } from "react-native"
-import React from "react"
 import { Image } from "expo-image"
+import React from "react"
+import { View, type ColorValue, type DimensionValue } from "react-native"
 import { ToastText } from "./general/ToastText"
 
-type ConnectedUsersPictures = {
+type ConnectedUsersPicturesProps = {
   imagesAsUrl?: string[]
   size?: DimensionValue
   maxVisibleUsers?: number
@@ -17,7 +17,7 @@ const ConnectedUsersPictures = ({
   maxVisibleUsers = 5,
   overlapPercentage = 35,
   backgroundColor,
-}: ConnectedUsersPictures) => {
+}: ConnectedUsersPicturesProps) => {
   const sizeValue = typeof size === "number" ? size : 45
 
   // Calculate the negative margin for overlapping the profiles

@@ -1,11 +1,8 @@
+import CircleTabBarButton from "@/components/CircleTabBarButton"
+import { useAuth } from "@/providers/AuthProvider"
+import { FontAwesome } from "@expo/vector-icons"
 import { router, Tabs } from "expo-router"
 import React, { useEffect } from "react"
-import { FontAwesome } from "@expo/vector-icons"
-import { useAuth } from "@/providers/AuthProvider"
-import SquareButton from "@/components/CenterTabButton"
-import CircleTabBarButton from "@/components/CircleTabBarButton"
-import { useQuery } from "@tanstack/react-query"
-import { createLoggedInUserQueryOptions } from "@/state/serverState/queryOptions"
 function TabsLayout() {
   const { session } = useAuth()
 

@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity, Pressable } from "react-native"
-import { type ToastConfigParams, type ToastHideParams } from "react-native-toast-message"
 import { Ionicons } from "@expo/vector-icons"
-import { hide } from "expo-router/build/utils/splash"
+import { Pressable, View } from "react-native"
+import { type ToastConfigParams, type ToastHideParams } from "react-native-toast-message"
 import { ToastText } from "./general/ToastText"
 
 type CustomToastProps = {

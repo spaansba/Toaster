@@ -1,14 +1,13 @@
+import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import {
-  TouchableOpacity,
-  Text,
-  View,
   ActivityIndicator,
   LayoutChangeEvent,
+  TouchableOpacity,
+  View,
   type AnimatableNumericValue,
   type DimensionValue,
 } from "react-native"
-import { Ionicons } from "@expo/vector-icons"
 import type { SvgProps } from "react-native-svg"
 import { ToastText } from "./general/ToastText"
 

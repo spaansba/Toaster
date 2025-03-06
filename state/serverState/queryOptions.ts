@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query"
-import { getAllUsers, getLoggedInUser } from "./getLoggedInUser"
+import { getLoggedInUser } from "./getLoggedInUser"
 
 export function createLoggedInUserQueryOptions(userId: string | undefined) {
   return queryOptions({

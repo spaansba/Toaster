@@ -1,15 +1,15 @@
-import React, { useState } from "react"
-import { View } from "react-native"
+import { ToastText } from "@/components/general/ToastText"
 import ToasterButton from "@/components/ToasterButton"
 import ToasterInput from "@/components/ToasterInput"
+import images from "@/constants/images"
 import { supabase } from "@/lib/supabase"
 import { makeRedirectUri } from "expo-auth-session"
-import { router, useLocalSearchParams } from "expo-router"
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
-import images from "@/constants/images"
 import { Image } from "expo-image"
+import { router, useLocalSearchParams } from "expo-router"
+import React, { useState } from "react"
+import { View } from "react-native"
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller"
 import Toast from "react-native-toast-message"
-import { ToastText } from "@/components/general/ToastText"
 const RequestResetPassword = () => {
   const { inputEmail } = useLocalSearchParams<{ inputEmail: string }>()
   const [email, setEmail] = useState(inputEmail || "")

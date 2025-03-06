@@ -1,5 +1,5 @@
-import type { BaseToaster, CardToaster } from "@/types/types"
-import React, { createContext, useState, useContext, ReactNode, useMemo, useCallback } from "react"
+import type { CardToaster } from "@/types/types"
+import React, { createContext, ReactNode, useContext, useState } from "react"
 
 // Define the context type
 type ToasterContextType = {
@@ -128,7 +128,7 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
     },
   ])
 
-  const toggleToasterSelection = useCallback((toaster: CardToaster) => {
+  const toggleToasterSelection = (toaster: CardToaster) => {
     setSelectedToasters((prev) => {
       const isAlreadySelected = prev.some((item) => item.id === toaster.id)
 
@@ -138,17 +138,14 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
         return [...prev, toaster]
       }
     })
-  }, [])
+  }
 
-  const contextValue = useMemo(
-    () => ({
-      availableToasters,
-      selectedToasters,
-      toggleToasterSelection,
-      setAvailableToasters,
-    }),
-    [availableToasters, selectedToasters, toggleToasterSelection, setAvailableToasters]
-  )
+  const contextValue = {
+    availableToasters,
+    selectedToasters,
+    toggleToasterSelection,
+    setAvailableToasters,
+  }
 
   return (
     <MessagingToasterContext.Provider value={contextValue}>

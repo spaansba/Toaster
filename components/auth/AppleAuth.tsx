@@ -1,8 +1,8 @@
-import React from "react"
-import * as AppleAuthentication from "expo-apple-authentication"
-import { useRouter } from "expo-router"
 import ToasterButton from "@/components/ToasterButton"
 import { supabase } from "@/lib/supabase"
+import * as AppleAuthentication from "expo-apple-authentication"
+import { useRouter } from "expo-router"
+import React from "react"
 import Toast from "react-native-toast-message"
 
 const VARIANTS = {

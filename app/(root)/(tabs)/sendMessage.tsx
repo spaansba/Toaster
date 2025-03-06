@@ -1,28 +1,27 @@
+import { ToastText } from "@/components/general/ToastText"
+import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
+import RecipientBottomSheet from "@/components/messenger/RecipientModal/RecipientModal"
+import images from "@/constants/images"
+import { MessagingToasterProvider } from "@/providers/SelectedRecipientProvider"
+import type { BottomSheetModal } from "@gorhom/bottom-sheet"
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
+import { Image } from "expo-image"
 import React, { useRef, useState } from "react"
 import {
-  SafeAreaView,
-  Platform,
-  Text,
-  KeyboardAvoidingView,
-  ScrollView,
-  View,
-  TouchableWithoutFeedback,
   Button,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  TouchableWithoutFeedback,
+  View,
 } from "react-native"
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
-import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
 import Animated, {
   configureReanimatedLogger,
   ReanimatedLogLevel,
   useAnimatedStyle,
 } from "react-native-reanimated"
-import { ToastText } from "@/components/general/ToastText"
-import RecipientBottomSheet from "@/components/messenger/RecipientModal/RecipientModal"
-import type { BottomSheetModal } from "@gorhom/bottom-sheet"
-import { MessagingToasterProvider } from "@/providers/SelectedRecipientProvider"
-import { Image } from "expo-image"
-import images from "@/constants/images"
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false,

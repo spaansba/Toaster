@@ -1,9 +1,9 @@
 import { useAuth } from "@/providers/AuthProvider"
 import { createLoggedInUserQueryOptions } from "@/state/serverState/queryOptions"
-import { QueryCache, QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query"
+import { useReactQueryDevTools } from "@dev-plugins/react-query"
+import { QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Stack } from "expo-router"
 import React, { useEffect } from "react"
-import { useReactQueryDevTools } from "@dev-plugins/react-query"
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

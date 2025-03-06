@@ -1,11 +1,7 @@
-import { ScrollView, Text, SafeAreaView, TouchableOpacity, Button, View, Alert } from "react-native"
-import React from "react"
-import { supabase } from "@/lib/supabase"
-import { router } from "expo-router"
-import ConnectedUsersPictures from "@/components/ConnectedUsersPictures"
-import ConnectedToaster from "@/components/profile/ConnectedToaster"
-import ConnectedToastersWrapper from "@/components/profile/ConnectedToastersWrapper"
 import { ToastText } from "@/components/general/ToastText"
+import { supabase } from "@/lib/supabase"
+import React from "react"
+import { SafeAreaView, TouchableOpacity, View } from "react-native"
 
 const Toaster = () => {
   const handleLogout = async () => {

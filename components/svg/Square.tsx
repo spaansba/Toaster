@@ -1,5 +1,5 @@
-import Svg, { Circle, Rect, type SvgProps } from "react-native-svg"
 import React from "react"
+import Svg, { Rect, type SvgProps } from "react-native-svg"
 type SquareProps = SvgProps & {
   color?: string
 }

@@ -1,10 +1,9 @@
-import { Modal, Pressable, View, TextInput, TouchableOpacity } from "react-native"
-import React, { useState } from "react"
-import { ToastText } from "../../general/ToastText"
 import Ionicons from "@expo/vector-icons/Ionicons"
+import React, { useState } from "react"
+import { Modal, Pressable, TextInput, TouchableOpacity, View } from "react-native"
+import { ToastText } from "../../general/ToastText"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 
 type RecipientBottomSheetProps = {
   title: string

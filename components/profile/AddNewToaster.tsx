@@ -1,5 +1,5 @@
-import { View, Text, ScrollView } from "react-native"
 import React from "react"
+import { ScrollView, View } from "react-native"
 
 const AddNewToaster = () => {
   return (

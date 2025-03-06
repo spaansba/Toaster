@@ -1,7 +1,7 @@
-import { Animated, View, Easing } from "react-native"
-import React, { useEffect, useRef } from "react"
-import { Image } from "expo-image"
 import images from "@/constants/images"
+import { Image } from "expo-image"
+import React, { useEffect, useRef } from "react"
+import { Animated, Easing, View } from "react-native"
 import { ToastText } from "../general/ToastText"
 
 const ProfileHeader = ({

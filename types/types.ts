@@ -19,7 +19,5 @@ export type ToasterSectionListData = {
   data: CardToaster[]
 }
 
-type LoggedInUser = BaseUser & {}
-
 // Define the valid toaster style types
 export type ToasterStyle = "blue" | "green" | "pink" | "yellow" | "orange" | "purple"

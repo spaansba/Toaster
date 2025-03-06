@@ -1,8 +1,4 @@
-import { View, Text, ScrollView, TextInput, TouchableOpacity } from "react-native"
 import React, { useState } from "react"
-import ConnectedToaster from "./ConnectedToaster"
-import { LegendList } from "@legendapp/list"
-import { Feather } from "@expo/vector-icons"
 
 // Define the valid toaster style types
 type ToasterStyle = "blue" | "green" | "pink" | "yellow" | "orange" | "purple"

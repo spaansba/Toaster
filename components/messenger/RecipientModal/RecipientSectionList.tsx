@@ -1,9 +1,9 @@
-import { View, Text, SectionList } from "react-native"
-import React, { useCallback } from "react"
-import type { CardToaster, ToasterSectionListData } from "@/types/types"
-import ToasterCard from "../ToasterCard"
 import { ToastText } from "@/components/general/ToastText"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import type { CardToaster, ToasterSectionListData } from "@/types/types"
+import React from "react"
+import { SectionList, View } from "react-native"
+import ToasterCard from "../ToasterCard"
 
 const RecipientSectionList = () => {
   const { availableToasters, selectedToasters, toggleToasterSelection } = useMessagingToasters()
@@ -31,32 +31,30 @@ const RecipientSectionList = () => {
   const handleItemPress = (item: CardToaster) => {
     toggleToasterSelection(item)
   }
+
   // Memoize the render item function
-  const renderItem = useCallback(
-    ({
-      item,
-      index,
-      section,
-    }: {
-      item: CardToaster
-      index: number
-      section: ToasterSectionListData
-    }) => {
-      const isFirst = index === 0
-      const isLast = index === section.data.length - 1
-      const isSelected = selectedToasters.some((selectedItem) => selectedItem.id === item.id)
-      return (
-        <ToasterCard
-          data={item}
-          isFirst={isFirst}
-          isLast={isLast}
-          isSelected={isSelected}
-          onPress={() => handleItemPress(item)}
-        />
-      )
-    },
-    [selectedToasters]
-  )
+  const renderItem = ({
+    item,
+    index,
+    section,
+  }: {
+    item: CardToaster
+    index: number
+    section: ToasterSectionListData
+  }) => {
+    const isFirst = index === 0
+    const isLast = index === section.data.length - 1
+    const isSelected = selectedToasters.some((selectedItem) => selectedItem.id === item.id)
+    return (
+      <ToasterCard
+        data={item}
+        isFirst={isFirst}
+        isLast={isLast}
+        isSelected={isSelected}
+        onPress={() => handleItemPress(item)}
+      />
+    )
+  }
   return (
     <SectionList
       sections={createSectionList()}

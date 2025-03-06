@@ -1,12 +1,12 @@
-import { View, Text, Pressable } from "react-native"
-import React, { useState } from "react"
-import type { CardToaster, ToasterStyle } from "@/types/types"
-import { Image } from "expo-image"
 import images from "@/constants/images"
 import { getToasterColors } from "@/helpers/GetToasterColors"
-import { ToastText } from "../general/ToastText"
+import type { CardToaster } from "@/types/types"
+import { Image } from "expo-image"
+import React from "react"
+import { Pressable, View } from "react-native"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
 import CheckBox from "../general/CheckBox"
+import { ToastText } from "../general/ToastText"
 
 type ToasterCardProps = {
   isFirst: boolean

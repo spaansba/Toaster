@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from "react"
-import { ScrollView, StyleSheet } from "react-native"
-import { useNavigation } from "expo-router"
 import ErrorFallback from "@/components/ErrorFallback"
-import { ErrorBoundary } from "react-error-boundary"
+import CustomProfileHeader from "@/components/profile/CustomProfileHeader"
 import ProfileWrapper from "@/components/profile/ProfileWrapper"
 import { isSupbasePostgrestError } from "@/helpers/SupabasePostgrestError"
-import CustomProfileHeader from "@/components/profile/CustomProfileHeader"
+import { useNavigation } from "expo-router"
+import React, { useState } from "react"
+import { ErrorBoundary } from "react-error-boundary"
 
 export default function Profile() {
   const [headerTitle, setHeaderTitle] = useState("Bart Spaans")
