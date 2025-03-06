@@ -1,3 +1,4 @@
+import CrossButton from "@/components/general/CrossButton"
 import { ToastText } from "@/components/general/ToastText"
 import images from "@/constants/images"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
@@ -41,23 +42,16 @@ const SelectedRecipientList = () => {
         className="flex-col h-full justify-center items-center mx-3 gap-1 min-w-[78px]"
       >
         <View className="size-[50px] relative mt-2">
-          <Pressable
-            hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-            onPress={handleRemove}
-            className="absolute size-[23px] rounded-full right-[-5px] top-[-5px] bg-gray-500 z-10 flex justify-center items-center border-white border-[1px] shadow-sm"
-          >
-            <Text
-              style={{
-                fontSize: 10,
-                fontWeight: "bold",
-                color: "white",
-                textAlign: "center",
-                lineHeight: 16,
-              }}
-            >
-              ✕
-            </Text>
-          </Pressable>
+          <View className="absolute right-[-5px] top-[-5px]">
+            <CrossButton
+              backgroundColor="#6b7280"
+              size={23}
+              borderColor="#ffffff"
+              borderWidth={1}
+              onPress={handleRemove}
+            />
+          </View>
+
           <View className="border-black border-[1px] rounded-full overflow-hidden">
             <Image
               source={images.hoofd}

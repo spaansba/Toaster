@@ -1,11 +1,12 @@
 import Ionicons from "@expo/vector-icons/Ionicons"
 import React, { useEffect, useState } from "react"
-import { Modal, Pressable, TextInput, TouchableOpacity, View } from "react-native"
+import { Modal, Pressable, TextInput, TouchableOpacity, View, Text } from "react-native"
 import { ToastText } from "../../general/ToastText"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 import type { CardToaster } from "@/types/types"
+import CrossButton from "@/components/general/CrossButton"
 
 type RecipientBottomSheetProps = {
   title: string
@@ -59,7 +60,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
         </View>
 
         {/* SearchBar */}
-        <View className="flex-row items-center bg-white rounded-lg px-3 mb-4">
+        <View className="flex-row items-center bg-gray-200 rounded-lg px-3 mb-4">
           <Ionicons name="search-outline" size={20} color="#666" />
           <TextInput
             className="ml-2 flex-1"
@@ -77,9 +78,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
             }}
           />
           {searchText.length > 0 && (
-            <Pressable hitSlop={20} onPress={() => setSearchText("")}>
-              <Ionicons name="close-circle" size={20} color="#666" />
-            </Pressable>
+            <CrossButton backgroundColor="#6b7280" onPress={() => setSearchText("")} />
           )}
         </View>
 
