@@ -23,10 +23,10 @@ export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> =
 
   const toggleToasterSelection = (toaster: CardToaster) => {
     setSelectedToasters((prev) => {
-      const isAlreadySelected = prev.some((item) => item.id === toaster.id)
+      const isAlreadySelected = prev.some((item) => item.toaster_id === toaster.toaster_id)
 
       if (isAlreadySelected) {
-        return prev.filter((item) => item.id !== toaster.id)
+        return prev.filter((item) => item.toaster_id !== toaster.toaster_id)
       } else {
         return [...prev, toaster]
       }
@@ -58,41 +58,41 @@ export const useMessagingToasters = (): ToasterContextType => {
 
 const DummySelectedList: CardToaster[] = [
   {
-    id: "t0101",
-    toasterName: "ToastPro Elite",
+    toaster_id: "t0101",
+    toaster_name: "ToastPro Elite",
     style: "green",
     picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "13",
+        user_id: "13",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Noah",
       },
       {
-        id: "14",
+        user_id: "14",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Liam",
       },
     ],
   },
   {
-    id: "t0100",
-    toasterName: "Avocado Deluxe",
+    toaster_id: "t0100",
+    toaster_name: "Avocado Deluxe",
     style: "pink",
     picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "15",
+        user_id: "15",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Ava",
       },
       {
-        id: "16",
+        user_id: "16",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Sophia",
       },
       {
-        id: "17",
+        user_id: "17",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Jackson",
       },
@@ -102,320 +102,315 @@ const DummySelectedList: CardToaster[] = [
 
 const DummyDataFullList: CardToaster[] = [
   {
-    id: "t001",
-    toasterName: "BreakfastMaster 3000",
-    style: "blue",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "10",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Hans",
-      },
-      {
-        id: "11",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Emma",
-      },
-      {
-        id: "12",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Olivia",
-      },
-    ],
-  },
-  {
-    id: "t002",
-    toasterName: "ToastPro Elite",
+    toaster_id: "t0101",
+    toaster_name: "ToastPro Elite",
     style: "green",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "13",
+        user_id: "13",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Noah",
       },
       {
-        id: "14",
+        user_id: "14",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Liam",
       },
     ],
   },
   {
-    id: "t003",
-    toasterName: "Avocado Deluxe",
-    style: "purple",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    toaster_id: "t0100",
+    toaster_name: "Avocado Deluxe",
+    style: "pink",
+    picture_url: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "15",
+        user_id: "15",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Ava",
       },
       {
-        id: "16",
+        user_id: "16",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Sophia",
       },
       {
-        id: "17",
+        user_id: "17",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Jackson",
       },
-      {
-        id: "18",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Mia",
-      },
     ],
   },
   {
-    id: "t004",
-    toasterName: "BagelMaster Toaster",
-    style: "yellow",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "19",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Lucas",
-      },
-      {
-        id: "10",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Hans",
-      },
-    ],
-  },
-  {
-    id: "t005",
-    toasterName: "AlphaBake Supreme",
-    style: "orange",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "11",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Emma",
-      },
-      {
-        id: "12",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Olivia",
-      },
-      {
-        id: "13",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Noah",
-      },
-      {
-        id: "14",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Liam",
-      },
-      {
-        id: "15",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Ava",
-      },
-    ],
-  },
-  {
-    id: "t006",
-    toasterName: "ArtisanCrisp",
-    style: "purple",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "16",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Sophia",
-      },
-    ],
-  },
-  {
-    id: "t007",
-    toasterName: "BagelMaster Pro",
+    toaster_id: "t001",
+    toaster_name: "BreakfastMaster 3000",
     style: "blue",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "17",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Jackson",
-      },
-      {
-        id: "18",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Mia",
-      },
-      {
-        id: "19",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Lucas",
-      },
-    ],
-  },
-  {
-    id: "t011",
-    toasterName: "CrispnCrunchy",
-    style: "orange",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "10",
+        user_id: "10",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Hans",
       },
       {
-        id: "11",
+        user_id: "11",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Emma",
       },
-    ],
-  },
-  {
-    id: "t012",
-    toasterName: "CuisineToast",
-    style: "purple",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
       {
-        id: "12",
+        user_id: "12",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Olivia",
       },
-      {
-        id: "13",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Noah",
-      },
-      {
-        id: "14",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Liam",
-      },
     ],
   },
   {
-    id: "t013",
-    toasterName: "ClassicCrisp",
-    style: "blue",
-    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    connected_users: [
-      {
-        id: "15",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Ava",
-      },
-      {
-        id: "16",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Sophia",
-      },
-      {
-        id: "17",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Jackson",
-      },
-      {
-        id: "18",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Mia",
-      },
-    ],
-  },
-  {
-    id: "t014",
-    toasterName: "Geret",
+    toaster_id: "t004",
+    toaster_name: "BagelMaster Toaster",
     style: "yellow",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "19",
+        user_id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+      {
+        user_id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+    ],
+  },
+  {
+    toaster_id: "t005",
+    toaster_name: "AlphaBake Supreme",
+    style: "orange",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+      {
+        user_id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+      {
+        user_id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        user_id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+      {
+        user_id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+    ],
+  },
+  {
+    toaster_id: "t006",
+    toaster_name: "ArtisanCrisp",
+    style: "purple",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+    ],
+  },
+  {
+    toaster_id: "t007",
+    toaster_name: "BagelMaster Pro",
+    style: "blue",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+      {
+        user_id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+      {
+        user_id: "19",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Lucas",
       },
     ],
   },
   {
-    id: "t015",
-    toasterName: "Plat",
-    style: "pink",
+    toaster_id: "t011",
+    toaster_name: "CrispnCrunchy",
+    style: "orange",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "10",
+        user_id: "10",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Hans",
       },
       {
-        id: "11",
+        user_id: "11",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Emma",
-      },
-      {
-        id: "12",
-        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-        username: "Olivia",
       },
     ],
   },
   {
-    id: "t016",
-    toasterName: "Plat",
-    style: "pink",
+    toaster_id: "t012",
+    toaster_name: "CuisineToast",
+    style: "purple",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "13",
+        user_id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+      {
+        user_id: "13",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Noah",
       },
       {
-        id: "14",
+        user_id: "14",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Liam",
       },
     ],
   },
   {
-    id: "t017",
-    toasterName: "Plat",
-    style: "pink",
+    toaster_id: "t013",
+    toaster_name: "ClassicCrisp",
+    style: "blue",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "15",
+        user_id: "15",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Ava",
       },
       {
-        id: "16",
+        user_id: "16",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Sophia",
       },
       {
-        id: "17",
+        user_id: "17",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Jackson",
+      },
+      {
+        user_id: "18",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Mia",
+      },
+    ],
+  },
+  {
+    toaster_id: "t014",
+    toaster_name: "Geret",
+    style: "yellow",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "19",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Lucas",
+      },
+    ],
+  },
+  {
+    toaster_id: "t015",
+    toaster_name: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "10",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Hans",
+      },
+      {
+        user_id: "11",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Emma",
+      },
+      {
+        user_id: "12",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Olivia",
+      },
+    ],
+  },
+  {
+    toaster_id: "t016",
+    toaster_name: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "13",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Noah",
+      },
+      {
+        user_id: "14",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Liam",
+      },
+    ],
+  },
+  {
+    toaster_id: "t017",
+    toaster_name: "Plat",
+    style: "pink",
+    picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+    connected_users: [
+      {
+        user_id: "15",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Ava",
+      },
+      {
+        user_id: "16",
+        picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
+        username: "Sophia",
+      },
+      {
+        user_id: "17",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Jackson",
       },
     ],
   },
   {
-    id: "t018",
-    toasterName: "Plat",
+    toaster_id: "t018",
+    toaster_name: "Plat",
     style: "pink",
     picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     connected_users: [
       {
-        id: "18",
+        user_id: "18",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Mia",
       },
       {
-        id: "19",
+        user_id: "19",
         picture_url: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
         username: "Lucas",
       },

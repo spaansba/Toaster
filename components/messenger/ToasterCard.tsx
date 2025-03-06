@@ -38,7 +38,6 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
   }
 
   const handlePress = () => {
-    // setIsActive(!isActive)
     onPress(data)
   }
 
@@ -59,7 +58,7 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
             />
           </View>
           <View className="flex-col ml-3">
-            <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
+            <ToastText className="font-courier-bold">{data.toaster_name}</ToastText>
             <ToastText className="color-gray-500">Today</ToastText>
           </View>
         </View>

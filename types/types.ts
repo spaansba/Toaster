@@ -1,12 +1,12 @@
 export type BaseUser = {
-  id: string
+  user_id: string
   username: string
   picture_url: string
 }
 
 export type BaseToaster = {
-  id: string
-  toasterName: string
+  toaster_id: string
+  toaster_name: string
   picture_url: string
 }
 

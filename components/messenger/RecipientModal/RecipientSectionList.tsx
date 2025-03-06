@@ -12,7 +12,7 @@ const RecipientSectionList = () => {
   const createSectionList = (): ToasterSectionListData[] => {
     const sectionsObj: Record<string, CardToaster[]> = {}
     availableToasters.forEach((toaster) => {
-      const letter = toaster.toasterName.charAt(0).toUpperCase()
+      const letter = toaster.toaster_name.charAt(0).toUpperCase()
 
       if (!sectionsObj[letter]) {
         sectionsObj[letter] = []
@@ -28,8 +28,8 @@ const RecipientSectionList = () => {
       }))
   }
 
-  const handleItemPress = (item: CardToaster) => {
-    toggleToasterSelection(item)
+  const handleItemPress = (toaster: CardToaster) => {
+    toggleToasterSelection(toaster)
   }
 
   // Memoize the render item function
@@ -44,7 +44,10 @@ const RecipientSectionList = () => {
   }) => {
     const isFirst = index === 0
     const isLast = index === section.data.length - 1
-    const isSelected = selectedToasters.some((selectedItem) => selectedItem.id === item.id)
+    const isSelected = selectedToasters.some(
+      (selectedToaster) => selectedToaster.toaster_id === item.toaster_id
+    )
+
     return (
       <ToasterCard
         data={item}
@@ -59,7 +62,7 @@ const RecipientSectionList = () => {
     <SectionList
       sections={createSectionList()}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(toaster) => toaster.toaster_id}
       renderSectionHeader={({ section: { title } }) => (
         <View className="">
           <ToastText className="font-courier-bold bg-primary-200 py-2">{title}</ToastText>
