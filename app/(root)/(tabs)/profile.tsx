@@ -3,15 +3,18 @@ import CustomProfileHeader from "@/components/profile/CustomProfileHeader"
 import ProfileWrapper from "@/components/profile/ProfileWrapper"
 import { isSupbasePostgrestError } from "@/helpers/SupabasePostgrestError"
 import { useNavigation } from "expo-router"
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 
 export default function Profile() {
-  const [headerTitle] = useState("Bart Spaans")
   const navigation = useNavigation()
-  navigation.setOptions({
-    header: () => <CustomProfileHeader title={headerTitle} />,
-  })
+
+  // Move the setOptions call to a useEffect
+  useEffect(() => {
+    navigation.setOptions({
+      header: () => <CustomProfileHeader title={"Bart Spaans"} />,
+    })
+  }, [navigation])
 
   return (
     <ErrorBoundary

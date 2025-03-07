@@ -14,6 +14,7 @@ export type BefriendedToaster = BaseToaster & {
   style: ToasterStyle
   connectedUsers: BaseUser[]
   lastSendMessage: string
+  favorite: boolean
 }
 
 export type ToasterSectionListData = {

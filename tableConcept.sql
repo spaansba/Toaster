@@ -26,6 +26,16 @@ create table toasters (
     updated_at timestamp with time zone default now()
 );
 
+-- base toasters, should be the minimal amount of data required to search and find toasters
+create table user_befriended_toasters (
+    user_id uuid primary key,
+    toaster_id 
+    last_send_message text,
+    favorite boolean
+    created_at timestamp with time zone default now(),
+    updated_at timestamp with time zone default now()
+);
+
 -- each toaster can have multiple connectitions to it, this means these users can change the toaster-settings and are verified
 create table toaster_verified_users (
     id uuid primary key,

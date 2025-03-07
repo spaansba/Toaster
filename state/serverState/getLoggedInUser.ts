@@ -8,10 +8,10 @@ export async function getLoggedInUser(userId: string | undefined): Promise<BaseU
   }
   const { data, error, status, statusText } = await supabase
     .from("users")
-    .select(`id, username, picture_url`)
-    .eq("id", userId)
+    .select(`user_id, username, picture_url,created_at`)
+    .eq("user_id", userId)
     .single()
-
+  console.log(data)
   if (error && status !== 406) {
     throwSupabaseError(error, {
       SupabaseStatusCode: status,
@@ -24,7 +24,7 @@ export async function getLoggedInUser(userId: string | undefined): Promise<BaseU
   }
 
   const user: BaseUser = {
-    userId: data.id,
+    userId: data.user_id,
     username: data.username,
     pictureUrl: data.picture_url,
   }

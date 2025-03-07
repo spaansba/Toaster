@@ -8,6 +8,9 @@ import { SafeAreaView, View } from "react-native"
 import { ToastText } from "../general/ToastText"
 import ToasterButton from "../ToasterButton"
 import ConnectedToaster from "./ConnectedToaster"
+import { useQuery } from "@tanstack/react-query"
+import { createLoggedInUserQueryOptions } from "@/state/serverState/queryOptions"
+import { useAuth } from "@/providers/AuthProvider"
 
 type ToasterData = {
   id: string
@@ -17,7 +20,7 @@ type ToasterData = {
 const ProfileWrapper = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [profileShouldExpand, setProfileShouldExpand] = useState(true)
-
+  const { session } = useAuth()
   // Create a properly typed array of toaster data
   const toasters: ToasterData[] = [
     { id: "1", style: "blue" },
@@ -32,7 +35,8 @@ const ProfileWrapper = () => {
     { id: "10", style: "green" },
   ]
 
-  // Memoize the viewable items change handler
+  // const { data } = useQuery(createLoggedInUserQueryOptions(session?.user.id))
+
   const handleViewableItemsChanged = ({ changed }: { changed: Array<ViewToken> }) => {
     // Check if item with index 0 is in the changed items
     const firstItem = changed.find((item) => item.index === 0)

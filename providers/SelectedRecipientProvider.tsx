@@ -19,8 +19,16 @@ type MessagingToasterProviderProps = {
 }
 
 export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> = ({ children }) => {
-  const [availableToasters, setAvailableToasters] = useState<BefriendedToaster[]>(DummyDataFullList)
-  const [selectedToasters, setSelectedToasters] = useState<BefriendedToaster[]>(DummySelectedList)
+  const [availableToasters, setAvailableToasters] = useState<BefriendedToaster[]>(
+    [...DummyDataFullList].sort(
+      (a, b) => new Date(b.lastSendMessage).getTime() - new Date(a.lastSendMessage).getTime()
+    )
+  )
+  const [selectedToasters, setSelectedToasters] = useState<BefriendedToaster[]>(
+    [...DummySelectedList].sort(
+      (a, b) => new Date(b.lastSendMessage).getTime() - new Date(a.lastSendMessage).getTime()
+    )
+  )
 
   const removeAllSelectedToasters = () => {
     setSelectedToasters([])
@@ -68,6 +76,7 @@ const DummySelectedList: BefriendedToaster[] = [
     style: "green",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:15:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "13",
@@ -87,6 +96,7 @@ const DummySelectedList: BefriendedToaster[] = [
     style: "pink",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:22:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "15",
@@ -114,6 +124,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "green",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:15:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "13",
@@ -132,7 +143,8 @@ const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Avocado Deluxe",
     style: "pink",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:22:00Z",
+    lastSendMessage: "2024-03-07T10:22:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "15",
@@ -157,6 +169,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T09:45:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "10",
@@ -181,6 +194,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "yellow",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T11:05:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "19",
@@ -199,7 +213,8 @@ const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "AlphaBake Supreme",
     style: "orange",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:37:00Z",
+    lastSendMessage: "2025-04-07T10:37:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "11",
@@ -234,6 +249,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "purple",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T09:18:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "16",
@@ -248,6 +264,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T11:32:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "17",
@@ -272,6 +289,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "orange",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:51:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "10",
@@ -291,6 +309,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "purple",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T09:27:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "12",
@@ -315,6 +334,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T11:12:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "15",
@@ -344,6 +364,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "yellow",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T09:59:00Z",
+    favorite: true,
     connectedUsers: [
       {
         userId: "19",
@@ -358,6 +379,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:43:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "10",
@@ -382,6 +404,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T11:27:00Z",
+    favorite: true,
     connectedUsers: [
       {
         userId: "13",
@@ -401,6 +424,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T10:08:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "15",
@@ -425,6 +449,7 @@ const DummyDataFullList: BefriendedToaster[] = [
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
     lastSendMessage: "2025-03-07T09:36:00Z",
+    favorite: false,
     connectedUsers: [
       {
         userId: "18",

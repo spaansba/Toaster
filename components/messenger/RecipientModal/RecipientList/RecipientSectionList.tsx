@@ -17,32 +17,45 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
   const selectedToasterIds = new Set(selectedToasters.map((toaster) => toaster.toasterId))
 
   const createFilteredSectionList = (): ToasterSectionListData[] => {
-    const toastersToUse = filteredToasterList || []
+    if (!filteredToasterList.length) {
+      return [] // Shows the ListEmptyComponent
+    }
     return [
       {
         title: "Connections",
-        data: [...toastersToUse].sort((a, b) => a.toasterName.localeCompare(b.toasterName)), // sort a-z
+        data: [...filteredToasterList].sort((a, b) => a.toasterName.localeCompare(b.toasterName)), // sort a-z
       },
     ]
   }
 
   const createUnfilteredSectionList = (): ToasterSectionListData[] => {
-    const sectionsObj: Record<string, BefriendedToaster[]> = {}
-    filteredToasterList.forEach((toaster) => {
-      const letter = toaster.toasterName.charAt(0).toUpperCase()
+    if (!filteredToasterList.length) {
+      return [] // Shows the ListEmptyComponent
+    }
 
-      if (!sectionsObj[letter]) {
-        sectionsObj[letter] = []
-      }
+    // Group toasters by favorite status without sorting alphabetically
+    const favorites = filteredToasterList.filter((toaster) => toaster.favorite)
+    const regularToasters = filteredToasterList.filter((toaster) => !toaster.favorite)
 
-      sectionsObj[letter].push(toaster)
-    })
-    return Object.keys(sectionsObj)
-      .sort()
-      .map((letter) => ({
-        title: letter,
-        data: sectionsObj[letter],
-      }))
+    // Create sections array with proper structure
+    const sections: ToasterSectionListData[] = []
+
+    // Only add sections that have data
+    if (favorites.length > 0) {
+      sections.push({
+        title: "Favorites",
+        data: favorites,
+      })
+    }
+
+    if (regularToasters.length > 0) {
+      sections.push({
+        title: "Toasters",
+        data: regularToasters,
+      })
+    }
+
+    return sections
   }
 
   const renderItem = ({
@@ -74,10 +87,9 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
       renderItem={renderItem}
       keyExtractor={(toaster) => toaster.toasterId}
       renderSectionHeader={({ section: { title } }) => (
-        <View className="">
-          <ToastText className="font-courier-bold bg-primary-200 py-2">{title}</ToastText>
-        </View>
+        <ToastText className="font-courier-bold bg-primary-200 py-3">{title}</ToastText>
       )}
+      //TODO: add a button to add a new toaster here
       ListEmptyComponent={() => (
         <View className="items-center py-4">
           <ToastText>No toasters found</ToastText>

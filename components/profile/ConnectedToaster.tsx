@@ -72,7 +72,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
                 <Ionicons name="ellipsis-vertical-sharp" size={18} />
               </TouchableOpacity>
 
-              <ConnectedUsersPictures
+              {/* <ConnectedUsersPictures
                 backgroundColor={backgroundColor.color}
                 imagesAsUrl={[
                   images.hoofd,
@@ -90,7 +90,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
                 ]}
                 size={20}
                 maxVisibleUsers={4}
-              />
+              /> */}
             </View>
           </View>
         </View>
