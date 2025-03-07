@@ -1,23 +1,24 @@
 export type BaseUser = {
-  user_id: string
+  userId: string
   username: string
-  picture_url: string
+  pictureUrl: string
 }
 
 export type BaseToaster = {
-  toaster_id: string
-  toaster_name: string
-  picture_url: string
+  toasterId: string
+  toasterName: string
+  pictureUrl: string
 }
 
-export type CardToaster = BaseToaster & {
+export type BefriendedToaster = BaseToaster & {
   style: ToasterStyle
-  connected_users: BaseUser[]
+  connectedUsers: BaseUser[]
+  lastSendMessage: string
 }
 
 export type ToasterSectionListData = {
   title: string
-  data: CardToaster[]
+  data: BefriendedToaster[]
 }
 
 // Define the valid toaster style types

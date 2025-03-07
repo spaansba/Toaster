@@ -1,12 +1,13 @@
 import CrossButton from "@/components/general/CrossButton"
 import { ToastText } from "@/components/general/ToastText"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
-import { CardToaster } from "@/types/types"
+
 import { Ionicons } from "@expo/vector-icons"
 import { useState, useEffect } from "react"
 import { Modal, View, TouchableOpacity, TextInput } from "react-native"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
+import type { BefriendedToaster } from "@/types/types"
 
 type RecipientBottomSheetProps = {
   isModalVisible: boolean
@@ -15,32 +16,30 @@ type RecipientBottomSheetProps = {
 
 const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
   const [searchQuery, setSearchQuery] = useState("")
+  const { availableToasters, selectedToasters } = useMessagingToasters()
   const isFiltered = searchQuery.length > 0
-  const { availableToasters } = useMessagingToasters()
-  const [filteredToasterList, setFilteredToasterList] = useState<CardToaster[]>([])
+  const getFilteredList = () => {
+    return availableToasters.filter((toaster) => {
+      const lowerCaseSearchQuery = searchQuery.toLowerCase()
 
-  useEffect(() => {
-    if (!isFiltered) {
-      setFilteredToasterList(availableToasters)
-    } else {
-      const filteredToasters: CardToaster[] = availableToasters.filter((toaster) => {
-        return toaster.toaster_name.includes(searchQuery)
-      })
-      setFilteredToasterList(filteredToasters)
-    }
-  }, [searchQuery, availableToasters])
+      // Check if toaster name includes search query
+      if (toaster.toasterName.toLowerCase().includes(lowerCaseSearchQuery)) {
+        return true
+      }
 
-  const handleIsVisible = () => {
-    setIsModalVisible((prev) => !prev)
+      // Check if any connected user's username includes search query
+      return toaster.connectedUsers.some((user) =>
+        user.username.toLowerCase().includes(lowerCaseSearchQuery)
+      )
+    })
   }
-  const { selectedToasters } = useMessagingToasters()
 
   return (
     <Modal
       animationType="slide"
       presentationStyle="pageSheet"
       visible={isModalVisible}
-      onRequestClose={handleIsVisible}
+      onRequestClose={() => setIsModalVisible((prev) => !prev)}
     >
       <View className="h-full p-4 bg-primary-200">
         <View className="flex-row justify-between items-center mb-6">
@@ -88,7 +87,10 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
 
         {/* Give flex-1 to this container to allow proper scrolling */}
         <View className="flex-1">
-          <RecipientSectionList filteredToasterList={availableToasters} isFiltered={isFiltered} />
+          <RecipientSectionList
+            filteredToasterList={!isFiltered ? availableToasters : getFilteredList()}
+            isFiltered={isFiltered}
+          />
         </View>
       </View>
     </Modal>

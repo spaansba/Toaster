@@ -1,6 +1,6 @@
 import { throwSupabaseError } from "@/helpers/SupabasePostgrestError"
 import { supabase } from "@/lib/supabase"
-import type { BaseUser } from "@/types/types"
+import { BaseUser } from "@/types/types"
 
 export async function getLoggedInUser(userId: string | undefined): Promise<BaseUser | null> {
   if (!userId) {
@@ -11,7 +11,6 @@ export async function getLoggedInUser(userId: string | undefined): Promise<BaseU
     .select(`id, username, picture_url`)
     .eq("id", userId)
     .single()
-  const x = fetch("http")
 
   if (error && status !== 406) {
     throwSupabaseError(error, {
@@ -20,10 +19,20 @@ export async function getLoggedInUser(userId: string | undefined): Promise<BaseU
     })
   }
 
-  return data
+  if (!data) {
+    return null
+  }
+
+  const user: BaseUser = {
+    userId: data.id,
+    username: data.username,
+    pictureUrl: data.picture_url,
+  }
+
+  return user
 }
 
-export async function getAllUsers(): Promise<BaseUser[] | null> {
+export async function getAllUsers(): Promise<BaseUser[]> {
   const { data, error, status, statusText } = await supabase
     .from("users")
     .select(`id, username, picture_url`)
@@ -36,5 +45,13 @@ export async function getAllUsers(): Promise<BaseUser[] | null> {
     })
   }
 
-  return data
+  if (!data) {
+    return []
+  }
+
+  return data.map((user) => ({
+    userId: user.id,
+    username: user.username,
+    pictureUrl: user.picture_url,
+  }))
 }

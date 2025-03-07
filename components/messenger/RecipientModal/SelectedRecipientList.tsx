@@ -1,71 +1,15 @@
-import CrossButton from "@/components/general/CrossButton"
 import { ToastText } from "@/components/general/ToastText"
-import images from "@/constants/images"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
-import type { CardToaster } from "@/types/types"
 import { Ionicons } from "@expo/vector-icons"
 import { LegendList } from "@legendapp/list"
-import { Image } from "expo-image"
+
 import React from "react"
 import { Pressable, View } from "react-native"
-import Animated, {
-  CurvedTransition,
-  FadeInDown,
-  LinearTransition,
-  ZoomIn,
-  ZoomOut,
-} from "react-native-reanimated"
+import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
+import SelectedRecipientItem from "./SelectedRecipientItem"
 
 const SelectedRecipientList = () => {
-  const { selectedToasters, toggleToasterSelection, removeAllSelectedToasters } =
-    useMessagingToasters()
-
-  const renderSelectedItem = ({ item, index }: { item: CardToaster; index: number }) => {
-    const processName = (name: string) => {
-      const maxCharacters = 9
-      if (name.length > maxCharacters) {
-        return `${name.substring(0, maxCharacters).trimEnd()}...`
-      } else {
-        return name
-      }
-    }
-
-    const handleRemove = () => {
-      toggleToasterSelection(item)
-    }
-
-    return (
-      <Animated.View
-        entering={ZoomIn.duration(100)}
-        layout={CurvedTransition.duration(80)}
-        exiting={ZoomOut.duration(100)}
-        className="flex-col h-full justify-center items-center mx-3 gap-1 min-w-[78px]"
-      >
-        <View className="size-[50px] relative mt-2">
-          <View className="absolute right-[-5px] top-[-5px]">
-            <CrossButton
-              backgroundColor="#6b7280"
-              size={23}
-              borderColor="#ffffff"
-              borderWidth={1}
-              onPress={handleRemove}
-            />
-          </View>
-
-          <View className="border-black border-[1px] rounded-full overflow-hidden">
-            <Image
-              source={images.hoofd}
-              style={{ width: "100%", height: "100%" }}
-              contentFit="cover"
-              cachePolicy="memory-disk"
-              transition={0}
-            />
-          </View>
-        </View>
-        <ToastText className="text-sm tracking-tighter">{processName(item.toaster_name)}</ToastText>
-      </Animated.View>
-    )
-  }
+  const { selectedToasters, removeAllSelectedToasters } = useMessagingToasters()
 
   return (
     <>
@@ -81,13 +25,14 @@ const SelectedRecipientList = () => {
               </Pressable>
               <LegendList
                 data={selectedToasters}
-                renderItem={renderSelectedItem}
-                keyExtractor={(item) => item.toaster_id}
+                renderItem={({ item }) => <SelectedRecipientItem toaster={item} />}
+                keyExtractor={(item) => item.toasterId}
                 horizontal={true}
                 estimatedItemSize={105}
               />
             </>
           ) : (
+            // couldnt make ListEmptyComponent of the LengendList work so we do it like this
             <Animated.View
               entering={FadeInDown.duration(300)}
               className="w-full h-[100px] justify-center items-center"

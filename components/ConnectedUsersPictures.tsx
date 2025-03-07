@@ -32,7 +32,7 @@ const ConnectedUsersPictures = ({
       {connectedUsers.map((user, index) =>
         index < maxVisibleUsers ? (
           <View
-            key={`user-${user.user_id}`}
+            key={`user-${user.userId}`}
             style={{
               marginLeft: index > 0 ? overlapMargin : 0,
               zIndex: index,
@@ -44,7 +44,7 @@ const ConnectedUsersPictures = ({
             >
               <View className="border-black border-[1px] rounded-full overflow-hidden">
                 <Image
-                  source={user.picture_url}
+                  source={user.pictureUrl}
                   style={{ width: "100%", height: "100%" }}
                   contentFit="cover"
                   cachePolicy="memory-disk"

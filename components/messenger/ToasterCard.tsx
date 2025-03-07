@@ -1,6 +1,5 @@
 import images from "@/constants/images"
 import { getToasterColors } from "@/helpers/GetToasterColors"
-import type { CardToaster } from "@/types/types"
 import { Image } from "expo-image"
 import React from "react"
 import { Pressable, View } from "react-native"
@@ -8,13 +7,14 @@ import ConnectedUsersPictures from "../ConnectedUsersPictures"
 
 import { ToastText } from "../general/ToastText"
 import CheckBox from "../general/CheckBox"
+import type { BefriendedToaster } from "@/types/types"
 
 type ToasterCardProps = {
   isFirst: boolean
   isLast: boolean
-  data: CardToaster
+  data: BefriendedToaster
   isSelected: boolean
-  onPress: (toaster: CardToaster) => void
+  onPress: (toaster: BefriendedToaster) => void
 }
 
 const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCardProps) => {
@@ -59,14 +59,14 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
             />
           </View>
           <View className="flex-col ml-3">
-            <ToastText className="font-courier-bold">{data.toaster_name}</ToastText>
+            <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
             <ToastText className="color-gray-500">Today</ToastText>
           </View>
         </View>
 
         <View className="flex-row items-center">
           <ConnectedUsersPictures
-            connectedUsers={data.connected_users}
+            connectedUsers={data.connectedUsers}
             backgroundColor={backgroundColor}
             size={20}
             maxVisibleUsers={2}

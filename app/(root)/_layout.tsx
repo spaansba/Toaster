@@ -30,11 +30,11 @@ export default function RootLayout() {
   useReactQueryDevTools(queryClient)
 
   // Wrap prefetching in an useEffect since enabled flag on querie options dont work on prefetched queries.
-  useEffect(() => {
-    if (!isLoading && session?.user.id) {
-      queryClient.prefetchQuery(createLoggedInUserQueryOptions(session.user.id))
-    }
-  }, [session, isLoading])
+  // useEffect(() => {
+  //   if (!isLoading && session?.user.id) {
+  //     queryClient.prefetchQuery(createLoggedInUserQueryOptions(session.user.id))
+  //   }
+  // }, [session, isLoading])
 
   return (
     <QueryClientProvider client={queryClient}>
