@@ -1,6 +1,6 @@
 import { ToastText } from "@/components/general/ToastText"
 import { useKeyboardAnimation } from "@/components/hooks/useKeyboard"
-import RecipientBottomSheet from "@/components/messenger/RecipientModal/RecipientModal"
+import RecipientModal from "@/components/messenger/RecipientModal/RecipientModal"
 import images from "@/constants/images"
 import { MessagingToasterProvider } from "@/providers/SelectedRecipientProvider"
 import type { BottomSheetModal } from "@gorhom/bottom-sheet"
@@ -26,11 +26,10 @@ configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false,
 })
-export default function sendMessage() {
+export default function SendMessage() {
   const richEditor = useRef<RichEditor>(null)
-  const { height, heightWhenOpened, isClosed } = useKeyboardAnimation()
+  const { height, isClosed } = useKeyboardAnimation()
   const tabBarHeight = useBottomTabBarHeight()
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
   const dismissKeyboard = () => {
     richEditor.current?.blurContentEditor()
@@ -56,11 +55,7 @@ export default function sendMessage() {
       <SafeAreaView className="h-full bg-primary-200">
         <ScrollView className="">
           <Button title="open" onPress={handlePresentModal}></Button>
-          <RecipientBottomSheet
-            title="hello"
-            isModalVisible={modalVisible}
-            setIsModalVisible={setModalVisible}
-          />
+          <RecipientModal isModalVisible={modalVisible} setIsModalVisible={setModalVisible} />
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             className="flex-1"

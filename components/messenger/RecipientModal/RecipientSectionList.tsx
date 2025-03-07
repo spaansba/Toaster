@@ -14,13 +14,14 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
   const { selectedToasters, toggleToasterSelection } = useMessagingToasters()
 
   //Create set for faster lookups
-  const selectedToasterIds = new Set(selectedToasters.map((toaster) => toaster.toaster_id))
+  // const selectedToasterIds = new Set(selectedToasters.map((toaster) => toaster.toaster_id))
 
   const createFilteredSectionList = (): ToasterSectionListData[] => {
+    const toastersToUse = filteredToasterList || []
     return [
       {
         title: "Connections",
-        data: [...filteredToasterList].sort((a, b) => a.toaster_name.localeCompare(b.toaster_name)), // sort a-z
+        data: [...toastersToUse].sort((a, b) => a.toaster_name.localeCompare(b.toaster_name)), // sort a-z
       },
     ]
   }
@@ -44,7 +45,6 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
       }))
   }
 
-  // Memoize the render item function
   const renderItem = ({
     item,
     index,
@@ -56,14 +56,14 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
   }) => {
     const isFirst = index === 0
     const isLast = index === section.data.length - 1
-    const isSelected = selectedToasterIds.has(item.toaster_id)
+    // const isSelected = selectedToasterIds.has(item.toaster_id)
 
     return (
       <ToasterCard
         data={item}
         isFirst={isFirst}
         isLast={isLast}
-        isSelected={isSelected}
+        isSelected={true}
         onPress={() => toggleToasterSelection(item)}
       />
     )
@@ -76,6 +76,11 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
       renderSectionHeader={({ section: { title } }) => (
         <View className="">
           <ToastText className="font-courier-bold bg-primary-200 py-2">{title}</ToastText>
+        </View>
+      )}
+      ListEmptyComponent={() => (
+        <View className="items-center py-4">
+          <ToastText>No toasters found</ToastText>
         </View>
       )}
       ListFooterComponent={() => <View className="h-[40px]"></View>}

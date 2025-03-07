@@ -1,4 +1,4 @@
-import { View, Text, Pressable, type GestureResponderEvent } from "react-native"
+import { Text, Pressable, type GestureResponderEvent } from "react-native"
 import React from "react"
 
 type CrossButtonProps = {

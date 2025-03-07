@@ -7,7 +7,7 @@ import React, { useState } from "react"
 import { ErrorBoundary } from "react-error-boundary"
 
 export default function Profile() {
-  const [headerTitle, setHeaderTitle] = useState("Bart Spaans")
+  const [headerTitle] = useState("Bart Spaans")
   const navigation = useNavigation()
   navigation.setOptions({
     header: () => <CustomProfileHeader title={headerTitle} />,

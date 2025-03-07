@@ -5,8 +5,9 @@ import { Image } from "expo-image"
 import React from "react"
 import { Pressable, View } from "react-native"
 import ConnectedUsersPictures from "../ConnectedUsersPictures"
-import CheckBox from "../general/CheckBox"
+
 import { ToastText } from "../general/ToastText"
+import CheckBox from "../general/CheckBox"
 
 type ToasterCardProps = {
   isFirst: boolean

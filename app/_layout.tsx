@@ -11,8 +11,8 @@ import { toastConfig } from "@/components/ReactToastMessageConfig"
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 
-LogBox.ignoreAllLogs(true)
-LogBox.ignoreLogs(["Unspecified error"])
+// LogBox.ignoreAllLogs(true)
+// LogBox.ignoreLogs(["Unspecified error"])
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {

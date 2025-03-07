@@ -4,10 +4,10 @@ import images from "@/constants/images"
 import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 import type { CardToaster } from "@/types/types"
 import { Ionicons } from "@expo/vector-icons"
-import { LegendList, type LegendListRef } from "@legendapp/list"
+import { LegendList } from "@legendapp/list"
 import { Image } from "expo-image"
-import React, { useEffect, useLayoutEffect, useRef } from "react"
-import { Pressable, Text, View } from "react-native"
+import React from "react"
+import { Pressable, View } from "react-native"
 import Animated, {
   CurvedTransition,
   FadeInDown,

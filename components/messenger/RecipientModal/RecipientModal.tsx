@@ -1,22 +1,21 @@
-import Ionicons from "@expo/vector-icons/Ionicons"
-import React, { useEffect, useState } from "react"
-import { Modal, Pressable, TextInput, TouchableOpacity, View, Text } from "react-native"
-import { ToastText } from "../../general/ToastText"
+import CrossButton from "@/components/general/CrossButton"
+import { ToastText } from "@/components/general/ToastText"
+import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import { CardToaster } from "@/types/types"
+import { Ionicons } from "@expo/vector-icons"
+import { useState, useEffect } from "react"
+import { Modal, View, TouchableOpacity, TextInput } from "react-native"
 import RecipientSectionList from "./RecipientSectionList"
 import SelectedRecipientList from "./SelectedRecipientList"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
-import type { CardToaster } from "@/types/types"
-import CrossButton from "@/components/general/CrossButton"
 
 type RecipientBottomSheetProps = {
-  title: string
   isModalVisible: boolean
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
-  const [searchText, setSearchText] = useState("")
-  const isFiltered = searchText.length > 0
+  const [searchQuery, setSearchQuery] = useState("")
+  const isFiltered = searchQuery.length > 0
   const { availableToasters } = useMessagingToasters()
   const [filteredToasterList, setFilteredToasterList] = useState<CardToaster[]>([])
 
@@ -25,11 +24,12 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
       setFilteredToasterList(availableToasters)
     } else {
       const filteredToasters: CardToaster[] = availableToasters.filter((toaster) => {
-        return toaster.toaster_name.includes(searchText)
+        return toaster.toaster_name.includes(searchQuery)
       })
       setFilteredToasterList(filteredToasters)
     }
-  }, [searchText, availableToasters])
+  }, [searchQuery, availableToasters])
+
   const handleIsVisible = () => {
     setIsModalVisible((prev) => !prev)
   }
@@ -65,8 +65,8 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
           <TextInput
             className="ml-2 flex-1"
             placeholder="Search"
-            value={searchText}
-            onChangeText={setSearchText}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
             placeholderTextColor="#999"
             style={{
               fontFamily: "Courier",
@@ -77,8 +77,8 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
               textAlignVertical: "center",
             }}
           />
-          {searchText.length > 0 && (
-            <CrossButton backgroundColor="#6b7280" onPress={() => setSearchText("")} />
+          {searchQuery.length > 0 && (
+            <CrossButton backgroundColor="#6b7280" onPress={() => setSearchQuery("")} />
           )}
         </View>
 
@@ -88,7 +88,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
 
         {/* Give flex-1 to this container to allow proper scrolling */}
         <View className="flex-1">
-          <RecipientSectionList filteredToasterList={filteredToasterList} isFiltered={isFiltered} />
+          <RecipientSectionList filteredToasterList={availableToasters} isFiltered={isFiltered} />
         </View>
       </View>
     </Modal>
