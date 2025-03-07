@@ -3,7 +3,7 @@ import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
 import type { BefriendedToaster, ToasterSectionListData } from "@/types/types"
 import React from "react"
 import { SectionList, View } from "react-native"
-import ToasterCard from "../ToasterCard"
+import ToasterCard from "./ToasterCard"
 
 type RecipientSectionListProps = {
   filteredToasterList: BefriendedToaster[]

@@ -3,10 +3,10 @@ import { getToasterColors } from "@/helpers/GetToasterColors"
 import { Image } from "expo-image"
 import React from "react"
 import { Pressable, View } from "react-native"
-import ConnectedUsersPictures from "../ConnectedUsersPictures"
+import ConnectedUsersPictures from "../../../ConnectedUsersPictures"
 
-import { ToastText } from "../general/ToastText"
-import CheckBox from "../general/CheckBox"
+import { ToastText } from "../../../general/ToastText"
+import CheckBox from "../../../general/CheckBox"
 import type { BefriendedToaster } from "@/types/types"
 
 type ToasterCardProps = {
