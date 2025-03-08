@@ -1,5 +1,5 @@
 import ErrorFallback from "@/components/ErrorFallback"
-import CustomProfileHeader from "@/components/profile/CustomProfileHeader"
+import ProfileScreenHeader from "@/components/profile/ProfileScreenHeader"
 import ProfileWrapper from "@/components/profile/ProfileWrapper"
 import { isSupbasePostgrestError } from "@/helpers/SupabasePostgrestError"
 import { useNavigation } from "expo-router"
@@ -12,7 +12,7 @@ export default function Profile() {
   // Move the setOptions call to a useEffect
   useEffect(() => {
     navigation.setOptions({
-      header: () => <CustomProfileHeader title={"Bart Spaans"} />,
+      header: () => <ProfileScreenHeader title={"Bart Spaans"} />,
     })
   }, [navigation])
 

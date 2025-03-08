@@ -1,18 +1,11 @@
-import {
-  View,
-  Button,
-  TouchableWithoutFeedback,
-  type NativeSyntheticEvent,
-  type NativeScrollEvent,
-} from "react-native"
-import React, { useRef, useState } from "react"
-import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import images from "@/constants/images"
-import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller"
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { Image } from "expo-image"
+import React, { useRef, useState } from "react"
+import { Button } from "react-native"
+import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller"
+import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import RecipientModal from "./RecipientModal/RecipientModal"
-import { ToastText } from "../general/ToastText"
 const MessengerWrapper = () => {
   const richEditor = useRef<RichEditor>(null)
   const tabBarHeight = useBottomTabBarHeight()
@@ -22,12 +15,6 @@ const MessengerWrapper = () => {
 
   //Preload images
   Image.prefetch(images.hoofd, "memory-disk")
-
-  // const handleScrollBeginDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-  //   const offsetY = event.nativeEvent
-
-  //   // console.log("Drag started at position:", offsetY)
-  // }
 
   const handlePresentModal = () => setModalVisible(true)
   const [modalVisible, setModalVisible] = useState(false)
@@ -46,13 +33,6 @@ const MessengerWrapper = () => {
       >
         <Button title="open" onPress={handlePresentModal}></Button>
         <RecipientModal isModalVisible={modalVisible} setIsModalVisible={setModalVisible} />
-
-        <TouchableWithoutFeedback onPress={dismissKeyboard}>
-          <View className="p-2.5">
-            <ToastText></ToastText>
-          </View>
-        </TouchableWithoutFeedback>
-
         <RichEditor
           scrollEnabled={false}
           ref={richEditor}

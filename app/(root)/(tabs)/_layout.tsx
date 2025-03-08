@@ -19,16 +19,16 @@ function TabsLayout() {
     <Tabs
       screenOptions={() => ({
         headerShown: false,
-        // tabBarActiveTintColor: "black",
-        // tabBarInactiveTintColor: "#6B7280",
-        // tabBarShowLabel: false,
-        // tabBarStyle: {
-        //   height: 85,
-        //   paddingTop: 10,
-        //   borderTopWidth: 1.3,
-        //   borderTopColor: "#000000",
-        //   backgroundColor: tabColor,
-        // },
+        tabBarActiveTintColor: "black",
+        tabBarInactiveTintColor: "#6B7280",
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          height: 85,
+          paddingTop: 10,
+          borderTopWidth: 1.3,
+          borderTopColor: "#000000",
+          backgroundColor: tabColor,
+        },
       })}
     >
       <Tabs.Screen
@@ -42,6 +42,7 @@ function TabsLayout() {
       <Tabs.Screen
         name="sendMessage"
         options={{
+          headerShown: true,
           tabBarButton: (props) => <CircleTabBarButton />,
         }}
       ></Tabs.Screen>
