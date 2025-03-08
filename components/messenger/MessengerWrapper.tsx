@@ -1,4 +1,10 @@
-import { View, Button, TouchableWithoutFeedback } from "react-native"
+import {
+  View,
+  Button,
+  TouchableWithoutFeedback,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
+} from "react-native"
 import React, { useRef, useState } from "react"
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
@@ -17,6 +23,12 @@ const MessengerWrapper = () => {
   //Preload images
   Image.prefetch(images.hoofd, "memory-disk")
 
+  // const handleScrollBeginDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //   const offsetY = event.nativeEvent
+
+  //   // console.log("Drag started at position:", offsetY)
+  // }
+
   const handlePresentModal = () => setModalVisible(true)
   const [modalVisible, setModalVisible] = useState(false)
   return (
@@ -25,8 +37,11 @@ const MessengerWrapper = () => {
         bottomOffset={35}
         style={{ height: "100%" }}
         keyboardDismissMode="none"
-        onMomentumScrollBegin={() => {
-          console.log("here")
+        onScroll={(event) => {
+          // When you scroll up with momentum or more than 40 pixels hide the keyboard
+          if (event.nativeEvent.contentOffset.y < -40) {
+            dismissKeyboard()
+          }
         }}
       >
         <Button title="open" onPress={handlePresentModal}></Button>
