@@ -3,7 +3,8 @@ import MessengerWrapper from "@/components/messenger/MessengerWrapper"
 import { MessagingToasterProvider } from "@/providers/SelectedRecipientProvider"
 import { useNavigation } from "expo-router"
 import React, { useEffect } from "react"
-import { SafeAreaView } from "react-native"
+import { SafeAreaView, View } from "react-native"
+import { KeyboardStickyView } from "react-native-keyboard-controller"
 import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated"
 
 configureReanimatedLogger({

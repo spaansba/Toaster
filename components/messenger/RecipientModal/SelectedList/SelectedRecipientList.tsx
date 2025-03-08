@@ -14,7 +14,7 @@ const SelectedRecipientList = () => {
   return (
     <>
       <Animated.View layout={LinearTransition.duration(300)}>
-        <View className="min-h-[105px] relative rounded-lg bg-white border-2 border-black w-full mt-2">
+        <View className="min-h-[105px] relative rounded-lg bg-toaster-yellow border-2 border-black w-full mt-2">
           {selectedToasters.length > 0 ? (
             <>
               <Pressable
@@ -23,12 +23,13 @@ const SelectedRecipientList = () => {
               >
                 <Ionicons name="trash-outline" size={18}></Ionicons>
               </Pressable>
+
               <LegendList
                 data={selectedToasters}
                 renderItem={({ item }) => <SelectedRecipientItem toaster={item} />}
                 keyExtractor={(item) => item.toasterId}
                 horizontal={true}
-                estimatedItemSize={105}
+                estimatedItemSize={95}
               />
             </>
           ) : (

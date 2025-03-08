@@ -1,39 +1,44 @@
-import { Text, Pressable, type GestureResponderEvent } from "react-native"
+import { Text, Pressable, type GestureResponderEvent, View } from "react-native"
 import React from "react"
+import Entypo from "@expo/vector-icons/Entypo"
+import { Ionicons } from "@expo/vector-icons"
 
+// Using nested Views instead of border props to create a clean circular button
+// This approach prevents rendering issues where background might show through at the edges
 type CrossButtonProps = {
   onPress: ((event: GestureResponderEvent) => void) | null | undefined
   size?: number
-  backgroundColor?: string
   borderColor?: string
-  borderWidth?: number
 }
 
-const CrossButton = ({
-  onPress,
-  size = 20,
-  backgroundColor = "#6b7280",
-  borderColor,
-  borderWidth,
-}: CrossButtonProps) => {
-  // Only add styles for dynamic properties that can't be handled by NativeWind
-  const dynamicStyles = {
-    width: size,
-    height: size,
-    backgroundColor: backgroundColor,
-    ...(borderWidth && { borderWidth }),
-    ...(borderColor && { borderColor }),
+const CrossButton = ({ onPress, size = 20, borderColor = "#FFD580" }: CrossButtonProps) => {
+  const outerBorderSize = 3
+  const outerStyles = {
+    width: size + outerBorderSize,
+    height: size + outerBorderSize,
+    borderRadius: (size + outerBorderSize) / 2,
+    backgroundColor: borderColor,
   }
 
+  const innerStyles = {
+    width: size,
+    height: size,
+    borderRadius: size / 2,
+  }
+
+  const iconSize = Math.floor(size * 0.85)
+
   return (
-    <Pressable
-      hitSlop={30}
-      onPress={onPress}
-      style={dynamicStyles}
-      className="rounded-full z-10 flex justify-center items-center"
-    >
-      <Text className="text-xs font-bold text-white text-center leading-4">✕</Text>
-    </Pressable>
+    <View style={outerStyles} className="flex items-center justify-center overflow-hidden z-10">
+      <Pressable
+        hitSlop={30}
+        onPress={onPress}
+        style={innerStyles}
+        className="bg-[#6b7280] flex items-center justify-center"
+      >
+        <Ionicons name="close-sharp" size={iconSize} color="white" />
+      </Pressable>
+    </View>
   )
 }
 

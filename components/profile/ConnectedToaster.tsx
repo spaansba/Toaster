@@ -17,7 +17,7 @@ type ConntectedToasterProps = {
 const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: ConntectedToasterProps) => {
   const backgroundColor = getToasterColors(style)
   return (
-    <View className="px-5 py-3 min-h-[100px] bg-primary-200">
+    <View className="px-standardPagePadding py-3 min-h-[100px] bg-primary-200">
       <View className="relative">
         <View
           className="absolute bg-black w-full h-full rounded-lg"

@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native"
 
 const AddNewToaster = () => {
   return (
-    <ScrollView className="h-full px-5 bg-white">
+    <ScrollView className="h-full px-standardPagePadding bg-white">
       <View className="pt-3 gap-6 pr-[5px]"></View>
     </ScrollView>
   )

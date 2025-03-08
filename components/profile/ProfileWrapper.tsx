@@ -52,7 +52,7 @@ const ProfileWrapper = () => {
   // Memoize the list header component
   const ListHeaderComponent = () => (
     <View className="bg-primary-200">
-      <View className={`overflow-hidden bg-primary-200 px-5 flex gap-4`}>
+      <View className={`overflow-hidden bg-primary-200 px-standardPagePadding flex gap-4`}>
         <View className="flex-row items-center pt-1 ">
           <View
             className=" rounded-full border-4 border-black overflow-hidden mr-4"

@@ -10,6 +10,9 @@ module.exports = {
         "courier-bold-italic": ["CourierPrime-BoldItalic", "sans-serif"],
         "courier-italic": ["CourierPrime-Italic", "sans-serif"],
       },
+      padding: {
+        standardPagePadding: "20px",
+      },
       colors: {
         primary: {
           100: "#fff3e1A1",

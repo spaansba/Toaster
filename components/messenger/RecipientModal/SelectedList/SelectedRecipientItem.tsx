@@ -27,20 +27,18 @@ const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
       entering={ZoomIn.duration(100)}
       layout={CurvedTransition.duration(80)}
       exiting={ZoomOut.duration(100)}
-      className="flex-col h-full justify-center items-center mx-3 gap-1 min-w-[78px]"
+      className="flex-col h-full justify-center items-center  gap-1 min-w-[70px] mx-[6px]"
     >
-      <View className="size-[50px] relative mt-2">
-        <View className="absolute right-[-5px] top-[-5px]">
+      <View className="size-[60px] relative mt-2">
+        <View className="absolute right-[-2px] top-[-2px]">
           <CrossButton
-            backgroundColor="#6b7280"
-            size={23}
-            borderColor="#ffffff"
-            borderWidth={1}
+            size={20}
+            borderColor="#FFD787"
             onPress={() => toggleToasterSelection(toaster)}
           />
         </View>
 
-        <View className="border-black border-[1px] rounded-full overflow-hidden">
+        <View className="border-black border-[2px] rounded-full overflow-hidden">
           <Image
             source={images.hoofd}
             style={{ width: "100%", height: "100%" }}
