@@ -15,7 +15,7 @@ const SelectedRecipientList = () => {
   return (
     <>
       <Animated.View layout={LinearTransition.duration(300)}>
-        <View className="min-h-[105px] relative rounded-lg bg-toaster-yellow border-2 border-black w-full mt-2">
+        <View className="min-h-[105px] relative rounded-lg bg-white border-2 border-black w-full mt-2">
           {selectedRecipients.length > 0 ? (
             <>
               <Pressable

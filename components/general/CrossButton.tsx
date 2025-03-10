@@ -16,14 +16,14 @@ const CrossButton = ({ onPress, size = 20, borderColor = "#FFD580" }: CrossButto
   const outerStyles = {
     width: size + outerBorderSize,
     height: size + outerBorderSize,
-    borderRadius: (size + outerBorderSize) / 2,
+    borderRadius: 6,
     backgroundColor: borderColor,
   }
 
   const innerStyles = {
     width: size,
     height: size,
-    borderRadius: size / 2,
+    borderRadius: 6,
   }
 
   const iconSize = Math.floor(size * 0.85)

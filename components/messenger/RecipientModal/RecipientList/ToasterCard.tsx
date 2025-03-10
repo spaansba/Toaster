@@ -8,6 +8,7 @@ import ConnectedUsersPictures from "../../../ConnectedUsersPictures"
 import { ToastText } from "../../../general/ToastText"
 import CheckBox from "../../../general/CheckBox"
 import type { BefriendedToaster } from "@/types/types"
+import ProfilePicture from "@/components/ProfilePicture"
 
 type ToasterCardProps = {
   isFirst: boolean
@@ -49,15 +50,7 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
         style={{ backgroundColor: backgroundColor }}
       >
         <View className="flex-row h-[50px] items-center">
-          <View className="border-black border-[1px] size-[35px] rounded-full overflow-hidden">
-            <Image
-              source={images.hoofd}
-              style={{ width: "100%", height: "100%" }}
-              contentFit="cover"
-              cachePolicy="memory-disk"
-              transition={0}
-            />
-          </View>
+          <ProfilePicture size={35} borderWidth={1} />
           <View className="flex-col ml-3">
             <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
             <ToastText className="color-gray-500">Today</ToastText>

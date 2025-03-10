@@ -1,5 +1,6 @@
 import CrossButton from "@/components/general/CrossButton"
 import { ToastText } from "@/components/general/ToastText"
+import ProfilePicture from "@/components/ProfilePicture"
 import images from "@/constants/images"
 import { MeasureFunctionTime } from "@/helpers/MeasureFunctionTime"
 import { useRecipientsStore } from "@/providers/RecipientsStore"
@@ -29,28 +30,19 @@ const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
       entering={ZoomIn.duration(100)}
       layout={CurvedTransition.duration(80)}
       exiting={ZoomOut.duration(100)}
-      className="flex-col h-full justify-center items-center  gap-1 min-w-[70px] mx-[6px]"
+      className="flex-col h-full justify-center items-center gap-1 min-w-[70px] mx-[6px]"
     >
       <View className="size-[60px] relative mt-2">
-        <View className="absolute right-[-2px] top-[-2px]">
+        <View className="absolute right-[-5px] top-[-5px]">
           <CrossButton
             size={20}
-            borderColor="#FFD787"
+            borderColor="#FFFFFF"
             onPress={() => {
-              MeasureFunctionTime(() => ToggleToasterSelection(toaster))
+              ToggleToasterSelection(toaster)
             }}
           />
         </View>
-
-        <View className="border-black border-[2px] rounded-full overflow-hidden">
-          <Image
-            source={images.hoofd}
-            style={{ width: "100%", height: "100%" }}
-            contentFit="cover"
-            cachePolicy="memory-disk"
-            transition={0}
-          />
-        </View>
+        <ProfilePicture size={60} borderWidth={2} />
       </View>
       <ToastText className="text-sm tracking-tighter">{processName(toaster.toasterName)}</ToastText>
     </Animated.View>

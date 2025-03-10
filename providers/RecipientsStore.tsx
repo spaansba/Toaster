@@ -1,6 +1,6 @@
-import { create } from "zustand"
-import { DummyDataFullList, DummySelectedList } from "./RecipientStoreDummyData"
 import type { BefriendedToaster } from "@/types/types"
+import { create } from "zustand"
+import { DummyDataFullList } from "./RecipientStoreDummyData"
 
 type RecipientsState = {
   AllRecipients: BefriendedToaster[]

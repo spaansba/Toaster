@@ -1,8 +1,8 @@
+import type { BaseUser } from "@/types/types"
 import { Image } from "expo-image"
 import React from "react"
 import { View, type ColorValue, type DimensionValue } from "react-native"
 import { ToastText } from "./general/ToastText"
-import type { BaseUser } from "@/types/types"
 
 type ConnectedUsersPicturesProps = {
   connectedUsers: BaseUser[]

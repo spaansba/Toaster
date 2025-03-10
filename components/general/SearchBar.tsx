@@ -37,7 +37,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
         }}
       />
       {searchQuery.length > 0 && (
-        <CrossButton backgroundColor="#6b7280" onPress={handleClearText} />
+        <CrossButton size={20} borderColor="#6b7280" onPress={handleClearText} />
       )}
     </View>
   )

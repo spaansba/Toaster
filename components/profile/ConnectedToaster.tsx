@@ -8,6 +8,7 @@ import ConnectedUsersPictures from "../ConnectedUsersPictures"
 import { ToastText } from "../general/ToastText"
 import { getToasterColors } from "@/helpers/GetToasterColors"
 import type { ToasterStyle } from "@/types/types"
+import ProfilePicture from "../ProfilePicture"
 
 type ConntectedToasterProps = {
   style?: ToasterStyle
@@ -34,15 +35,7 @@ const ConnectedToaster = ({ style = "green", handleOnSettingsPress }: Conntected
             {/* Left section: profile picture + info */}
             <View className="flex-row">
               {/* profile picture */}
-              <View className="border-black border-2 size-[65px] rounded-full overflow-hidden">
-                <Image
-                  source={images.hoofd}
-                  style={{ width: "100%", height: "100%" }}
-                  contentFit="cover"
-                  cachePolicy="memory-disk"
-                  transition={0}
-                />
-              </View>
+              <ProfilePicture size={65} borderWidth={2} />
 
               {/* Name + toast count */}
               <View className="ml-3 justify-between py-[2px]">

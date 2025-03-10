@@ -4,7 +4,6 @@ import type { BefriendedToaster, ToasterSectionListData } from "@/types/types"
 import React from "react"
 import { SectionList, View } from "react-native"
 import ToasterCard from "./ToasterCard"
-import { MeasureFunctionTime } from "@/helpers/MeasureFunctionTime"
 
 type RecipientSectionListProps = {
   filteredToasterList: BefriendedToaster[]
@@ -79,7 +78,7 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
         isFirst={isFirst}
         isLast={isLast}
         isSelected={isSelected}
-        onPress={() => MeasureFunctionTime(() => ToggleToasterSelection(item))}
+        onPress={() => ToggleToasterSelection(item)}
       />
     )
   }
