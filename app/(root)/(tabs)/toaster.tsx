@@ -1,9 +1,11 @@
 import { ToastText } from "@/components/general/ToastText"
 import { supabase } from "@/lib/supabase"
-import React from "react"
+import React, { useRef } from "react"
 import { SafeAreaView, TouchableOpacity, View } from "react-native"
+import { RichEditor } from "react-native-pell-rich-editor"
 
 const Toaster = () => {
+  const richEditor = useRef<RichEditor>(null)
   const handleLogout = async () => {
     try {
       // This will automatically rerout to /sign-in
@@ -24,6 +26,22 @@ const Toaster = () => {
 
         <ToastText className="font-courier-bold mt-5">Connected printers</ToastText>
       </View>
+      <RichEditor
+        ref={richEditor}
+        initialHeight={200}
+        style={{
+          minHeight: 200,
+        }}
+        useContainer={false}
+        scrollEnabled={false}
+        onChange={(descriptionText) => {
+          console.log("descriptionText:", descriptionText)
+        }}
+
+        // onCursorPosition={(cursorPosition) => {
+        //   console.log("cursorPosition:", cursorPosition)
+        // }}
+      />
     </SafeAreaView>
   )
 }

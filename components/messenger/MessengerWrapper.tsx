@@ -7,7 +7,6 @@ import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
 import RecipientView from "./RecipientView"
 import { View } from "react-native"
 
-import { Pressable } from "react-native-gesture-handler"
 const MessengerWrapper = () => {
   const richEditor = useRef<RichEditor>(null)
   const tabBarHeight = useBottomTabBarHeight()
@@ -31,25 +30,27 @@ const MessengerWrapper = () => {
           }
         }}
       >
-        <View className="px-standardPagePadding">
-          <RecipientView></RecipientView>
+        {/* <View className="px-standardPagePadding"> */}
+        <RecipientView></RecipientView>
 
-          <RichEditor
-            scrollEnabled={false}
-            ref={richEditor}
-            useContainer={true}
-            initialHeight={200}
-            className="min-h-[300px] max-h-[10000px]"
-            placeholder="What's on your mind"
-            containerStyle={{ flex: 1 }}
-            onChange={(descriptionText) => {
-              // console.log("descriptionText:", descriptionText)
-            }}
-          />
-          <View className="h-[8000px]"></View>
-        </View>
+        {/* </View> */}
       </KeyboardAwareScrollView>
+      <RichEditor
+        ref={richEditor}
+        initialHeight={200}
+        style={{
+          minHeight: 200,
+        }}
+        useContainer={true}
+        scrollEnabled={false}
+        onChange={(descriptionText) => {
+          console.log("descriptionText:", descriptionText)
+        }}
 
+        // onCursorPosition={(cursorPosition) => {
+        //   console.log("cursorPosition:", cursorPosition)
+        // }}
+      />
       <KeyboardStickyView enabled={true} offset={{ opened: tabBarHeight, closed: 100 }}>
         <RichToolbar
           editor={richEditor}
