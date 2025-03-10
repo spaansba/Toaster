@@ -34,14 +34,11 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
       return [] // Shows the ListEmptyComponent
     }
 
-    // Group toasters by favorite status without sorting alphabetically
     const favorites = filteredToasterList.filter((toaster) => toaster.favorite)
     const regularToasters = filteredToasterList.filter((toaster) => !toaster.favorite)
 
-    // Create sections array with proper structure
     const sections: ToasterSectionListData[] = []
 
-    // Only add sections that have data
     if (favorites.length > 0) {
       sections.push({
         title: "Favorites",

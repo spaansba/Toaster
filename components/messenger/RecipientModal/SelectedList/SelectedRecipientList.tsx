@@ -9,22 +9,19 @@ import { Pressable, View } from "react-native"
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
 import SelectedRecipientItem from "./SelectedRecipientItem"
 
-const SelectedRecipientList = () => {
+type SelectedRecipientListProps = {
+  ShowDeleteAllButton: boolean
+}
+
+const SelectedRecipientList = ({ ShowDeleteAllButton }: SelectedRecipientListProps) => {
   const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
   const RemoveAllSelectedRecipients = useRecipientsStore((state) => state.RemoveAllSelectedToasters)
   return (
     <>
       <Animated.View layout={LinearTransition.duration(300)}>
-        <View className="min-h-[105px] relative rounded-lg bg-white border-2 border-black w-full mt-2">
+        <View className="min-h-[115px] relative rounded-lg bg-white border-2 border-black w-full mt-2">
           {selectedRecipients.length > 0 ? (
             <>
-              <Pressable
-                onPress={RemoveAllSelectedRecipients}
-                className="bg-danger absolute w-[30px] flex justify-center items-center h-[30px] rounded-xl border-black border-2 right-[-10px] top-[-10px] z-30"
-              >
-                <Ionicons name="trash-outline" size={18}></Ionicons>
-              </Pressable>
-
               <LegendList
                 data={selectedRecipients}
                 renderItem={({ item }) => <SelectedRecipientItem toaster={item} />}
@@ -47,6 +44,14 @@ const SelectedRecipientList = () => {
           )}
         </View>
       </Animated.View>
+      {selectedRecipients.length > 0 && ShowDeleteAllButton && (
+        <Pressable
+          onPress={RemoveAllSelectedRecipients}
+          className="bg-toaster-orange absolute w-[45px] h-[20px] justify-center items-center  rounded-md border-black border-2 right-[-8px] top-[-2px]"
+        >
+          <Ionicons name="trash-outline" size={13}></Ionicons>
+        </Pressable>
+      )}
     </>
   )
 }

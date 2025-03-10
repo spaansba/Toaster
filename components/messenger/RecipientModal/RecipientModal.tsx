@@ -6,12 +6,9 @@ import RecipientSectionList from "./RecipientList/RecipientSectionList"
 import RecipientModalHeaders from "./RecipientModalHeaders"
 import SelectedRecipientList from "./SelectedList/SelectedRecipientList"
 
-type RecipientBottomSheetProps = {
-  isModalVisible: boolean
-  setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
+const RecipientModal = () => {
+  const isModalVisible = useRecipientsStore((state) => state.RecipientSelectorModalVisibility)
+  const HideModal = useRecipientsStore((state) => state.HideRecipientSelectorModal)
   const [searchQuery, setSearchQuery] = useState("")
   const allRecipients = useRecipientsStore((state) => state.AllRecipients)
   const isFiltered = searchQuery.length > 0
@@ -37,17 +34,17 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
       animationType="slide"
       presentationStyle="pageSheet"
       visible={isModalVisible}
-      onRequestClose={() => setIsModalVisible((prev) => !prev)}
+      onRequestClose={() => HideModal()}
     >
       <View className="h-full p-4 bg-primary-200">
         <RecipientModalHeaders
-          onCancelPress={() => setIsModalVisible(false)}
-          onFinishPress={() => setIsModalVisible(false)}
+          onCancelPress={() => HideModal()}
+          onFinishPress={() => HideModal()}
         />
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
         <View className="mb-4">
-          <SelectedRecipientList />
+          <SelectedRecipientList ShowDeleteAllButton={true} />
         </View>
 
         <RecipientSectionList

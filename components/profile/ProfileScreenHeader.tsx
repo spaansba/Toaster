@@ -8,7 +8,7 @@ type ProfileScreenHeaderProps = {
 
 const ProfileScreenHeader = ({ title }: ProfileScreenHeaderProps) => {
   return (
-    <BaseScreenHeader title={title} onPress={() => {}}>
+    <BaseScreenHeader title={title} onButtonPress={() => {}}>
       <FontAwesome name="cog" color="black" size={26} />
     </BaseScreenHeader>
   )
