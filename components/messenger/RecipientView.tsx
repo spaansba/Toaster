@@ -1,18 +1,24 @@
-import { View, Text, Button } from "react-native"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
 import React, { useState } from "react"
-import RecipientModal from "./RecipientModal/RecipientModal"
+import { Button, View } from "react-native"
 import { ToastText } from "../general/ToastText"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import RecipientModal from "./RecipientModal/RecipientModal"
 import SelectedRecipientList from "./RecipientModal/SelectedList/SelectedRecipientList"
 
 const RecipientView = () => {
   const handlePresentModal = () => setModalVisible(true)
   const [modalVisible, setModalVisible] = useState(false)
-  const { selectedToasters } = useMessagingToasters()
+  const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
+
+  const handlePressSelectedRecipients = () => {
+    if (!selectedRecipients.length) {
+      setModalVisible(true)
+    }
+  }
   return (
     <View>
       <ToastText className="font-courier-bold text-xl">
-        Recipients ({selectedToasters.length})
+        Recipients ({selectedRecipients.length})
       </ToastText>
       <SelectedRecipientList></SelectedRecipientList>
       <Button title="open" onPress={handlePresentModal}></Button>

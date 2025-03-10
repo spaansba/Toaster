@@ -1,5 +1,6 @@
 import { ToastText } from "@/components/general/ToastText"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
+
 import { Ionicons } from "@expo/vector-icons"
 import { LegendList } from "@legendapp/list"
 
@@ -9,23 +10,23 @@ import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
 import SelectedRecipientItem from "./SelectedRecipientItem"
 
 const SelectedRecipientList = () => {
-  const { selectedToasters, removeAllSelectedToasters } = useMessagingToasters()
-
+  const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
+  const RemoveAllSelectedRecipients = useRecipientsStore((state) => state.RemoveAllSelectedToasters)
   return (
     <>
       <Animated.View layout={LinearTransition.duration(300)}>
         <View className="min-h-[105px] relative rounded-lg bg-toaster-yellow border-2 border-black w-full mt-2">
-          {selectedToasters.length > 0 ? (
+          {selectedRecipients.length > 0 ? (
             <>
               <Pressable
-                onPress={removeAllSelectedToasters}
+                onPress={RemoveAllSelectedRecipients}
                 className="bg-danger absolute w-[30px] flex justify-center items-center h-[30px] rounded-xl border-black border-2 right-[-10px] top-[-10px] z-30"
               >
                 <Ionicons name="trash-outline" size={18}></Ionicons>
               </Pressable>
 
               <LegendList
-                data={selectedToasters}
+                data={selectedRecipients}
                 renderItem={({ item }) => <SelectedRecipientItem toaster={item} />}
                 keyExtractor={(item) => item.toasterId}
                 horizontal={true}

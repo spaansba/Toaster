@@ -1,14 +1,10 @@
-import CrossButton from "@/components/general/CrossButton"
-import { ToastText } from "@/components/general/ToastText"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
-
-import { Ionicons } from "@expo/vector-icons"
-import { useState } from "react"
-import { Modal, TextInput, TouchableOpacity, View } from "react-native"
-import RecipientSectionList from "./RecipientList/RecipientSectionList"
-import SelectedRecipientList from "./SelectedList/SelectedRecipientList"
 import SearchBar from "@/components/general/SearchBar"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
+import { useState } from "react"
+import { Modal, View } from "react-native"
+import RecipientSectionList from "./RecipientList/RecipientSectionList"
 import RecipientModalHeaders from "./RecipientModalHeaders"
+import SelectedRecipientList from "./SelectedList/SelectedRecipientList"
 
 type RecipientBottomSheetProps = {
   isModalVisible: boolean
@@ -17,11 +13,11 @@ type RecipientBottomSheetProps = {
 
 const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSheetProps) => {
   const [searchQuery, setSearchQuery] = useState("")
-  const { availableToasters } = useMessagingToasters()
+  const allRecipients = useRecipientsStore((state) => state.AllRecipients)
   const isFiltered = searchQuery.length > 0
 
   const getFilteredList = () => {
-    return availableToasters.filter((toaster) => {
+    return allRecipients.filter((toaster) => {
       const lowerCaseSearchQuery = searchQuery.toLowerCase()
 
       // Check if toaster name includes search query
@@ -55,7 +51,7 @@ const RecipientModal = ({ isModalVisible, setIsModalVisible }: RecipientBottomSh
         </View>
 
         <RecipientSectionList
-          filteredToasterList={!isFiltered ? availableToasters : getFilteredList()}
+          filteredToasterList={!isFiltered ? allRecipients : getFilteredList()}
           isFiltered={isFiltered}
         />
       </View>

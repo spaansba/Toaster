@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity } from "react-native"
-import React from "react"
 import { ToastText } from "@/components/general/ToastText"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
+import React from "react"
+import { TouchableOpacity, View } from "react-native"
 
 type RecipientModalHeadersProps = {
   onCancelPress: () => void
@@ -9,7 +9,8 @@ type RecipientModalHeadersProps = {
 }
 
 const RecipientModalHeaders = ({ onCancelPress, onFinishPress }: RecipientModalHeadersProps) => {
-  const { selectedToasters } = useMessagingToasters()
+  const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
+
   return (
     <View className="flex-row justify-between items-center mb-6">
       <TouchableOpacity onPress={onCancelPress}>
@@ -18,7 +19,7 @@ const RecipientModalHeaders = ({ onCancelPress, onFinishPress }: RecipientModalH
 
       <View className="flex-col items-center">
         <ToastText>ADD RECIPIENTS</ToastText>
-        <ToastText>{`${selectedToasters.length}/63`}</ToastText>
+        <ToastText>{`${selectedRecipients.length}/63`}</ToastText>
       </View>
 
       <TouchableOpacity onPress={onFinishPress}>

@@ -1,9 +1,10 @@
 import { ToastText } from "@/components/general/ToastText"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
 import type { BefriendedToaster, ToasterSectionListData } from "@/types/types"
 import React from "react"
 import { SectionList, View } from "react-native"
 import ToasterCard from "./ToasterCard"
+import { MeasureFunctionTime } from "@/helpers/MeasureFunctionTime"
 
 type RecipientSectionListProps = {
   filteredToasterList: BefriendedToaster[]
@@ -11,10 +12,11 @@ type RecipientSectionListProps = {
 }
 
 const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSectionListProps) => {
-  const { selectedToasters, toggleToasterSelection } = useMessagingToasters()
+  const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
+  const ToggleToasterSelection = useRecipientsStore((state) => state.ToggleSelectedRecipient)
 
   //Create set for faster lookups
-  const selectedToasterIds = new Set(selectedToasters.map((toaster) => toaster.toasterId))
+  const selectedToasterIds = new Set(selectedRecipients.map((toaster) => toaster.toasterId))
 
   const createFilteredSectionList = (): ToasterSectionListData[] => {
     if (!filteredToasterList.length) {
@@ -77,7 +79,7 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
         isFirst={isFirst}
         isLast={isLast}
         isSelected={isSelected}
-        onPress={() => toggleToasterSelection(item)}
+        onPress={() => MeasureFunctionTime(() => ToggleToasterSelection(item))}
       />
     )
   }

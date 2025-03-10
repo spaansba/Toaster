@@ -1,12 +1,13 @@
-import { View, Text } from "react-native"
-import React from "react"
-import Animated, { CurvedTransition, ZoomIn, ZoomOut } from "react-native-reanimated"
 import CrossButton from "@/components/general/CrossButton"
-import { Image } from "expo-image"
-import images from "@/constants/images"
-import { useMessagingToasters } from "@/providers/SelectedRecipientProvider"
-import type { BefriendedToaster } from "@/types/types"
 import { ToastText } from "@/components/general/ToastText"
+import images from "@/constants/images"
+import { MeasureFunctionTime } from "@/helpers/MeasureFunctionTime"
+import { useRecipientsStore } from "@/providers/RecipientsStore"
+import type { BefriendedToaster } from "@/types/types"
+import { Image } from "expo-image"
+import React from "react"
+import { View } from "react-native"
+import Animated, { CurvedTransition, ZoomIn, ZoomOut } from "react-native-reanimated"
 
 type SelectedRecipientItemProps = {
   toaster: BefriendedToaster
@@ -21,7 +22,8 @@ const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
       return name
     }
   }
-  const { toggleToasterSelection } = useMessagingToasters()
+  const ToggleToasterSelection = useRecipientsStore((state) => state.ToggleSelectedRecipient)
+
   return (
     <Animated.View
       entering={ZoomIn.duration(100)}
@@ -34,7 +36,9 @@ const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
           <CrossButton
             size={20}
             borderColor="#FFD787"
-            onPress={() => toggleToasterSelection(toaster)}
+            onPress={() => {
+              MeasureFunctionTime(() => ToggleToasterSelection(toaster))
+            }}
           />
         </View>
 

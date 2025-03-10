@@ -1,75 +1,6 @@
 import type { BefriendedToaster } from "@/types/types"
-import React, { createContext, ReactNode, useContext, useState } from "react"
 
-// Define the context type
-type ToasterContextType = {
-  availableToasters: BefriendedToaster[]
-  selectedToasters: BefriendedToaster[]
-  toggleToasterSelection: (toaster: BefriendedToaster) => void
-  setAvailableToasters: React.Dispatch<React.SetStateAction<BefriendedToaster[]>>
-  removeAllSelectedToasters: () => void
-}
-
-// Create the context
-const MessagingToasterContext = createContext<ToasterContextType | undefined>(undefined)
-
-// Create a provider component
-type MessagingToasterProviderProps = {
-  children: ReactNode
-}
-
-export const MessagingToasterProvider: React.FC<MessagingToasterProviderProps> = ({ children }) => {
-  const [availableToasters, setAvailableToasters] = useState<BefriendedToaster[]>(
-    [...DummyDataFullList].sort(
-      (a, b) => new Date(b.lastSendMessage).getTime() - new Date(a.lastSendMessage).getTime()
-    )
-  )
-  const [selectedToasters, setSelectedToasters] = useState<BefriendedToaster[]>(
-    [...DummySelectedList].sort(
-      (a, b) => new Date(b.lastSendMessage).getTime() - new Date(a.lastSendMessage).getTime()
-    )
-  )
-
-  const removeAllSelectedToasters = () => {
-    setSelectedToasters([])
-  }
-  const toggleToasterSelection = (toaster: BefriendedToaster) => {
-    setSelectedToasters((prev) => {
-      const isAlreadySelected = prev.some((item) => item.toasterId === toaster.toasterId)
-
-      if (isAlreadySelected) {
-        return prev.filter((item) => item.toasterId !== toaster.toasterId)
-      } else {
-        return [toaster, ...prev] // Add to beginning instead of end so that the user comes at the beginning of the selected list
-      }
-    })
-  }
-
-  const contextValue = {
-    availableToasters,
-    selectedToasters,
-    toggleToasterSelection,
-    setAvailableToasters,
-    removeAllSelectedToasters,
-  }
-
-  return (
-    <MessagingToasterContext.Provider value={contextValue}>
-      {children}
-    </MessagingToasterContext.Provider>
-  )
-}
-
-// Create a custom hook to use the context
-const useMessagingToasters = (): ToasterContextType => {
-  const context = useContext(MessagingToasterContext)
-  if (context === undefined) {
-    throw new Error("useMessagingToasters must be used within a MessagingToasterProvider")
-  }
-  return context
-}
-
-const DummySelectedList: BefriendedToaster[] = [
+export const DummySelectedList: BefriendedToaster[] = [
   {
     toasterId: "t0101",
     toasterName: "ToastPro Elite",
@@ -117,7 +48,7 @@ const DummySelectedList: BefriendedToaster[] = [
   },
 ]
 
-const DummyDataFullList: BefriendedToaster[] = [
+export const DummyDataFullList: BefriendedToaster[] = [
   {
     toasterId: "t0101",
     toasterName: "ToastPro Elite",
