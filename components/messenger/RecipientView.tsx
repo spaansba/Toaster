@@ -1,7 +1,7 @@
 import React from "react"
 import { View } from "react-native"
 import RecipientModal from "./RecipientModal/RecipientModal"
-import SelectedRecipientList from "./RecipientModal/SelectedList/SelectedRecipientList"
+import SelectedRecipientList from "./RecipientModal/SelectedList/ModalSelectedRecipientList"
 
 const RecipientView = () => {
   return (

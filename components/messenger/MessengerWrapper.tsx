@@ -2,56 +2,54 @@ import images from "@/constants/images"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { Image } from "expo-image"
 import React, { useRef } from "react"
-import { KeyboardAwareScrollView, KeyboardStickyView } from "react-native-keyboard-controller"
+import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView } from "react-native"
 import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
-import RecipientView from "./RecipientView"
-import { View } from "react-native"
+import { ToastText } from "../general/ToastText"
+
+// for webview props https://github.com/react-native-webview/react-native-webview/blob/34956ff0868ff936c1d6ab78d0c1bd00302a98ca/docs/Reference.md#hidekeyboardaccessoryview
 
 const MessengerWrapper = () => {
-  const richEditor = useRef<RichEditor>(null)
   const tabBarHeight = useBottomTabBarHeight()
-  const dismissKeyboard = () => {
-    richEditor.current?.blurContentEditor()
-  }
+  // const dismissKeyboard = () => {
+  //   richText.current?.blurContentEditor()
+  // }
 
   //Preload images
   Image.prefetch(images.hoofd, "memory-disk")
 
   return (
     <>
-      <KeyboardAwareScrollView
-        bottomOffset={35}
-        style={{ height: "100%" }}
-        keyboardDismissMode="none"
-        onScroll={(event) => {
-          // When you scroll up with momentum or more than 40 pixels hide the keyboard
-          if (event.nativeEvent.contentOffset.y < -40) {
-            dismissKeyboard()
-          }
-        }}
-      >
-        {/* <View className="px-standardPagePadding"> */}
-        <RecipientView></RecipientView>
-
-        {/* </View> */}
-      </KeyboardAwareScrollView>
-      <RichEditor
-        ref={richEditor}
-        initialHeight={200}
+      {/* <KeyboardAvoidingView
+        behavior="padding"
         style={{
-          minHeight: 200,
+          flex: 1,
+          backgroundColor: "purple",
+          borderColor: "black",
+          borderWidth: 1,
         }}
-        useContainer={true}
-        scrollEnabled={false}
-        onChange={(descriptionText) => {
-          console.log("descriptionText:", descriptionText)
-        }}
+      > */}
+      {/* <WebView
+          source={{ uri: "https://reactnative.dev/" }}
+          suppressMenuItems={[
+            "cut",
+            "copy",
+            "paste",
+            "selectAll",
+            "lookup",
+            "select",
+            "bold",
+            "italic",
+            "underline",
+            "share",
+            "translate",
+            "replace",
+          ]}
+        /> */}
+      {/* TipTap editor */}
 
-        // onCursorPosition={(cursorPosition) => {
-        //   console.log("cursorPosition:", cursorPosition)
-        // }}
-      />
-      <KeyboardStickyView enabled={true} offset={{ opened: tabBarHeight, closed: 100 }}>
+      {/* </KeyboardAvoidingView> */}
+
+      {/* <KeyboardStickyView enabled={true} offset={{ opened: tabBarHeight, closed: 100 }}>
         <RichToolbar
           editor={richEditor}
           disabledIconTint="darkgrey"
@@ -59,16 +57,7 @@ const MessengerWrapper = () => {
           className="bg-white"
           actions={[actions.setBold, actions.setItalic, actions.setUnderline, actions.heading1]}
         />
-      </KeyboardStickyView>
-
-      {/* <KeyboardToolbar
-        offset={{ opened: tabBarHeight }}
-        showArrows={false}
-        onDoneCallback={() => {
-          dismissKeyboard()
-        }}
-        content={<View className="size-full bg-red-300"></View>}
-      /> */}
+      </KeyboardStickyView> */}
     </>
   )
 }

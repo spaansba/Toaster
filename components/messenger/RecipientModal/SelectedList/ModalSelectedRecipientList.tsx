@@ -9,11 +9,11 @@ import { Pressable, View } from "react-native"
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
 import SelectedRecipientItem from "./SelectedRecipientItem"
 
-type SelectedRecipientListProps = {
+type ModalSelectedRecipientListProps = {
   ShowDeleteAllButton: boolean
 }
 
-const SelectedRecipientList = ({ ShowDeleteAllButton }: SelectedRecipientListProps) => {
+const ModalSelectedRecipientList = ({ ShowDeleteAllButton }: ModalSelectedRecipientListProps) => {
   const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
   const RemoveAllSelectedRecipients = useRecipientsStore((state) => state.RemoveAllSelectedToasters)
   return (
@@ -56,4 +56,4 @@ const SelectedRecipientList = ({ ShowDeleteAllButton }: SelectedRecipientListPro
   )
 }
 
-export default SelectedRecipientList
+export default ModalSelectedRecipientList

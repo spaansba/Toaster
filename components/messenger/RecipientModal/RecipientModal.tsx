@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Modal, View } from "react-native"
 import RecipientSectionList from "./RecipientList/RecipientSectionList"
 import RecipientModalHeaders from "./RecipientModalHeaders"
-import SelectedRecipientList from "./SelectedList/SelectedRecipientList"
+import SelectedRecipientList from "./SelectedList/ModalSelectedRecipientList"
 
 const RecipientModal = () => {
   const isModalVisible = useRecipientsStore((state) => state.RecipientSelectorModalVisibility)

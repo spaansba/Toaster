@@ -1,0 +1,20 @@
+.Editor {
+  background-color: #8a8a8a;
+  width: 100%;
+}
+
+.Wrapper {
+  background-color: #b82d2d;
+  width: 100%;
+}
+
+.ProseMirror {
+  background-color: aqua;
+  outline: none;
+  scroll-padding-bottom: 100px;
+  width: 100%;
+  padding-bottom: 100%;
+}
+
+.Toolbar {
+}

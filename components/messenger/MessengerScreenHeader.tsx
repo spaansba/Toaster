@@ -8,16 +8,6 @@ const MessengerScreenHeader = () => {
   const ShowModal = useRecipientsStore((state) => state.ShowRecipientSelectorModal)
   return (
     <BaseScreenHeader title={`Recipients (${selectedRecipients.length})`} onButtonPress={() => {}}>
-      {/* <View
-        className="absolute bg-black"
-        style={{
-          left: 1.2,
-          top: 1.2,
-          borderRadius: 999999999,
-          width: 35,
-          height: 35,
-        }}
-      /> */}
       <ToasterButton
         className="h-[25px] w-[50px]"
         content={{

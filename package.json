@@ -15,6 +15,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@10play/tentap-editor": "^0.6.2",
     "@dev-plugins/react-query": "^0.1.0",
     "@expo/vector-icons": "^14.0.2",
     "@gorhom/bottom-sheet": "^5.1.1",
@@ -27,6 +28,9 @@
     "@supabase/supabase-js": "^2.48.1",
     "@tanstack/react-query": "^5.66.7",
     "@tiptap/core": "^2.11.5",
+    "@tiptap/extension-highlight": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
     "babel-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "eslint-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
     "expo": "^52.0.35",
@@ -52,6 +56,7 @@
     "react-dom": "18.3.1",
     "react-error-boundary": "^5.0.0",
     "react-native": "0.76.7",
+    "react-native-cn-quill": "^0.7.20",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-keyboard-controller": "^1.16.0",
     "react-native-pell-rich-editor": "^1.9.0",
