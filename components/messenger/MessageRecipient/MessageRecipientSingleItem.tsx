@@ -8,6 +8,7 @@ import type { BefriendedToaster } from "@/types/types"
 import { Ionicons } from "@expo/vector-icons"
 import React from "react"
 import { Pressable, View } from "react-native"
+import Animated from "react-native-reanimated"
 
 type MessageRecipientSingleItemProps = {
   toaster: BefriendedToaster
@@ -31,7 +32,7 @@ const MessageRecipientSingleItem = ({ toaster }: MessageRecipientSingleItemProps
       </View>
 
       {/* Right section with cancel button */}
-      <View className="mr-[4px] mt-[2px]">
+      <View className="mr-[6px] mt-[2px]">
         <ConnectedUsersPictures
           connectedUsers={toaster.connectedUsers}
           backgroundColor={"#fff3e1"}

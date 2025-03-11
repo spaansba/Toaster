@@ -55,6 +55,7 @@ function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen name="userSettings" options={{}} />
     </Tabs>
   )
 }

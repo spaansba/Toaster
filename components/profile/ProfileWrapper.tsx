@@ -162,8 +162,6 @@ const ProfileWrapper = () => {
 
   return (
     <SafeAreaView className="bg-primary-200 h-full">
-      {/* <ProfileHeader isExpanded={profileShouldExpand} /> */}
-
       <LegendList
         style={{ backgroundColor: "#fff3e1" }}
         data={toasters}

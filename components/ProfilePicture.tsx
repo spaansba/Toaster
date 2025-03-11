@@ -21,7 +21,7 @@ const ProfilePicture = ({
         borderWidth: borderWidth,
         width: size,
         height: size,
-        borderRadius: 6, // Equivalent to rounded-md
+        borderRadius: 6,
         overflow: "hidden",
       }}
     >

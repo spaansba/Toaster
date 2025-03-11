@@ -6,7 +6,15 @@ import ProfilePicture from "@/components/ProfilePicture"
 import { ToastText } from "@/components/general/ToastText"
 import { Ionicons } from "@expo/vector-icons"
 import { TruncateString } from "@/helpers/TruncateString"
-import Animated, { CurvedTransition, ZoomIn, ZoomOut } from "react-native-reanimated"
+import Animated, {
+  CurvedTransition,
+  LayoutAnimationConfig,
+  ZoomIn,
+  ZoomOut,
+} from "react-native-reanimated"
+import { getToasterColors } from "@/helpers/GetToasterColors"
+import { Image } from "expo-image"
+import images from "@/constants/images"
 
 type MessageRecipientItemProps = {
   toaster: BefriendedToaster
@@ -14,25 +22,40 @@ type MessageRecipientItemProps = {
 
 const MessageRecipientListItem = ({ toaster }: MessageRecipientItemProps) => {
   const toggleRecipient = useRecipientsStore((state) => state.ToggleSelectedRecipient)
-
+  const backgroundColor = getToasterColors(toaster.style)
   return (
-    <Animated.View
-      entering={ZoomIn.duration(100)}
-      layout={CurvedTransition.duration(80)}
-      exiting={ZoomOut.duration(100)}
-      key={toaster.toasterId}
-      className="mx-[6px] h-full"
-    >
-      <Pressable className="flex-row items-center" onPress={() => toggleRecipient(toaster)}>
-        <ProfilePicture />
-        <ToastText className="text-sm tracking-tighter ml-2">
-          {TruncateString(toaster.toasterName)}
-        </ToastText>
-        <View className="ml-2 rounded-full p-0.5">
-          <Ionicons name="close" size={14} color="#1c1917" />
-        </View>
-      </Pressable>
-    </Animated.View>
+    //Makes going from 2 to 1 animation better
+    <LayoutAnimationConfig skipExiting>
+      <Animated.View
+        entering={ZoomIn.duration(100)}
+        layout={CurvedTransition.duration(80)}
+        exiting={ZoomOut.duration(100)}
+        key={toaster.toasterId}
+        className="mx-[6px] h-full  pr-4"
+      >
+        <Pressable
+          className="flex-row items-center border-[1px] border-black rounded-lg"
+          style={{ backgroundColor: backgroundColor.color }}
+          onPress={() => toggleRecipient(toaster)}
+        >
+          <View className="size-[35px] overflow-hidden rounded-md">
+            <Image
+              source={images.hoofd}
+              style={{ width: "100%", height: "100%", overflow: "hidden" }}
+              contentFit="cover"
+              cachePolicy="memory-disk"
+              transition={0}
+            />
+          </View>
+          <ToastText className="text-sm tracking-tighter ml-2">
+            {TruncateString(toaster.toasterName)}
+          </ToastText>
+          <View className="mx-[6px] rounded-full ">
+            <Ionicons name="close" size={14} color="#1c1917" />
+          </View>
+        </Pressable>
+      </Animated.View>
+    </LayoutAnimationConfig>
   )
 }
 
