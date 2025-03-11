@@ -42,7 +42,7 @@ export default function SendMessage() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View className=" bg-primary-200 ">
+      <View className="border-b-[2px] border-black bg-primary-200 ">
         <MessageRecipientList />
       </View>
       <RichText

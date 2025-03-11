@@ -124,7 +124,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "BagelMaster Toaster",
     style: "yellow",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T11:05:00Z",
+    lastSendMessage: "2025-02-04T11:05:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -144,7 +144,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "AlphaBake Supreme",
     style: "orange",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-04-07T10:37:00Z",
+    lastSendMessage: "2024-11-07T10:37:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -179,7 +179,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "ArtisanCrisp",
     style: "purple",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T09:18:00Z",
+    lastSendMessage: "2024-12-07T09:18:00Z",
     favorite: false,
     connectedUsers: [
       {
