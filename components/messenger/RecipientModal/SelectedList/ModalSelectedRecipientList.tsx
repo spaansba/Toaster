@@ -7,7 +7,7 @@ import { LegendList } from "@legendapp/list"
 import React from "react"
 import { Pressable, View } from "react-native"
 import Animated, { FadeInDown, LinearTransition } from "react-native-reanimated"
-import SelectedRecipientItem from "./SelectedRecipientItem"
+import ModalSelectedRecipientItem from "./ModalSelectedRecipientItem"
 
 type ModalSelectedRecipientListProps = {
   ShowDeleteAllButton: boolean
@@ -24,7 +24,7 @@ const ModalSelectedRecipientList = ({ ShowDeleteAllButton }: ModalSelectedRecipi
             <>
               <LegendList
                 data={selectedRecipients}
-                renderItem={({ item }) => <SelectedRecipientItem toaster={item} />}
+                renderItem={({ item }) => <ModalSelectedRecipientItem toaster={item} />}
                 keyExtractor={(item) => item.toasterId}
                 horizontal={true}
                 estimatedItemSize={95}

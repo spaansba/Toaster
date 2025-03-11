@@ -1,15 +1,13 @@
-import { ToastText } from "@/components/general/ToastText"
+import MessageRecipientList from "@/components/messenger/MessageRecipient/MessageRecipientList"
 import MessengerScreenHeader from "@/components/messenger/MessengerScreenHeader"
-import { useNavigation } from "expo-router"
-import React, { useEffect, useRef } from "react"
-import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, View } from "react-native"
-import { actions, RichEditor, RichToolbar } from "react-native-pell-rich-editor"
-import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated"
+import RecipientModal from "@/components/messenger/RecipientModal/RecipientModal"
 import { RichText, Toolbar, useEditorBridge } from "@10play/tentap-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
-import RecipientModal from "@/components/messenger/RecipientModal/RecipientModal"
-import SelectedRecipientList from "@/components/messenger/SelectedRecipientList"
+import { useNavigation } from "expo-router"
+import React, { useEffect } from "react"
+import { SafeAreaView, View } from "react-native"
 import { KeyboardStickyView } from "react-native-keyboard-controller"
+import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated"
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
@@ -44,8 +42,8 @@ export default function SendMessage() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View className="px-5 py-3">
-        <SelectedRecipientList />
+      <View className=" bg-primary-200 ">
+        <MessageRecipientList />
       </View>
       <RichText
         editor={editor}

@@ -1,12 +1,12 @@
 import React from "react"
 import { View } from "react-native"
 import RecipientModal from "./RecipientModal/RecipientModal"
-import SelectedRecipientList from "./RecipientModal/SelectedList/ModalSelectedRecipientList"
+import ModalSelectedRecipientList from "./RecipientModal/SelectedList/ModalSelectedRecipientList"
 
 const RecipientView = () => {
   return (
     <View>
-      <SelectedRecipientList ShowDeleteAllButton={false}></SelectedRecipientList>
+      <ModalSelectedRecipientList ShowDeleteAllButton={false}></ModalSelectedRecipientList>
       <View className="mt-5">
         <RecipientModal />
       </View>

@@ -1,6 +1,7 @@
 import CrossButton from "@/components/general/CrossButton"
 import { ToastText } from "@/components/general/ToastText"
 import ProfilePicture from "@/components/ProfilePicture"
+import { TruncateString } from "@/helpers/TruncateString"
 import { useRecipientsStore } from "@/providers/RecipientsStore"
 import type { BefriendedToaster } from "@/types/types"
 import React from "react"
@@ -12,14 +13,6 @@ type SelectedRecipientItemProps = {
 }
 
 const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
-  const processName = (name: string) => {
-    const maxCharacters = 9
-    if (name.length > maxCharacters) {
-      return `${name.substring(0, maxCharacters).trimEnd()}...`
-    } else {
-      return name
-    }
-  }
   const ToggleToasterSelection = useRecipientsStore((state) => state.ToggleSelectedRecipient)
 
   return (
@@ -41,7 +34,9 @@ const SelectedRecipientItem = ({ toaster }: SelectedRecipientItemProps) => {
         </View>
         <ProfilePicture size={60} borderWidth={2} />
       </View>
-      <ToastText className="text-sm tracking-tighter">{processName(toaster.toasterName)}</ToastText>
+      <ToastText className="text-sm tracking-tighter">
+        {TruncateString(toaster.toasterName)}
+      </ToastText>
     </Animated.View>
   )
 }

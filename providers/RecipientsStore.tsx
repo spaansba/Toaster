@@ -1,6 +1,6 @@
 import type { BefriendedToaster } from "@/types/types"
 import { create } from "zustand"
-import { DummyDataFullList } from "./RecipientStoreDummyData"
+import { DummyDataFullList, DummySelectedList } from "./RecipientStoreDummyData"
 
 type RecipientsState = {
   AllRecipients: BefriendedToaster[]
@@ -15,7 +15,7 @@ type RecipientsState = {
 export const useRecipientsStore = create<RecipientsState>((set) => ({
   name: "Recipient-Storage",
   AllRecipients: DummyDataFullList,
-  SelectedRecipients: [],
+  SelectedRecipients: DummySelectedList,
   RecipientSelectorModalVisibility: false,
   ShowRecipientSelectorModal: () => {
     set({ RecipientSelectorModalVisibility: true })

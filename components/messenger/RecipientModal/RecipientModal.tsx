@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Modal, View } from "react-native"
 import RecipientSectionList from "./RecipientList/RecipientSectionList"
 import RecipientModalHeaders from "./RecipientModalHeaders"
-import SelectedRecipientList from "./SelectedList/ModalSelectedRecipientList"
+import ModalSelectedRecipientList from "./SelectedList/ModalSelectedRecipientList"
 
 const RecipientModal = () => {
   const isModalVisible = useRecipientsStore((state) => state.RecipientSelectorModalVisibility)
@@ -44,7 +44,7 @@ const RecipientModal = () => {
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
         <View className="mb-4">
-          <SelectedRecipientList ShowDeleteAllButton={true} />
+          <ModalSelectedRecipientList ShowDeleteAllButton={true} />
         </View>
 
         <RecipientSectionList
