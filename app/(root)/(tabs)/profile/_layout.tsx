@@ -9,7 +9,7 @@ const ProfileLayout = () => {
         name="index"
         options={{
           header: () => <ProfileScreenHeader title={"Bart Spaans"} />,
-          headerTitle: "Profileb nv ",
+          headerTitle: "Profile",
         }}
       />
       <Stack.Screen
