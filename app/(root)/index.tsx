@@ -9,7 +9,7 @@ export default function App() {
   useEffect(() => {
     if (!isLoading) {
       if (session) {
-        router.replace("/sendMessage")
+        router.replace("/toaster")
       } else {
         router.replace("/sign-in")
       }

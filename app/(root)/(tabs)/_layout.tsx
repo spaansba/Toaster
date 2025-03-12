@@ -1,5 +1,6 @@
 import CircleTabBarButton from "@/components/CircleTabBarButton"
 import ConnectedToastersScreenHeader from "@/components/connected_toasters/ConnectedToastersScreenHeader"
+import MessengerScreenHeader from "@/components/messenger/MessengerScreenHeader"
 import { useAuth } from "@/providers/AuthProvider"
 import { FontAwesome } from "@expo/vector-icons"
 import { router, Tabs } from "expo-router"
@@ -36,6 +37,7 @@ function TabsLayout() {
       <Tabs.Screen
         name="toaster"
         options={{
+          headerShown: true,
           header: () => <ConnectedToastersScreenHeader />,
           tabBarIcon: ({ focused, color }) => (
             <FontAwesome name="print" size={tabIconSize} color={focused ? color : "#6B7280"} />
@@ -45,6 +47,7 @@ function TabsLayout() {
       <Tabs.Screen
         name="sendMessage"
         options={{
+          header: () => <MessengerScreenHeader />,
           headerShown: true,
           tabBarButton: (props) => <CircleTabBarButton />,
         }}

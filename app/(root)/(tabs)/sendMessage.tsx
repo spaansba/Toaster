@@ -18,15 +18,7 @@ configureReanimatedLogger({
 
 export default function SendMessage() {
   const tabBarHeight = useBottomTabBarHeight()
-  const navigation = useNavigation()
   const [selectedToaster, setSelectedToaster] = React.useState<BefriendedToaster | null>(null)
-
-  // Move the setOptions call to a useEffect
-  useEffect(() => {
-    navigation.setOptions({
-      header: () => <MessengerScreenHeader />,
-    })
-  }, [navigation])
 
   const editor = useEditorBridge({
     autofocus: true,
