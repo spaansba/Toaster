@@ -1,22 +1,22 @@
 import ConnectedUsersPictures from "@/components/ConnectedUsersPictures"
 import { ToastText } from "@/components/general/ToastText"
-import ConnectedToaster from "@/components/profile/ConnectedToaster"
 import ProfilePicture from "@/components/ProfilePicture"
 import { getRelativeTime } from "@/helpers/GetRelativeTime"
-import { useRecipientsStore } from "@/providers/RecipientsStore"
 import type { BefriendedToaster } from "@/types/types"
-import { Ionicons } from "@expo/vector-icons"
 import React from "react"
 import { Pressable, View } from "react-native"
-import Animated from "react-native-reanimated"
 
 type MessageRecipientSingleItemProps = {
   toaster: BefriendedToaster
+  onToasterPress: (toaster: BefriendedToaster) => void
 }
 
-const MessageRecipientSingleItem = ({ toaster }: MessageRecipientSingleItemProps) => {
+const MessageRecipientSingleItem = ({
+  toaster,
+  onToasterPress,
+}: MessageRecipientSingleItemProps) => {
   return (
-    <View className="flex-row mx-[6px] h-full ">
+    <Pressable onPress={() => onToasterPress(toaster)} className="flex-row mx-[6px] h-full ">
       {/* Left section with profile picture and text */}
       <View className="flex-row mr-auto">
         <ProfilePicture />
@@ -38,7 +38,7 @@ const MessageRecipientSingleItem = ({ toaster }: MessageRecipientSingleItemProps
           backgroundColor={"#fff3e1"}
         />
       </View>
-    </View>
+    </Pressable>
   )
 }
 

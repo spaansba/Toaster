@@ -1,6 +1,8 @@
 import MessageRecipientList from "@/components/messenger/MessageRecipient/MessageRecipientList"
 import MessengerScreenHeader from "@/components/messenger/MessengerScreenHeader"
 import RecipientModal from "@/components/messenger/RecipientModal/RecipientModal"
+import ToasterInfoModal from "@/components/messenger/ToasterInfoModal/ToasterInfoModal"
+import type { BefriendedToaster } from "@/types/types"
 import { RichText, Toolbar, useEditorBridge } from "@10play/tentap-editor"
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useNavigation } from "expo-router"
@@ -17,6 +19,7 @@ configureReanimatedLogger({
 export default function SendMessage() {
   const tabBarHeight = useBottomTabBarHeight()
   const navigation = useNavigation()
+  const [selectedToaster, setSelectedToaster] = React.useState<BefriendedToaster | null>(null)
 
   // Move the setOptions call to a useEffect
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function SendMessage() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View className="border-b-[1px] border-black bg-primary-200 ">
-        <MessageRecipientList />
+        <MessageRecipientList onToasterPress={setSelectedToaster} />
       </View>
       <RichText
         editor={editor}
@@ -71,6 +74,14 @@ export default function SendMessage() {
         <Toolbar editor={editor} />
       </KeyboardStickyView> */}
       <RecipientModal />
+      {selectedToaster && (
+        <ToasterInfoModal
+          isVisible={!!selectedToaster}
+          onClose={() => setSelectedToaster(null)}
+          toaster={selectedToaster}
+          toastCount={42} // This should be fetched from your actual data
+        />
+      )}
     </SafeAreaView>
   )
 }

@@ -1,6 +1,7 @@
 import { Stack } from "expo-router"
 import React from "react"
 import ProfileScreenHeader from "@/components/profile/ProfileScreenHeader"
+import NestedScreenHeader from "@/components/screen_header/NestedScreenHeader"
 
 const ProfileLayout = () => {
   return (
@@ -15,8 +16,7 @@ const ProfileLayout = () => {
       <Stack.Screen
         name="userSettings"
         options={{
-          headerShown: true,
-          headerTitle: "Settings",
+          header: () => <NestedScreenHeader title="settings" />,
         }}
       />
     </Stack>

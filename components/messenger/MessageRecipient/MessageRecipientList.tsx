@@ -6,8 +6,13 @@ import { TouchableOpacity } from "react-native"
 import MessageRecipientListItem from "./MessageRecipientListItem"
 import Animated, { LinearTransition } from "react-native-reanimated"
 import MessageRecipientSingleItem from "./MessageRecipientSingleItem"
+import type { BefriendedToaster } from "@/types/types"
 
-const MessageRecipientList = () => {
+type MessageRecipientListProps = {
+  onToasterPress: (toaster: BefriendedToaster) => void
+}
+
+const MessageRecipientList = ({ onToasterPress }: MessageRecipientListProps) => {
   const selectedRecipients = useRecipientsStore((state) => state.SelectedRecipients)
   const ShowModal = useRecipientsStore((state) => state.ShowRecipientSelectorModal)
 
@@ -24,7 +29,12 @@ const MessageRecipientList = () => {
         )
 
       case 1:
-        return <MessageRecipientSingleItem toaster={selectedRecipients[0]} />
+        return (
+          <MessageRecipientSingleItem
+            toaster={selectedRecipients[0]}
+            onToasterPress={onToasterPress}
+          />
+        )
 
       default:
         // For cases where selectedRecipients.length > 1
