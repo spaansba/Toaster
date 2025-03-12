@@ -57,8 +57,8 @@ export default function SendMessage() {
       />
       <KeyboardToolbar
         content={<Toolbar editor={editor} />}
-        showArrows={false}
-        doneText=""
+        showArrows={true}
+        doneText="done"
         offset={{ opened: tabBarHeight }}
       />
       {/* <KeyboardStickyView
