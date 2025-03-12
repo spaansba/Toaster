@@ -24,3 +24,12 @@ export type ToasterSectionListData = {
 
 // Define the valid toaster style types
 export type ToasterStyle = "blue" | "green" | "pink" | "yellow" | "orange" | "purple"
+
+export type ConnectedToaster = BaseToaster & {
+  style: ToasterStyle
+  connectedUsers: BaseUser[]
+  lastUsed: string
+  totalToastsSent: number
+  isActive: boolean
+  deviceId?: string
+}
