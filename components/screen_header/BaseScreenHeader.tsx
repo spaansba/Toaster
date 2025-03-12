@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Pressable } from "react-native"
 import React, { ReactNode } from "react"
+import { ToastText } from "../general/ToastText"
 
 type BaseScreenHeaderProps = {
   title: string
@@ -16,8 +17,8 @@ const BaseScreenHeader = ({
 }: BaseScreenHeaderProps) => {
   return (
     <View className="h-[90px] pt-[45px] px-6 flex-row items-center z-10 justify-between bg-primary-200">
-      <Pressable onPress={() => {}}>
-        <Text className="text-xl font-bold">{title.toUpperCase()}</Text>
+      <Pressable onPress={onTitlePress}>
+        <ToastText className="text-xl font-courier-bold">{title.toUpperCase()}</ToastText>
       </Pressable>
 
       <TouchableOpacity

@@ -1,6 +1,6 @@
 import { useRecipientsStore } from "@/providers/RecipientsStore"
 import React from "react"
-import BaseScreenHeader from "../ScreenHeader/BaseScreenHeader"
+import BaseScreenHeader from "../screen_header/BaseScreenHeader"
 import ToasterButton from "../ToasterButton"
 
 const MessengerScreenHeader = () => {

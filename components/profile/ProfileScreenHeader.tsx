@@ -1,6 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons"
 import React from "react"
-import BaseScreenHeader from "../ScreenHeader/BaseScreenHeader"
+import BaseScreenHeader from "../screen_header/BaseScreenHeader"
 import { router } from "expo-router"
 
 type ProfileScreenHeaderProps = {
@@ -13,7 +13,7 @@ const ProfileScreenHeader = ({ title }: ProfileScreenHeaderProps) => {
       title={title}
       onButtonPress={() => {
         router.push({
-          pathname: "/userSettings/userSettings",
+          pathname: "/profile/userSettings",
         })
       }}
     >

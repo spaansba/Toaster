@@ -31,7 +31,7 @@ const MessageRecipientListItem = ({ toaster }: MessageRecipientItemProps) => {
         layout={CurvedTransition.duration(80)}
         exiting={ZoomOut.duration(100)}
         key={toaster.toasterId}
-        className="mx-[6px] h-full  pr-4"
+        className="mx-[6px] h-full "
       >
         <Pressable
           className="flex-row items-center border-[1px] border-black rounded-lg"

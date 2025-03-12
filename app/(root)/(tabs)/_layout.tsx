@@ -3,6 +3,7 @@ import { useAuth } from "@/providers/AuthProvider"
 import { FontAwesome } from "@expo/vector-icons"
 import { router, Tabs } from "expo-router"
 import React, { useEffect } from "react"
+
 function TabsLayout() {
   const { session } = useAuth()
 
@@ -45,17 +46,16 @@ function TabsLayout() {
           headerShown: true,
           tabBarButton: (props) => <CircleTabBarButton />,
         }}
-      ></Tabs.Screen>
+      />
       <Tabs.Screen
         name="profile"
         options={{
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ focused, color }) => (
             <FontAwesome name="user-o" size={tabIconSize} color={focused ? color : "#6B7280"} />
           ),
         }}
       />
-      <Tabs.Screen name="userSettings" options={{}} />
     </Tabs>
   )
 }

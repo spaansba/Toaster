@@ -17,9 +17,9 @@ const MessageRecipientList = () => {
         return (
           <TouchableOpacity
             onPress={ShowModal}
-            className="size-full justify-center items-center flex-row gap-2"
+            className="size-full justify-center items-center flex-row"
           >
-            <ToastText className="font-courier-bold">No Recipient Selected</ToastText>
+            <ToastText className="font-courier-bold">No Recipient(s) Selected</ToastText>
           </TouchableOpacity>
         )
 

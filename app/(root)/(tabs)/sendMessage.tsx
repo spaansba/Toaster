@@ -6,7 +6,7 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import { useNavigation } from "expo-router"
 import React, { useEffect } from "react"
 import { SafeAreaView, View } from "react-native"
-import { KeyboardStickyView } from "react-native-keyboard-controller"
+import { KeyboardStickyView, KeyboardToolbar } from "react-native-keyboard-controller"
 import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated"
 
 configureReanimatedLogger({
@@ -42,7 +42,7 @@ export default function SendMessage() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View className="border-b-[2px] border-black bg-primary-200 ">
+      <View className="border-b-[1px] border-black bg-primary-200 ">
         <MessageRecipientList />
       </View>
       <RichText
@@ -55,7 +55,13 @@ export default function SendMessage() {
           }
         }}
       />
-      <KeyboardStickyView
+      <KeyboardToolbar
+        content={<Toolbar editor={editor} />}
+        showArrows={false}
+        doneText=""
+        offset={{ opened: tabBarHeight }}
+      />
+      {/* <KeyboardStickyView
         style={{
           position: "absolute",
           width: "100%",
@@ -63,7 +69,7 @@ export default function SendMessage() {
         }}
       >
         <Toolbar editor={editor} />
-      </KeyboardStickyView>
+      </KeyboardStickyView> */}
       <RecipientModal />
     </SafeAreaView>
   )

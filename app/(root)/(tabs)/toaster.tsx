@@ -26,22 +26,6 @@ const Toaster = () => {
 
         <ToastText className="font-courier-bold mt-5">Connected printers</ToastText>
       </View>
-      <RichEditor
-        ref={richEditor}
-        initialHeight={200}
-        style={{
-          minHeight: 200,
-        }}
-        useContainer={false}
-        scrollEnabled={false}
-        onChange={(descriptionText) => {
-          console.log("descriptionText:", descriptionText)
-        }}
-
-        // onCursorPosition={(cursorPosition) => {
-        //   console.log("cursorPosition:", cursorPosition)
-        // }}
-      />
     </SafeAreaView>
   )
 }
