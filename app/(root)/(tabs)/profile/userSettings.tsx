@@ -1,13 +1,8 @@
-import { View, Text } from "react-native"
 import React from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 const UserSettings = () => {
-  return (
-    <SafeAreaView>
-      <Text>userSettings</Text>
-    </SafeAreaView>
-  )
+  return <SafeAreaView className="bg-primary-200 h-full"></SafeAreaView>
 }
 
 export default UserSettings
