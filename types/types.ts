@@ -13,7 +13,7 @@ export type BaseToaster = {
 export type BefriendedToaster = BaseToaster & {
   style: ToasterStyle
   connectedUsers: BaseUser[]
-  lastSendMessage: string
+  lastSendToast: string
   favorite: boolean
 }
 
@@ -26,10 +26,7 @@ export type ToasterSectionListData = {
 export type ToasterStyle = "blue" | "green" | "pink" | "yellow" | "orange" | "purple"
 
 export type ConnectedToaster = BaseToaster & {
-  style: ToasterStyle
   connectedUsers: BaseUser[]
-  lastUsed: string
-  totalToastsSent: number
+  totalToastsRecieved: number
   isActive: boolean
-  deviceId?: string
 }

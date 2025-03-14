@@ -1,15 +1,19 @@
-import { View, Text } from "react-native"
+import { useConnectedToasterStore } from "@/providers/ConnectedToasterStore"
 import React from "react"
 import BaseScreenHeader from "../screen_header/BaseScreenHeader"
-import ToasterButton from "../ToasterButton"
-
 const ConnectedToastersScreenHeader = () => {
+  const SetModalVisibility = useConnectedToasterStore((state) => state.SetModalVisibility)
+  const isModalVisible = useConnectedToasterStore((state) => state.isModalVisible)
+  const selectedToaster = useConnectedToasterStore((state) => state.selectedToaster)
   return (
     <BaseScreenHeader
-      title={"Current Toaster"}
+      title={selectedToaster.toasterName}
       onButtonPress={() => {}}
-      titleInteraction={{ isChevronVisible: true, onTitlePress: () => {} }}
-    ></BaseScreenHeader>
+      titleInteraction={{
+        isChevronVisible: true,
+        onTitlePress: () => SetModalVisibility(!isModalVisible),
+      }}
+    />
   )
 }
 

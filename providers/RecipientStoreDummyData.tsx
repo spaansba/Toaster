@@ -6,7 +6,7 @@ export const DummySelectedList: BefriendedToaster[] = [
     toasterName: "ToastPro Elite",
     style: "green",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:15:00Z",
+    lastSendToast: "2025-03-07T10:15:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -26,7 +26,7 @@ export const DummySelectedList: BefriendedToaster[] = [
     toasterName: "Avocado Deluxe",
     style: "pink",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:22:00Z",
+    lastSendToast: "2025-03-07T10:22:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -54,7 +54,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "ToastPro Elite",
     style: "green",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:15:00Z",
+    lastSendToast: "2025-03-07T10:15:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -74,7 +74,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Avocado Deluxe",
     style: "pink",
     pictureUrl: "HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2024-03-07T10:22:00Z",
+    lastSendToast: "2024-03-07T10:22:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -99,7 +99,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "BreakfastMaster 3000",
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T09:45:00Z",
+    lastSendToast: "2025-03-07T09:45:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -124,7 +124,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "BagelMaster Toaster",
     style: "yellow",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-02-04T11:05:00Z",
+    lastSendToast: "2025-02-04T11:05:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -144,7 +144,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "AlphaBake Supreme",
     style: "orange",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2024-11-07T10:37:00Z",
+    lastSendToast: "2024-11-07T10:37:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -179,7 +179,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "ArtisanCrisp",
     style: "purple",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2024-12-07T09:18:00Z",
+    lastSendToast: "2024-12-07T09:18:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -194,7 +194,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "BagelMaster Pro",
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T11:32:00Z",
+    lastSendToast: "2025-03-07T11:32:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -219,7 +219,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "CrispnCrunchy",
     style: "orange",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:51:00Z",
+    lastSendToast: "2025-03-07T10:51:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -239,7 +239,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "CuisineToast",
     style: "purple",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T09:27:00Z",
+    lastSendToast: "2025-03-07T09:27:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -264,7 +264,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "ClassicCrisp",
     style: "blue",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T11:12:00Z",
+    lastSendToast: "2025-03-07T11:12:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -294,7 +294,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Geret",
     style: "yellow",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T09:59:00Z",
+    lastSendToast: "2025-03-07T09:59:00Z",
     favorite: true,
     connectedUsers: [
       {
@@ -309,7 +309,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Plat",
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:43:00Z",
+    lastSendToast: "2025-03-07T10:43:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -334,7 +334,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Plat",
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T11:27:00Z",
+    lastSendToast: "2025-03-07T11:27:00Z",
     favorite: true,
     connectedUsers: [
       {
@@ -354,7 +354,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Plat",
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T10:08:00Z",
+    lastSendToast: "2025-03-07T10:08:00Z",
     favorite: false,
     connectedUsers: [
       {
@@ -379,7 +379,7 @@ export const DummyDataFullList: BefriendedToaster[] = [
     toasterName: "Plat",
     style: "pink",
     pictureUrl: "https://5zfgvazvyb.ufs.sh/f/HgS7iFpfFqdYTB6S7Nb7OwZQEdSfRkq49Gr2L6bNpVPxHYhg",
-    lastSendMessage: "2025-03-07T09:36:00Z",
+    lastSendToast: "2025-03-07T09:36:00Z",
     favorite: false,
     connectedUsers: [
       {
