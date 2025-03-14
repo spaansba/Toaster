@@ -24,7 +24,7 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
     return [
       {
         title: "Connections",
-        data: [...filteredToasterList].sort((a, b) => a.toasterName.localeCompare(b.toasterName)), // sort a-z
+        data: [...filteredToasterList].sort((a, b) => a.toasterName.localeCompare(b.toasterName)),
       },
     ]
   }
