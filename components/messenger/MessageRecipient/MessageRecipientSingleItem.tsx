@@ -17,27 +17,32 @@ const MessageRecipientSingleItem = ({
 }: MessageRecipientSingleItemProps) => {
   return (
     <Pressable onPress={() => onToasterPress(toaster)} className="flex-row mx-[6px] h-full ">
-      {/* Left section with profile picture and text */}
-      <View className="flex-row mr-auto">
-        <ProfilePicture />
-        <View className="ml-2">
-          <ToastText className="font-courier-bold mb-[-4px] mt-[-3px] text-lg" numberOfLines={1}>
-            {toaster.toasterName}
-          </ToastText>
+      {({ pressed }) => (
+        <>
+          <View className={`flex-row mr-auto`}>
+            <ProfilePicture />
+            <View className="ml-2">
+              <ToastText
+                className="font-courier-bold mb-[-4px] mt-[-3px] text-lg"
+                numberOfLines={1}
+              >
+                {toaster.toasterName}
+              </ToastText>
 
-          <ToastText className="text-sm text-toast-muted " numberOfLines={1}>
-            {getRelativeTime(toaster.lastSendMessage)}
-          </ToastText>
-        </View>
-      </View>
+              <ToastText className="text-sm text-toast-muted " numberOfLines={1}>
+                {getRelativeTime(toaster.lastSendToast)}
+              </ToastText>
+            </View>
+          </View>
 
-      {/* Right section with cancel button */}
-      <View className="mr-[6px] mt-[2px]">
-        <ConnectedUsersPictures
-          connectedUsers={toaster.connectedUsers}
-          backgroundColor={"#fff3e1"}
-        />
-      </View>
+          <View className="mr-[6px] mt-[2px]">
+            <ConnectedUsersPictures
+              connectedUsers={toaster.connectedUsers}
+              backgroundColor={"#fff3e1"}
+            />
+          </View>
+        </>
+      )}
     </Pressable>
   )
 }

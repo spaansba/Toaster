@@ -56,33 +56,18 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
     return sections
   }
 
-  const renderItem = ({
-    item,
-    index,
-    section,
-  }: {
-    item: BefriendedToaster
-    index: number
-    section: ToasterSectionListData
-  }) => {
-    const isFirst = index === 0
-    const isLast = index === section.data.length - 1
-    const isSelected = selectedToasterIds.has(item.toasterId)
-
-    return (
-      <ToasterCard
-        data={item}
-        isFirst={isFirst}
-        isLast={isLast}
-        isSelected={isSelected}
-        onPress={() => ToggleToasterSelection(item)}
-      />
-    )
-  }
   return (
     <SectionList
       sections={isFiltered ? createFilteredSectionList() : createUnfilteredSectionList()}
-      renderItem={renderItem}
+      renderItem={({ item, index, section }) => (
+        <ToasterCard
+          data={item}
+          isFirst={index === 0}
+          isLast={index === section.data.length - 1}
+          isSelected={selectedToasterIds.has(item.toasterId)}
+          onPress={() => ToggleToasterSelection(item)}
+        />
+      )}
       keyExtractor={(toaster) => toaster.toasterId}
       renderSectionHeader={({ section: { title } }) => (
         <ToastText className="font-courier-bold bg-primary-200 py-3">{title}</ToastText>
@@ -93,7 +78,7 @@ const RecipientSectionList = ({ filteredToasterList, isFiltered }: RecipientSect
           <ToastText>No toasters found</ToastText>
         </View>
       )}
-      ListFooterComponent={() => <View className="h-[40px]"></View>}
+      ListFooterComponent={() => <View className="h-[90px]"></View>}
     />
   )
 }
