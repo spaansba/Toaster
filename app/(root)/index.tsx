@@ -9,7 +9,7 @@ export default function App() {
   useEffect(() => {
     if (!isLoading) {
       if (session) {
-        router.replace("/toaster")
+        router.replace("/profile/userSettings")
       } else {
         router.replace("/sign-in")
       }
