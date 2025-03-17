@@ -11,24 +11,19 @@ type SettingMenuItemProps = {
 
 const SettingMenuItem = ({ label, ionIcon, onPress }: SettingMenuItemProps) => {
   return (
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        {
-          backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
-        },
-      ]}
-      className="flex-row items-center justify-between  py-4 px-5"
-    >
+    <Pressable onPress={onPress}>
       {({ pressed }) => (
-        <>
+        <View
+          className={` py-4 px-5 flex-row items-center justify-between ${
+            pressed ? "bg-toaster-yellow" : "transparant"
+          }`}
+        >
           <View className={`flex-row items-center gap-6 `}>
             <Ionicons name={ionIcon} size={25} />
             <ToastText className="text-lg">{label}</ToastText>
-            <ToastText>{pressed}</ToastText>
           </View>
-          <Ionicons name="chevron-forward" size={20} color={"#748492"} />
-        </>
+          <Ionicons name="chevron-forward" size={20} color={`${pressed ? "black" : "#748492"}`} />
+        </View>
       )}
     </Pressable>
   )

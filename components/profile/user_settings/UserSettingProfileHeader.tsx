@@ -10,7 +10,7 @@ type UserSettingProfileHeaderProps = {
 
 const UserSettingProfileHeader = () => {
   return (
-    <View className="flex justify-center items-center">
+    <View className="flex justify-center items-center py-5 border-b-[1px] border-[#748492]">
       <ProfilePicture size={100} />
       <ToastText className="font-courier-bold text-2xl mt-[6px]">Bart Spaans</ToastText>
       <ToastText className="text-lg mt-[-4px]">@BartSpaans</ToastText>
