@@ -3,13 +3,7 @@ import React from "react"
 import BaseScreenHeader from "../screen_header/BaseScreenHeader"
 
 const UserSettingsScreenHeader = () => {
-  return (
-    <BaseScreenHeader
-      title="Settings"
-      isNestedScreen={true}
-      onButtonPress={() => {}}
-    ></BaseScreenHeader>
-  )
+  return <BaseScreenHeader title="Settings" onButtonPress={() => {}}></BaseScreenHeader>
 }
 
 export default UserSettingsScreenHeader
