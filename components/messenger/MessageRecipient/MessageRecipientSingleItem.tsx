@@ -4,7 +4,7 @@ import ProfilePicture from "@/components/ProfilePicture"
 import { getRelativeTime } from "@/helpers/GetRelativeTime"
 import type { BefriendedToaster } from "@/types/types"
 import React from "react"
-import { Pressable, View } from "react-native"
+import { Pressable, TouchableOpacity, View } from "react-native"
 
 type MessageRecipientSingleItemProps = {
   toaster: BefriendedToaster
@@ -16,14 +16,20 @@ const MessageRecipientSingleItem = ({
   onToasterPress,
 }: MessageRecipientSingleItemProps) => {
   return (
-    <Pressable onPress={() => onToasterPress(toaster)} className="flex-row mx-[6px] h-full ">
+    <Pressable
+      onPress={() => onToasterPress(toaster)}
+      className="flex-row mx-[6px] h-full"
+      hitSlop={10}
+    >
       {({ pressed }) => (
         <>
           <View className={`flex-row mr-auto`}>
             <ProfilePicture />
             <View className="ml-2">
               <ToastText
-                className="font-courier-bold mb-[-4px] mt-[-3px] text-lg"
+                className={`font-courier-bold mb-[-4px] mt-[-3px] text-lg ${
+                  pressed ? "color-accent-text-press" : "color-black"
+                }`}
                 numberOfLines={1}
               >
                 {toaster.toasterName}

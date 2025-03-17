@@ -4,7 +4,7 @@ import React from "react"
 import { Modal, TouchableOpacity, View } from "react-native"
 import SelectToasterList from "./SelectToasterList"
 
-const SelectToasterModal: React.FC = () => {
+const SelectToasterModal = () => {
   const SetModalVisibility = useConnectedToasterStore((state) => state.SetModalVisibility)
   const isModalVisible = useConnectedToasterStore((state) => state.isModalVisible)
   const headerHeight = useHeaderHeight()

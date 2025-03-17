@@ -1,4 +1,4 @@
-export const TruncateString = (name: string, cutoff: number = 9) => {
+export const TruncateString = (name: string, cutoff: number = 9, addEllipsis: boolean = true) => {
   // Check if there's a space before or exactly at cutoff + 1
   const spaceIndex = name.indexOf(" ")
 
@@ -9,7 +9,10 @@ export const TruncateString = (name: string, cutoff: number = 9) => {
     // Don't truncate if first space is at cutoff + 1 or string is shorter than cutoff
     return name
   } else {
-    // String exceeds cutoff with no space before cutoff + 1, truncate with ellipsis
-    return `${name.substring(0, cutoff).trimEnd()}...`
+    if (addEllipsis) {
+      return `${name.substring(0, cutoff).trimEnd()}`
+    } else {
+      return name
+    }
   }
 }

@@ -6,6 +6,7 @@ import AppleAuth from "@/components/auth/AppleAuth"
 import { Image } from "expo-image"
 import Toast from "react-native-toast-message"
 import { ToastText } from "@/components/general/ToastText"
+import tailwindConfig from "@/tailwind.config"
 
 export default function SignIn() {
   const showToast = () => {
@@ -42,6 +43,7 @@ export default function SignIn() {
       },
     })
   }
+  const config = tailwindConfig as any
   return (
     <ScrollView className="bg-primary-200">
       <View className="h-full">

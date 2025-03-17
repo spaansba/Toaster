@@ -50,13 +50,8 @@ export default function SendMessage() {
           }
         }}
       />
-      <KeyboardToolbar
-        content={<Toolbar editor={editor} />}
-        showArrows={true}
-        doneText="done"
-        offset={{ opened: tabBarHeight }}
-      />
-      {/* <KeyboardStickyView
+
+      <KeyboardStickyView
         style={{
           position: "absolute",
           width: "100%",
@@ -64,7 +59,7 @@ export default function SendMessage() {
         }}
       >
         <Toolbar editor={editor} />
-      </KeyboardStickyView> */}
+      </KeyboardStickyView>
       <RecipientModal />
       {selectedToaster && (
         <ToasterInfoModal

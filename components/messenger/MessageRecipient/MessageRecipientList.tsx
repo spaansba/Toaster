@@ -7,6 +7,7 @@ import MessageRecipientListItem from "./MessageRecipientListItem"
 import Animated, { LinearTransition } from "react-native-reanimated"
 import MessageRecipientSingleItem from "./MessageRecipientSingleItem"
 import type { BefriendedToaster } from "@/types/types"
+import PressableText from "@/components/general/PressableText"
 
 type MessageRecipientListProps = {
   onToasterPress: (toaster: BefriendedToaster) => void
@@ -20,12 +21,13 @@ const MessageRecipientList = ({ onToasterPress }: MessageRecipientListProps) => 
     switch (selectedRecipients.length) {
       case 0:
         return (
-          <TouchableOpacity
+          <PressableText
             onPress={ShowModal}
-            className="size-full justify-center items-center flex-row"
-          >
-            <ToastText className="font-courier-bold">No Recipient(s) Selected</ToastText>
-          </TouchableOpacity>
+            label="No Recipient(s) Selected"
+            wrapperClassname="size-full justify-center items-center flex-row"
+            isBold={false}
+            textClassname="text-md"
+          />
         )
 
       case 1:

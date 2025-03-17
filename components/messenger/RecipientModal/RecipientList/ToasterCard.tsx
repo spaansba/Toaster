@@ -21,7 +21,6 @@ type ToasterCardProps = {
 const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCardProps) => {
   const { color, lightColor } = getToasterColors(data.style)
   // Choose either normal color or light color based on isSelected
-  const backgroundColor = isSelected ? color : lightColor
 
   const getBorderStyle = () => {
     switch (true) {
@@ -45,30 +44,32 @@ const ToasterCard = ({ isFirst, isLast, data, isSelected, onPress }: ToasterCard
 
   return (
     <Pressable onPress={handlePress}>
-      <View
-        className={`flex-row h-[50px] justify-between items-center px-3 ${getBorderStyle()}`}
-        style={{ backgroundColor: backgroundColor }}
-      >
-        <View className="flex-row h-[50px] items-center">
-          <ProfilePicture size={35} borderWidth={1} />
-          <View className="flex-col ml-3">
-            <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
-            <ToastText className="color-gray-500">Today</ToastText>
+      {({ pressed }) => (
+        <View
+          className={`flex-row h-[50px] justify-between items-center px-3 ${getBorderStyle()}`}
+          style={{ backgroundColor: isSelected || pressed ? color : lightColor }}
+        >
+          <View className="flex-row h-[50px] items-center">
+            <ProfilePicture size={35} borderWidth={1} />
+            <View className="flex-col ml-3">
+              <ToastText className="font-courier-bold">{data.toasterName}</ToastText>
+              <ToastText className="color-gray-500">Today</ToastText>
+            </View>
           </View>
-        </View>
 
-        <View className="flex-row items-center">
-          <ConnectedUsersPictures
-            connectedUsers={data.connectedUsers}
-            backgroundColor={backgroundColor}
-            size={20}
-            maxVisibleUsers={2}
-          />
-          <View className="ml-2">
-            <CheckBox showCheckmark={isSelected} />
+          <View className="flex-row items-center">
+            <ConnectedUsersPictures
+              connectedUsers={data.connectedUsers}
+              backgroundColor={isSelected || pressed ? color : lightColor}
+              size={20}
+              maxVisibleUsers={2}
+            />
+            <View className="ml-2">
+              <CheckBox showCheckmark={isSelected} />
+            </View>
           </View>
         </View>
-      </View>
+      )}
     </Pressable>
   )
 }

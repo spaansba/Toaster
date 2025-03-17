@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import {
   ActivityIndicator,
   LayoutChangeEvent,
-  TouchableOpacity,
+  Pressable,
   View,
   type AnimatableNumericValue,
   type DimensionValue,
@@ -45,9 +45,10 @@ type ToasterButtonProps = {
   disabled?: boolean
   loading?: boolean
   variant?: "yellow" | "green" | "blue" | "pink" | "orange" | "purple" | "white"
+  onPressColor?: string
   borderRadius?: string | AnimatableNumericValue | undefined
   shadowOffset?: DimensionValue | undefined
-  className?: string // Added className prop
+  className?: string
 }
 
 const VARIANTS = {
@@ -91,6 +92,7 @@ const VARIANTS = {
 function ToasterButton({
   content,
   onPress,
+  onPressColor = "#dc87f3",
   disabled = false,
   loading = false,
   variant = "yellow",
@@ -99,9 +101,11 @@ function ToasterButton({
   className = "", // Default to empty string
 }: ToasterButtonProps): JSX.Element {
   const [buttonLayout, setButtonLayout] = useState({ width: 0, height: 0 })
+  const [isPressed, setIsPressed] = useState(false)
 
   const getBackgroundColor = () => {
     if (disabled) return "bg-gray-300"
+    if (isPressed) return "bg-accent-button-press"
     return VARIANTS[variant].bg
   }
 
@@ -199,11 +203,12 @@ function ToasterButton({
           height: buttonLayout.height,
         }}
       />
-      <TouchableOpacity
+      <Pressable
         onPress={onPress}
-        activeOpacity={1}
         disabled={disabled || loading}
         onLayout={onLayout}
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}
         className={`
           relative
           h-full 
@@ -212,10 +217,12 @@ function ToasterButton({
           border-black
           ${getBackgroundColor()}
         `}
-        style={{ borderRadius: borderRadius }}
+        style={{
+          borderRadius: borderRadius,
+        }}
       >
         <View className="flex-1 justify-center items-center">{renderContent()}</View>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   )
 }

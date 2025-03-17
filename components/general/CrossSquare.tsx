@@ -1,8 +1,7 @@
-import { Text, Pressable, type GestureResponderEvent, View } from "react-native"
-import React from "react"
-import Entypo from "@expo/vector-icons/Entypo"
+import tailwindConfig from "@/tailwind.config"
 import { Ionicons } from "@expo/vector-icons"
-
+import React from "react"
+import { Pressable, View, type GestureResponderEvent } from "react-native"
 // Using nested Views instead of border props to create a clean circular button
 // This approach prevents rendering issues where background might show through at the edges
 type CrossButtonProps = {
@@ -11,7 +10,7 @@ type CrossButtonProps = {
   borderColor?: string
 }
 
-const CrossButton = ({ onPress, size = 20, borderColor = "#FFD580" }: CrossButtonProps) => {
+const CrossSquare = ({ onPress, size = 20, borderColor = "#FFD580" }: CrossButtonProps) => {
   const outerBorderSize = 3
   const outerStyles = {
     width: size + outerBorderSize,
@@ -27,19 +26,14 @@ const CrossButton = ({ onPress, size = 20, borderColor = "#FFD580" }: CrossButto
   }
 
   const iconSize = Math.floor(size * 0.85)
-
+  const config = tailwindConfig as any
   return (
     <View style={outerStyles} className="flex items-center justify-center overflow-hidden z-10">
-      <Pressable
-        hitSlop={30}
-        onPress={onPress}
-        style={innerStyles}
-        className="bg-[#6b7280] flex items-center justify-center"
-      >
-        <Ionicons name="close-sharp" size={iconSize} color="white" />
-      </Pressable>
+      <View style={innerStyles} className="bg-[#6b7280] flex items-center justify-center">
+        <Ionicons name="close-sharp" size={iconSize} color={"white"} />
+      </View>
     </View>
   )
 }
 
-export default CrossButton
+export default CrossSquare

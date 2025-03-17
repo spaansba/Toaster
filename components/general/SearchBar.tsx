@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import React, { useRef } from "react"
 import { TextInput, View } from "react-native"
-import CrossButton from "./CrossButton"
+import CrossButton from "./CrossSquare"
 
 type SearchBarProps = {
   searchQuery: string

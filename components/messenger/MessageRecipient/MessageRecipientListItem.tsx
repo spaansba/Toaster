@@ -34,25 +34,29 @@ const MessageRecipientListItem = ({ toaster }: MessageRecipientItemProps) => {
         className="mx-[6px] h-full "
       >
         <Pressable
-          className="flex-row items-center border-[1px] border-black rounded-lg"
+          className=" border-[1px] border-black rounded-lg"
           style={{ backgroundColor: backgroundColor.color }}
           onPress={() => toggleRecipient(toaster)}
         >
-          <View className="size-[35px] overflow-hidden rounded-md">
-            <Image
-              source={images.hoofd}
-              style={{ width: "100%", height: "100%", overflow: "hidden" }}
-              contentFit="cover"
-              cachePolicy="memory-disk"
-              transition={0}
-            />
-          </View>
-          <ToastText className="text-sm tracking-tighter ml-2">
-            {TruncateString(toaster.toasterName)}
-          </ToastText>
-          <View className="mx-[6px] rounded-full ">
-            <Ionicons name="close" size={14} color="#1c1917" />
-          </View>
+          {({ pressed }) => (
+            <View className={`${pressed ? "opacity-press" : "opacity-100"} flex-row items-center`}>
+              <View className="size-[35px] overflow-hidden rounded-md">
+                <Image
+                  source={images.hoofd}
+                  style={{ width: "100%", height: "100%", overflow: "hidden" }}
+                  contentFit="cover"
+                  cachePolicy="memory-disk"
+                  transition={0}
+                />
+              </View>
+              <ToastText className={`text-sm tracking-tighter ml-2  `}>
+                {TruncateString(toaster.toasterName)}
+              </ToastText>
+              <View className="mx-[6px] rounded-full ">
+                <Ionicons name="close" size={14} color="#1c1917" />
+              </View>
+            </View>
+          )}
         </Pressable>
       </Animated.View>
     </LayoutAnimationConfig>

@@ -7,5 +7,12 @@ type ToastTextProps = TextProps & {
 export function ToastText(props: ToastTextProps) {
   const { className, style, ...otherProps } = props
 
-  return <Text className={`font-courier ${className || ""}`} style={style} {...otherProps} />
+  return (
+    <Text
+      numberOfLines={1}
+      className={`font-courier ${className || ""}`}
+      style={style}
+      {...otherProps}
+    />
+  )
 }

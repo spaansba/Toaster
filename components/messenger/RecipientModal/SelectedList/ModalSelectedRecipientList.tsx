@@ -24,6 +24,7 @@ const ModalSelectedRecipientList = ({ ShowDeleteAllButton }: ModalSelectedRecipi
             <>
               <LegendList
                 data={selectedRecipients}
+                contentContainerClassName="flex gap-3"
                 renderItem={({ item }) => <ModalSelectedRecipientItem toaster={item} />}
                 keyExtractor={(item) => item.toasterId}
                 horizontal={true}
@@ -47,9 +48,17 @@ const ModalSelectedRecipientList = ({ ShowDeleteAllButton }: ModalSelectedRecipi
       {selectedRecipients.length > 0 && ShowDeleteAllButton && (
         <Pressable
           onPress={RemoveAllSelectedRecipients}
-          className="bg-toaster-orange absolute w-[45px] h-[20px] justify-center items-center  rounded-md border-black border-2 right-[-8px] top-[-2px]"
+          className="right-[-8px] top-[-2px] absolute"
         >
-          <Ionicons name="trash-outline" size={13}></Ionicons>
+          {({ pressed }) => (
+            <View
+              className={`${
+                pressed ? "bg-accent-button-press" : "bg-toaster-orange"
+              }  w-[45px] h-[20px] justify-center items-center rounded-md border-black border-2 `}
+            >
+              <Ionicons name="trash-outline" size={13}></Ionicons>
+            </View>
+          )}
         </Pressable>
       )}
     </>

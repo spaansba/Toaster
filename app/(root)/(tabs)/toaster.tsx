@@ -1,4 +1,4 @@
-import SelectToasterModal from "@/components/connected_toasters/SelectToasterModal/SelectToasterModal"
+import SelectToasterModal from "@/components/connected_toasters/HeaderSelectToasterModal/SelectToasterModal"
 import React from "react"
 import { SafeAreaView } from "react-native"
 

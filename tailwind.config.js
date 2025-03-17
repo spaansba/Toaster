@@ -13,13 +13,19 @@ module.exports = {
       padding: {
         standardPagePadding: "20px",
       },
+      opacity: {
+        press: 0.4,
+      },
       colors: {
         primary: {
           100: "#fff3e1A1",
           200: "#fff3e1",
           300: "#fff3e1A2",
         },
-        accent: {},
+        accent: {
+          "text-press": "#6a7282",
+          "button-press": "#FFA7B6",
+        },
         danger: "#F75555",
         toaster: {
           // Original colors
