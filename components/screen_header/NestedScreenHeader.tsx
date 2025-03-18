@@ -1,9 +1,8 @@
-import { View, Text, Pressable } from "react-native"
-import React from "react"
-import { Ionicons } from "@expo/vector-icons"
 import { router } from "expo-router"
-import { ToastText } from "../general/ToastText"
+import React from "react"
+import { View } from "react-native"
 import PressableIcon from "../general/PressableIcon"
+import { ToastText } from "../general/ToastText"
 
 type NestedScreenHeaderProps = {
   title: string
@@ -11,7 +10,7 @@ type NestedScreenHeaderProps = {
 
 const NestedScreenHeader = ({ title }: NestedScreenHeaderProps) => {
   return (
-    <View className="h-[90px] pt-[45px] border-[1px] border-black px-3 flex-row items-center z-10 bg-primary-200">
+    <View className="h-[90px] pt-[45px] border-b-[1px] border-b-black px-3 flex-row items-center z-10 bg-primary-200">
       <View className="flex-1 flex-row items-center">
         <PressableIcon
           onPress={() => {

@@ -43,7 +43,6 @@ export default function SignIn() {
       },
     })
   }
-  const config = tailwindConfig as any
   return (
     <ScrollView className="bg-primary-200">
       <View className="h-full">

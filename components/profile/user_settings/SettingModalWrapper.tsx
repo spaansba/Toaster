@@ -2,6 +2,15 @@ import { View, Text, Modal, Pressable } from "react-native"
 import React, { Children, type ReactNode } from "react"
 import { ToastText } from "@/components/general/ToastText"
 import PressableText from "@/components/general/PressableText"
+import {
+  KeyboardAvoidingView,
+  KeyboardStickyView,
+  KeyboardToolbar,
+} from "react-native-keyboard-controller"
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
+import { Toolbar } from "@10play/tentap-editor"
+import { TextInput } from "react-native-gesture-handler"
+import { useForm } from "@tanstack/react-form"
 
 type SettingModalWrapperProps = {
   label: string
@@ -16,6 +25,15 @@ const SettingModalWrapper = ({
   setIsModalVisible,
   children,
 }: SettingModalWrapperProps) => {
+  const form = useForm({
+    onSubmit: async ({ value }) => {
+      console.log(value)
+    },
+    defaultValues: {
+      email: "",
+    },
+  })
+
   return (
     <Modal
       animationType="slide"
@@ -24,16 +42,24 @@ const SettingModalWrapper = ({
       onRequestClose={() => setIsModalVisible(false)}
     >
       <View className="h-full bg-primary-200">
-        <View className="h-[70px] flex-row items-center justify-between border-b-[1px] border-[#748492] px-5">
-          <View className="flex-1">
-            <PressableText onPress={() => setIsModalVisible(false)} label="Cancel" isBold={false} />
-          </View>
-          <View className="flex-1 items-center font-">
-            <ToastText className="text-lg font-courier-bold">{label}</ToastText>
-          </View>
-          <View className="flex-1"></View>
-        </View>
-        <View className="flex-1">{children}</View>
+        <KeyboardAvoidingView className="px-5 py-5 flex-1">
+          <form.Field
+            name="email"
+            children={(field) => (
+              <View className="">
+                <TextInput
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChangeText={field.handleChange}
+                  placeholder="example@toaster.com"
+                  spellCheck={true}
+                  textContentType="emailAddress"
+                />
+              </View>
+            )}
+          />
+        </KeyboardAvoidingView>
+        <KeyboardToolbar />
       </View>
     </Modal>
   )

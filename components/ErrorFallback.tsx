@@ -17,7 +17,7 @@ const ErrorFallback = (props: FallbackProps) => {
   }
 
   return (
-    <View style={{ flex: 1 }} className="items-center justify-center p-4">
+    <View className="flex-1 items-center justify-center p-4">
       <View className="bg-danger p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
         <ToastText className="text-2xl font-courier-bold text-black mb-4">ERROR!</ToastText>
         <ToastText className="text-black mb-6">{getErrorMessage(error)}</ToastText>

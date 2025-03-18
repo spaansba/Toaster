@@ -3,6 +3,7 @@ import LogoutButton from "@/components/profile/user_settings/LogoutButton"
 import SettingMenuItem from "@/components/profile/user_settings/SettingMenuItem"
 import UserSettingProfileHeader from "@/components/profile/user_settings/UserSettingProfileHeader"
 import { View, ScrollView } from "react-native"
+import { KeyboardToolbar } from "react-native-keyboard-controller"
 
 export default function UserSettingsScreen() {
   return (
@@ -13,6 +14,7 @@ export default function UserSettingsScreen() {
         <View>
           <SettingMenuItem ionIcon="person" label="Account" onPress={() => {}} />
           <BugReportSetting />
+
           <SettingMenuItem
             ionIcon="bulb"
             label="Request a Feature"

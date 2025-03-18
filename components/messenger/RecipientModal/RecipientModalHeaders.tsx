@@ -14,14 +14,14 @@ const RecipientModalHeaders = ({ onCancelPress, onFinishPress }: RecipientModalH
 
   return (
     <View className="flex-row justify-between items-center mb-6">
-      <PressableText onPress={onCancelPress} label="Cancel" />
+      <PressableText onPress={onCancelPress} label="Cancel" textClassname="text-xl" />
 
       <View className="flex-col items-center">
         <ToastText>ADD RECIPIENTS</ToastText>
         <ToastText>{`${selectedRecipients.length}/63`}</ToastText>
       </View>
 
-      <PressableText onPress={onFinishPress} label="Finish" />
+      <PressableText onPress={onFinishPress} label="Finish" textClassname="text-xl" />
     </View>
   )
 }
